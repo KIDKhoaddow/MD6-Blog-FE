@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Home</title>
+    <link href="adminView/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="adminView/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <!-- Favicon -->
+    <link rel="icon" href="userView/img/core-img/favicon.ico">
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="userView/style.css">
+    <link rel="stylesheet" href="adminView/css/theme.css">
+    <script src="commonJS/commonJS.js"></script>
+
+
+</head>
+
+<body class="animsition" data-animsition-in-class="fade-in"
+      data-animsition-in-duration="100"
+      data-animsition-out-class="fade-out"
+      data-animsition-out-duration="500" onload="loadProfilePage()" id="bodyLogin">
+<!-- Preloader -->
+<div class="preloader d-flex align-items-center justify-content-center">
+    <div class="preloader-content">
+        <h3>Cooking in progress..</h3>
+        <div id="cooking">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div id="area">
+                <div id="sides">
+                    <div id="pan"></div>
+                    <div id="handle"></div>
+                </div>
+                <div id="pancake">
+                    <div id="pastry"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ##### Header Area Start ##### -->
+<header class="header-area">
+
+    <!-- Top Header Area -->
+    <div class="top-header-area bg-img bg-overlay" style="background-image: url(userView/img/bg-img/header.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-between">
+                <div class="col-12 col-sm-6">
+                    <!-- Top Social Info -->
+                    <div class="top-social-info">
+                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i
+                                class="fa fa-pinterest" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i
+                                class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i
+                                class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Dribbble"><i
+                                class="fa fa-dribbble" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Behance"><i
+                                class="fa fa-behance" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i
+                                class="fa fa-linkedin" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-5 col-xl-4">
+                    <!-- Top Search Area -->
+                    <div class="top-search-area">
+                        <form action="#" method="post">
+                            <input type="search" name="top-search" id="topSearch" placeholder="Search">
+                            <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logo Area -->
+    <div class="logo-area">
+        <a href="index.html"><img src="userView/img/core-img/logo.png" alt=""></a>
+        <div class="sufee-alert alert with-close alert-danger alert-dismissible fade" id="alertlogin">
+            <span class="badge badge-pill badge-danger" id="alertHeader"></span>
+            <span id="alertContent">
+
+                           </span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.reload()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Navbar Area -->
+    <div class="bueno-main-menu" id="sticker">
+        <div class="classy-nav-container breakpoint-off">
+            <div class="container">
+                <!-- Menu -->
+                <nav class="classy-navbar justify-content-between" id="buenoNav">
+
+                    <!-- Toggler -->
+                    <div id="toggler"><img src="userView/img/core-img/toggler.png" alt=""></div>
+                    <!-- Navbar Toggler -->
+                    <!-- Menu -->
+                    <div class="classy-menu justify-content-between">
+                        <!-- Close Button -->
+                        <div class="classycloseIcon">
+                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                        </div>
+                        <!-- Nav Start -->
+                        <div class="classynav">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="catagory.html">Category</a>
+                                    <ul class="dropdown" id="dropDownCategory">
+                                    </ul>
+                                </li>
+                                <li><a href="single-post.html">Blog</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+
+                        </div>
+                        <!-- Nav End -->
+                    </div>
+                    <!-- Login/Register -->
+                    <div class="login-area" id="login-area">
+                        <a href="" class="btn btn-default btn-rounded my-3" data-toggle="modal"
+                           data-target="#" onclick="showModalLoginRegister()">Login/Register</a>
+                    </div>
+
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ##### Header Area End ##### -->
+
+<!-- ##### Treading Post Area Start ##### -->
+<div class="treading-post-area" id="treadingPost">
+    <div class="close-icon">
+        <i class="fa fa-times"></i>
+    </div>
+
+    <h4>Treading Post</h4>
+
+    <!-- Single Blog Post -->
+    <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
+        <!-- Blog Thumbnail -->
+        <div class="blog-thumbnail">
+            <img src="userView/img/bg-img/9.jpg" alt="">
+        </div>
+        <!-- Blog Content -->
+        <div class="blog-content">
+            <a href="#" class="post-tag">The Best</a>
+            <a href="#" class="post-title">Friend eggs with ham</a>
+            <div class="post-meta">
+                <a href="#" class="post-date">July 11, 2018</a>
+                <a href="#" class="post-author">By Julia Stiles</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Single Blog Post -->
+    <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
+        <!-- Blog Thumbnail -->
+        <div class="blog-thumbnail">
+            <img src="userView/img/bg-img/10.jpg" alt="">
+        </div>
+        <!-- Blog Content -->
+        <div class="blog-content">
+            <a href="#" class="post-tag">The Best</a>
+            <a href="#" class="post-title">Mushrooms with pork chop</a>
+            <div class="post-meta">
+                <a href="#" class="post-date">July 11, 2018</a>
+                <a href="#" class="post-author">By Julia Stiles</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Single Blog Post -->
+    <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
+        <!-- Blog Thumbnail -->
+        <div class="blog-thumbnail">
+            <img src="userView/img/bg-img/11.jpg" alt="">
+        </div>
+        <!-- Blog Content -->
+        <div class="blog-content">
+            <a href="#" class="post-tag">The Best</a>
+            <a href="#" class="post-title">Birthday cake with chocolate</a>
+            <div class="post-meta">
+                <a href="#" class="post-date" >July 11, 2018</a>
+                <a href="#" class="post-author"  >By Julia Stiles</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Single Blog Post -->
+    <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
+        <!-- Blog Thumbnail -->
+        <div class="blog-thumbnail">
+            <img src="userView/img/bg-img/9.jpg" alt="">
+        </div>
+        <!-- Blog Content -->
+        <div class="blog-content">
+            <a href="#" class="post-tag">The Best</a>
+            <a href="#" class="post-title">Friend eggs with ham</a>
+            <div class="post-meta">
+                <a href="#" class="post-date">July 11, 2018</a>
+                <a href="#" class="post-author">By Julia Stiles</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Single Blog Post -->
+    <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
+        <!-- Blog Thumbnail -->
+        <div class="blog-thumbnail">
+            <img src="userView/img/bg-img/10.jpg" alt="">
+        </div>
+        <!-- Blog Content -->
+        <div class="blog-content">
+            <a href="#" class="post-tag">The Best</a>
+            <a href="#" class="post-title">Mushrooms with pork chop</a>
+            <div class="post-meta">
+                <a href="#" class="post-date">July 11, 2018</a>
+                <a href="#" class="post-author">By Julia Stiles</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Single Blog Post -->
+    <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
+        <!-- Blog Thumbnail -->
+        <div class="blog-thumbnail">
+            <img src="userView/img/bg-img/11.jpg" alt="">
+        </div>
+        <!-- Blog Content -->
+        <div class="blog-content">
+            <a href="#" class="post-tag">The Best</a>
+            <a href="#" class="post-title">Birthday cake with chocolate</a>
+            <div class="post-meta">
+                <a href="#" class="post-date">July 11, 2018</a>
+                <a href="#" class="post-author">By Julia Stiles</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<div class="catagory-post-area section-padding-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="justify-content-center col-lg-9">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-post-tab" data-toggle="tab" href="#nav-post"
+                           role="tab"
+                           aria-controls="nav-home" aria-selected="true">Post</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                           role="tab"
+                           aria-controls="nav-profile" aria-selected="false">Profile</a>
+                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
+                           role="tab"
+                           aria-controls="nav-contact" aria-selected="false">Contact</a>
+                        <button class="au-btn au-btn-icon au-btn--green au-btn--small ml-auto p-2"
+                                data-target="#createBlog" data-toggle="modal" onclick="showListCategoryBlogModal('category-input-create')">
+                            <i class="zmdi zmdi-plus"></i>add item
+                        </button>
+                    </div>
+                </nav>
+
+                <div class="tab-content " id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-post" role="tabpanel"
+                         aria-labelledby="nav-post-tab">
+                        <div class="d-flex flex-wrap" id="listPostByAuthor"></div>
+                    </div>
+                    <div class="tab-pane fade " id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" style=" margin-top: 100px;margin-left: 100px;">
+                        <div class="col-lg-6 " style="max-width: 80%;">
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>Edit Profile Form</strong>
+                                </div>
+                                <div class="card-body card-block">
+                                    <form  enctype="multipart/form-data">
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <input class="form-control" type="text" name="action" value="edit"
+                                                       style="display: none">
+                                                <label for="file-input" class=" form-control-label">Avatar input</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="file" id="file-input" name="user-picture-input"
+                                                       class="form-control-file" accept="image/*" >
+                                            </div>
+                                            <img  class="rounded-circle mx-auto d-block"
+                                                 style="height: 300px;width: 300px;">
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">UserName</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" id="userName-input" name="user-name-input"
+                                                       placeholder="Enter name" class="form-control">
+                                                <small class="help-block form-text">Please enter your Name</small>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">Email</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="email" id="email-input" name="user-email-input"
+                                                       placeholder="Enter name" class="form-control">
+                                                <small class="help-block form-text">Please enter your email</small>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="address-input" class=" form-control-label">Address
+                                                    Input</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" id="address-input" name="user-address-input"
+                                                       placeholder="Enter Address" class="form-control">
+                                                <small class="help-block form-text">Please enter your address</small>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="phone-input" class=" form-control-label">Phone Input</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="" id="phone-input" name="user-phone-input"
+                                                       placeholder="Enter Phone" class="form-control" >
+                                                <small class="help-block form-text">Please enter your phone</small>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="DOB-input" class=" form-control-label">DOB Input</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="date" id="DOB-input" name="user-DOB-input"
+                                                       placeholder="Enter date of birth" class="form-control"
+                                                       >
+                                                <small class="help-block form-text">Please enter your DOB</small>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-dot-circle-o"></i> Submit
+                                    </button>
+                                    <button type="reset" class="btn btn-danger btn-sm" >
+                                        <i class="fa fa-ban"></i> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...
+                    </div>
+                </div>
+                <!-- Sidebar Area -->
+            </div>
+            <div class="classy-navbar-toggler">
+                <span class="navbarToggler"><span></span><span></span><span></span></span>
+            </div>
+            <!-- Sidebar Area -->
+            <div class="col-12 col-sm-9 col-md-6 col-lg-3 col-xl-3">
+                <div class="sidebar-area">
+                    <!-- Single Widget Area -->
+                    <div class="single-widget-area author-widget mb-30">
+                        <div class="background-pattern bg-img"
+                             style="background-image: url(userView/img/core-img/pattern2.png);">
+                            <div class="author-thumbnail">
+                                <img src="userView/img/bg-img/23.jpg" id="avatar1" alt="">
+                            </div>
+                            <p>My name is <span id="authorSide"></span>, I’m a passionate cook with a love for vegan food.
+                            </p>
+                        </div>
+                        <div class="social-info">
+                            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Single Widget Area -->
+                    <div class="single-widget-area add-widget mb-30">
+                        <img src="userView/img/bg-img/add.png" alt="">
+                    </div>
+
+                    <!-- Single Widget Area -->
+                    <div class="single-widget-area post-widget mb-30">
+                        <!-- Single Post Area -->
+                        <div class="single-post-area d-flex">
+                            <!-- Blog Thumbnail -->
+                            <div class="blog-thumbnail">
+                                <img src="userView/img/bg-img/12.jpg" alt="">
+                            </div>
+                            <!-- Blog Content -->
+                            <div class="blog-content">
+                                <a href="#" class="post-title">Friend eggs with ham</a>
+                                <div class="post-meta">
+                                    <a href="#" class="post-date">July 11, 2018</a>
+                                    <a href="#" class="post-author">By Julia Stiles</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Post Area -->
+                        <div class="single-post-area d-flex">
+                            <!-- Blog Thumbnail -->
+                            <div class="blog-thumbnail">
+                                <img src="userView/img/bg-img/13.jpg" alt="">
+                            </div>
+                            <!-- Blog Content -->
+                            <div class="blog-content">
+                                <a href="#" class="post-title">Burger with fries</a>
+                                <div class="post-meta">
+                                    <a href="#" class="post-date">July 11, 2018</a>
+                                    <a href="#" class="post-author">By Julia Stiles</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Post Area -->
+                        <div class="single-post-area d-flex">
+                            <!-- Blog Thumbnail -->
+                            <div class="blog-thumbnail">
+                                <img src="userView/img/bg-img/14.jpg" alt="">
+                            </div>
+                            <!-- Blog Content -->
+                            <div class="blog-content">
+                                <a href="#" class="post-title">Avocado &amp; Oisters</a>
+                                <div class="post-meta">
+                                    <a href="#" class="post-date">July 11, 2018</a>
+                                    <a href="#" class="post-author">By Julia Stiles</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Post Area -->
+                        <div class="single-post-area d-flex">
+                            <!-- Blog Thumbnail -->
+                            <div class="blog-thumbnail">
+                                <img src="userView/img/bg-img/15.jpg" alt="">
+                            </div>
+                            <!-- Blog Content -->
+                            <div class="blog-content">
+                                <a href="#" class="post-title">Tortilla prawns</a>
+                                <div class="post-meta">
+                                    <a href="#" class="post-date">July 11, 2018</a>
+                                    <a href="#" class="post-author">By Julia Stiles</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Post Area -->
+                        <div class="single-post-area d-flex">
+                            <!-- Blog Thumbnail -->
+                            <div class="blog-thumbnail">
+                                <img src="userView/img/bg-img/16.jpg" alt="">
+                            </div>
+                            <!-- Blog Content -->
+                            <div class="blog-content">
+                                <a href="#" class="post-title">Burger with fries</a>
+                                <div class="post-meta">
+                                    <a href="#" class="post-date">July 11, 2018</a>
+                                    <a href="#" class="post-author">By Julia Stiles</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Widget Area -->
+                    <div class="single-widget-area newsletter-widget mb-30">
+                        <h6>Subscribe to newsletter</h6>
+                        <form action="#" method="post">
+                            <input type="search" name="widget-search" id="widgetSearch" placeholder="E-mail">
+                            <button type="submit" class="btn bueno-btn w-100">Subscribe</button>
+                        </form>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="pagination-area mt-70">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination" id="pagination">
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ##### Instagram Area Start ##### -->
+<div class="instagram-feed-area d-flex flex-wrap">
+    <!-- Single Instagram -->
+    <div class="single-instagram">
+        <img src="userView/img/bg-img/insta1.jpg" alt="">
+        <!-- Image Zoom -->
+        <a href="userView/img/bg-img/insta1.jpg" class="img-zoom" title="Instagram Image">+</a>
+    </div>
+
+    <!-- Single Instagram -->
+    <div class="single-instagram">
+        <img src="userView/img/bg-img/insta2.jpg" alt="">
+        <!-- Image Zoom -->
+        <a href="userView/img/bg-img/insta2.jpg" class="img-zoom" title="Instagram Image">+</a>
+    </div>
+
+    <!-- Single Instagram -->
+    <div class="single-instagram">
+        <img src="userView/img/bg-img/insta3.jpg" alt="">
+        <!-- Image Zoom -->
+        <a href="userView/img/bg-img/insta3.jpg" class="img-zoom" title="Instagram Image">+</a>
+    </div>
+
+    <!-- Single Instagram -->
+    <div class="single-instagram">
+        <img src="userView/img/bg-img/insta4.jpg" alt="">
+        <!-- Image Zoom -->
+        <a href="userView/img/bg-img/insta4.jpg" class="img-zoom" title="Instagram Image">+</a>
+    </div>
+
+    <!-- Single Instagram -->
+    <div class="single-instagram">
+        <img src="userView/img/bg-img/insta5.jpg" alt="">
+        <!-- Image Zoom -->
+        <a href="userView/img/bg-img/insta5.jpg" class="img-zoom" title="Instagram Image">+</a>
+    </div>
+
+    <!-- Single Instagram -->
+    <div class="single-instagram">
+        <img src="userView/img/bg-img/insta6.jpg" alt="">
+        <!-- Image Zoom -->
+        <a href="userView/img/bg-img/insta6.jpg" class="img-zoom" title="Instagram Image">+</a>
+    </div>
+
+    <!-- Single Instagram -->
+    <div class="single-instagram">
+        <img src="userView/img/bg-img/insta7.jpg" alt="">
+        <!-- Image Zoom -->
+        <a href="userView/img/bg-img/insta7.jpg" class="img-zoom" title="Instagram Image">+</a>
+    </div>
+
+    <!-- Single Instagram -->
+    <div class="single-instagram">
+        <img src="userView/img/bg-img/insta8.jpg" alt="">
+        <!-- Image Zoom -->
+        <a href="userView/img/bg-img/insta8.jpg" class="img-zoom" title="Instagram Image">+</a>
+    </div>
+
+    <!-- Single Instagram -->
+    <div class="single-instagram">
+        <img src="userView/img/bg-img/insta9.jpg" alt="">
+        <!-- Image Zoom -->
+        <a href="userView/img/bg-img/insta9.jpg" class="img-zoom" title="Instagram Image">+</a>
+    </div>
+
+    <!-- Single Instagram -->
+    <div class="single-instagram">
+        <img src="userView/img/bg-img/insta10.jpg" alt="">
+        <!-- Image Zoom -->
+        <a href="userView/img/bg-img/insta10.jpg" class="img-zoom" title="Instagram Image">+</a>
+    </div>
+</div>
+<!-- ##### Instagram Area End ##### -->
+
+<div id="modal"></div>
+
+<!-- ##### Footer Area Start ##### -->
+<footer class="footer-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-5">
+                <!-- Copywrite Text -->
+                <p class="copywrite-text"><a href="#">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                    All rights reserved | This template is made with <i class="fa fa-heart-o"
+                                                                        aria-hidden="true"></i> by
+                    <a href="https://zalo.me/g/wsbatn890" target="_blank">Team 2</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></a></p>
+            </div>
+            <div class="col-12 col-sm-7">
+                <!-- Footer Nav -->
+                <div class="footer-nav">
+                    <ul>
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Recipes</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- ##### Footer Area Start ##### -->
+<!-- modal info blog -->
+<div class="modal fade" id="updateBlog" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="title">Blog UpdateForm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" >
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">Picture</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <img class="form-control-file img-120 img-cir" id="picture">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="picture-input" class=" form-control-label">Picture Input</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="file" id="picture-input" name="file-input" class="form-control-file">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="title-input" class=" form-control-label">Title Input</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="title-input" name="text-input" placeholder="title"
+                                   class="form-control">
+                            <small class="form-text text-muted">This is a help text</small>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="category-input" class=" form-control-label">Category Input</label>
+                        </div>
+                        <div class="col-12 col-md-9 category-input" id="category-input">
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">Author</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static" id="AuthorBlog"></p>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="describe-input" class=" form-control-label">Describe Input</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <textarea id="describe-input" name="text-input" placeholder="Text"
+                                      class="form-control"></textarea>
+                            <small class="form-text text-muted">This is a help text</small>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="content-input" class=" form-control-label">Content Input</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <textarea type="text" id="content-input" name="text-input" placeholder="content"
+                                      class="form-control"></textarea>
+                            <small class="form-text text-muted">This is a help text</small>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">Create At</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <p class="form-control-static" id="createAtBlog"></p>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="selectStatus" class=" form-control-label">Select</label>
+                        </div>
+                        <div class="col-12 col-md-9" >
+                            <select name="select" id="selectStatus" class="form-control">
+                                <option value="PUBLIC">Public</option>
+                                <option value="PRIVATE">Private</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="confirmUpdateBlog" data-dismiss="modal">Confirm
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- end modal info blog -->
+<!-- modal creata blog -->
+<div class="modal fade" id="createBlog" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleCreate">Blog UpdateForm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" enctype="multipart/form-data" id="form-picture"  >
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="picture-input" class=" form-control-label">Picture Input</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="file" id="picture-input-create" name="file-input" class="form-control-file">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="title-input" class=" form-control-label">Title Input</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="title-input-create" name="text-input" placeholder="title"
+                                   class="form-control">
+                            <small class="form-text text-muted">This is a help text</small>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="category-input-create" class=" form-control-label">Category Input</label>
+                        </div>
+                        <div class="col-12 col-md-9 " id="category-input-create">
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="describe-input" class=" form-control-label">Describe Input</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <textarea id="describe-input-create" name="text-input" placeholder="Text"
+                                      class="form-control"></textarea>
+                            <small class="form-text text-muted">This is a help text</small>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="content-input" class=" form-control-label">Content Input</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <textarea type="text" id="content-input-create" name="text-input" placeholder="content"
+                                      class="form-control"></textarea>
+                            <small class="form-text text-muted">This is a help text</small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="confirmCreateBlog" onclick="createBlog()"  data-dismiss="modal">Confirm
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- end modal create blog -->
+<!--modal delete blog-->
+<div class="modal fade" id="deleteBlog" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Confirm delete blog</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="contentModalDeleteBlog">
+
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmDeleteBlog" data-dismiss="modal">Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end modal delete blog-->
+<!-- ##### All Javascript Script ##### -->
+<!-- jQuery-2.2.4 js -->
+<script src="userView/js/jquery/jquery-2.2.4.min.js"></script>
+<!-- Popper js -->
+<script src="userView/js/bootstrap/popper.min.js"></script>
+<!-- Bootstrap js -->
+<script src="userView/js/bootstrap/bootstrap.min.js"></script>
+<!-- All Plugins js -->
+<script src="userView/js/plugins/plugins.js"></script>
+<!-- Active js -->
+<script src="userView/js/active.js"></script>
+
+<script src="userView/js/login.js"></script>
+<script src="userView/js/loadNavBar.js"></script>
+<script src="userView/js/likeComment.js"></script>
+<script src="userView/js/proflie.js"></script>
+</body>
+
+</html>

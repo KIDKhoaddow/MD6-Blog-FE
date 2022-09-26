@@ -1,0 +1,17 @@
+.spacer {
+  flex: 1 1 auto;
+}
+.form-field {
+  width: 700px;
+}
+
+.icon{
+  height: 15px;
+  width: 15px;
+  margin-right: 30px;
+}
+.avatar{
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+}

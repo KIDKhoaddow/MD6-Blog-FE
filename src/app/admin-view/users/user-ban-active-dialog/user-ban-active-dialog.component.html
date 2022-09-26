@@ -1,0 +1,21 @@
+<h2>Confirm to do with user </h2>
+
+<mat-dialog-content *ngIf="data.userStatus.verify; else contentElse">
+  <h4>Do you want to ban this user</h4>
+</mat-dialog-content>
+<ng-template #contentElse>
+  <h4>Do you want to active this user</h4>
+</ng-template>
+<mat-dialog-actions *ngIf="data.userStatus.verify; else buttonElse" class="flex-row justify-content-center ">
+  <button mat-button color="primary" (click)="banUser(data)" >
+    Confirm</button>
+  <button mat-button color="warn" mat-dialog-close>Close</button>
+</mat-dialog-actions>
+<ng-template #buttonElse>
+  <button mat-button color="primary" (click)="active(data)" >
+    Confirm</button>
+  <button mat-button color="warn" mat-dialog-close>
+    <mat-icon>close</mat-icon>Close</button>
+</ng-template>
+
+
