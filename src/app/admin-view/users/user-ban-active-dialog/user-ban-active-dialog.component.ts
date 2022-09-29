@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {UserInfo} from "../../../model/userInfo";
 import {UsersService} from "../../container/service/users.service";
+import Swal from "sweetalert2";
 
 
 @Component({
@@ -23,6 +24,7 @@ export class UserBanActiveDialogComponent implements OnInit {
       console.log(compileResults)
     })
     this.dialogRef.close("ok")
+
   }
   active(userInfo:UserInfo){
      this.userService.activeUser(userInfo.id).subscribe(compileResults=>{

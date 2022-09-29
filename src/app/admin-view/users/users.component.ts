@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
@@ -9,6 +9,9 @@ import {SelectionModel} from "@angular/cdk/collections";
 import {MatDialog} from "@angular/material/dialog";
 import {UserInfoDialogComponent} from "./user-info-dialog/user-info-dialog.component";
 import {UserBanActiveDialogComponent} from "./user-ban-active-dialog/user-ban-active-dialog.component";
+import {MatSelectChange} from "@angular/material/select";
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-users',
@@ -21,11 +24,13 @@ export class UsersComponent implements AfterViewInit, OnInit {
   @ViewChild(MatTable) table!: MatTable<UserInfo>;
   dataSource: MatTableDataSource<UserInfo>;
   selection = new SelectionModel<UserInfo>(true, []);
-
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['select', 'id', 'avatar', 'name', 'email', 'phoneNumber', 'role', 'action'];
+  selected: string = "";
 
-  constructor(private userService: UsersService,public dialog: MatDialog) {
+  disableButton = false
+
+  constructor(private userService: UsersService, public dialog: MatDialog, private cd: ChangeDetectorRef) {
     this.dataSource = new MatTableDataSource<UserInfo>;
     this.userService.findAll().subscribe(value => {
       this.dataSource.data = value;
@@ -36,6 +41,7 @@ export class UsersComponent implements AfterViewInit, OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+    this.cd.detectChanges()
   }
 
   applyFilter(event: Event) {
@@ -45,6 +51,30 @@ export class UsersComponent implements AfterViewInit, OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  applySelect() {
+
+    if (this.selected === "banUser") {
+      this.userService.findAll().subscribe(value => {
+        value = value.filter(function (userInfo) {
+          return !userInfo.userStatus.verify
+        })
+        this.dataSource.data = value;
+      })
+    } else if (this.selected === "activeUser") {
+      this.userService.findAll().subscribe(value => {
+        value = value.filter(function (userInfo) {
+          return userInfo.userStatus.verify
+        })
+        this.dataSource.data = value;
+      })
+    } else if (this.selected === "all") {
+      this.userService.findAll().subscribe(value => {
+        this.dataSource.data = value;
+      })
+    }
+  }
+
 
   ngOnInit(): void {
     this.userService.findAll().subscribe(value => {
@@ -68,16 +98,16 @@ export class UsersComponent implements AfterViewInit, OnInit {
       this.selection.clear();
       return;
     }
-
     this.selection.select(...this.dataSource.data);
   }
 
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: UserInfo): string {
+
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${this.dataSource.data.indexOf(row)}`;
   }
 
   displayStudent() {
@@ -91,25 +121,70 @@ export class UsersComponent implements AfterViewInit, OnInit {
   checkRole(role: string): boolean {
     return role === "ROLE_ADMIN";
   }
-  checkStatus(status:boolean): boolean {
+
+  checkStatus(status: boolean): boolean {
     document.getElementById("")
-    return status ;
+    return status;
   }
-  openUserInfo(userInfo:UserInfo) {
-    const dialogRef = this.dialog.open(UserInfoDialogComponent,{data:userInfo});
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-  openUserBanActve(userInfo:UserInfo) {
-    const dialogRef = this.dialog.open(UserBanActiveDialogComponent,{data:userInfo});
-
+  openUserInfo(userInfo: UserInfo) {
+    const dialogRef = this.dialog.open(UserInfoDialogComponent, {data: userInfo});
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       this.displayStudent()
     });
   }
+
+  openUserBanActive(userInfo: UserInfo) {
+    const dialogRef = this.dialog.open(UserBanActiveDialogComponent, {data: userInfo});
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.selection.clear()
+      this.displayStudent()
+      if(result=='ok'){
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text:"Action complete",
+          timer:1500
+        })
+      }
+    });
+  }
+
+  banGroupUser(){
+    let userInfo = this.selection.selected
+    for (const element of userInfo) {
+      this.userService.banUser(element.id).subscribe(compileResults=>{
+        console.log(compileResults)
+      })
+    }
+    Swal.fire({
+      icon: 'success',
+      title: 'Success',
+      text:"Ban User Group Complete",
+      timer:1500
+    })
+    this.selection.clear()
+    this.displayStudent()
+  }
+  activeGroupUser(){
+    let userInfo = this.selection.selected
+    for (const element of userInfo) {
+      this.userService.activeUser(element.id).subscribe(compileResults=>{
+        console.log(compileResults)
+      })
+    }
+    Swal.fire({
+      icon: 'success',
+      title: 'Success',
+      text:"Active User Group Complete",
+      timer:1500
+    })
+    this.selection.clear()
+    this.displayStudent()
+  }
+
 
 }
 

@@ -5,7 +5,7 @@ export interface UserInfo {
   avatar: string,
   phoneNumber: string,
   birthDay: string,
-  registerDate: string,
+  registerDate: Date,
   user: {
     id: number,
     username: string,

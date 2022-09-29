@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {UserInfo} from "../../../model/userInfo";
 import {UserStatus} from "../../../model/userStatus";
+import {AuthService} from "../../../authority/service/auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import {UserStatus} from "../../../model/userStatus";
 
 export class UsersService {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private authService: AuthService) {
   }
 
   findAll(): Observable<UserInfo[]> {
@@ -23,5 +24,7 @@ export class UsersService {
   activeUser( id: number): Observable<UserStatus> {
     return this.httpClient.get<UserStatus>("http://localhost:8080/admin/activeUser/" + id)
   }
-
+ findCurrentUser(){
+    return this.httpClient.get<UserInfo>('http://localhost:8080/userInfo/findByUserId/'+this.authService.currentUserValue?.id)
+ }
 }

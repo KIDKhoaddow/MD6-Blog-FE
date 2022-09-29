@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {AppRoutingModule} from "./admin-view-routing.module";
+import {AdminViewRoutingModule} from "./admin-view-routing.module";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {NavbarComponent} from "./container/navbar/navbar.component";
 import {UsersComponent} from "./users/users.component";
@@ -26,11 +26,24 @@ import {CommonModule} from "@angular/common";
 import {MatListModule} from "@angular/material/list";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { BlogsComponent } from './blogs/blogs.component';
+import { BlogBanActiveDialogComponent } from './blogs/blog-ban-active-dialog/blog-ban-active-dialog.component';
+import { BlogInfoDialogComponent } from './blogs/blog-info-dialog/blog-info-dialog.component';
+import {MatSortModule} from "@angular/material/sort";
+import { CategoryComponent } from './category/category.component';
+import { TourComponent } from './tour/tour.component';
+import { TourInfoDialogComponent } from './tour/tour-info-dialog/tour-info-dialog.component';
+import { TourCreateDialogComponent } from './tour/tour-create-dialog/tour-create-dialog.component';
+import { TourUpdateDialogComponent } from './tour/tour-update-dialog/tour-update-dialog.component';
+
+
+
 
 
 @NgModule({
   imports: [
-    AppRoutingModule,
+    AdminViewRoutingModule,
     MatMenuModule,
     MatChipsModule,
     MatDividerModule,
@@ -50,7 +63,10 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     CommonModule,
     MatListModule,
     MatSidenavModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    FormsModule,
+    MatSortModule,
+    ReactiveFormsModule
   ],
 
   declarations: [
@@ -60,6 +76,14 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     HeaderComponent,
     UserInfoDialogComponent,
     UserBanActiveDialogComponent,
+    BlogsComponent,
+    BlogBanActiveDialogComponent,
+    BlogInfoDialogComponent,
+    CategoryComponent,
+    TourComponent,
+    TourInfoDialogComponent,
+    TourCreateDialogComponent,
+    TourUpdateDialogComponent,
   ]
 })
 export class AdminViewModule{}

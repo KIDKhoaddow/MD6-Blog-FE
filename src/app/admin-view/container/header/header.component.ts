@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from "../../../authority/service/auth.service";
+import {Router} from "@angular/router";
+import {UsersService} from "../service/users.service";
+import {UserInfo} from "../../../model/userInfo";
 
 @Component({
   selector: 'app-header',
@@ -7,10 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   value = 'Clear me';
+  userInfoCurrent?: UserInfo;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router, private userService: UsersService) {
 
-  ngOnInit(): void {
   }
 
+  ngOnInit(): void {
+    this.userService.findCurrentUser().subscribe(userInfo => {
+      this.userInfoCurrent = userInfo
+      // @ts-ignore
+      document.getElementById("avatar").setAttribute("src",'http://localhost:8080/Image/'+this.userInfoCurrent?.avatar)
+    })
+  }
+
+  logout() {
+    console.log(this.authService.logout())
+    this.router.navigateByUrl('/login');
+  }
 }

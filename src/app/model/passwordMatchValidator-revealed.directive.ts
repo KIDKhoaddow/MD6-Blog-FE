@@ -1,6 +1,7 @@
 import {Directive} from "@angular/core";
 import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from "@angular/forms";
-import {passwordMatchValidator} from "../authority/register/register.component";
+import {passwordMatchValidator} from "./passwordMatchValidator.directive";
+
 
 
 @Directive({

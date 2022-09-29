@@ -1,0 +1,26 @@
+<mat-dialog-content  style="height: 332px;width: 318px;border: 1px black solid;border-radius: 10px;margin-bottom:64px ">
+<table  class="info-tour">
+  <tr>
+    <th>Title:</th>
+    <td>{{data.title}}</td>
+
+  </tr>
+  <tr>
+    <th>price:</th>
+    <td>{{data.price}}</td>
+  </tr>
+  <tr>
+    <th>describe
+    </th>
+    <td>
+      {{data.description}}
+    </td>
+  </tr>
+</table>
+</mat-dialog-content>
+<mat-dialog-actions class="action" align="end">
+  <button mat-button color="warn" mat-dialog-close="close">
+    <mat-icon fontIcon="close" ></mat-icon>
+    Close
+  </button>
+</mat-dialog-actions>
