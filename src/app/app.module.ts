@@ -38,7 +38,7 @@ import {AuthorityRoutingModule} from "./authority/authority-routing.module";
 import {httpInterceptorProviders} from "./authority/service/jwt-interceptor";
 import {HomeViewModule} from "./home-view/home-view.module";
 import {HomeViewRoutingModule} from "./home-view/home-view-routing.module";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 
 
@@ -85,7 +85,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ReactiveFormsModule,
     HomeViewModule,
     HomeViewRoutingModule,
-    FontAwesomeModule,
+
 
   ],
   providers: [httpInterceptorProviders],
