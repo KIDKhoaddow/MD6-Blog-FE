@@ -7,7 +7,7 @@ var myChart2;
     //WidgetChart 1
     var ctx = document.getElementById("widgetChart1");
     if (ctx) {
-      ctx.height = 100;
+      ctx.height = 72;
       myChart1 = new Chart(ctx, {
         type: 'line',
         data: {
@@ -73,7 +73,7 @@ var myChart2;
     //WidgetChart 2
     var ctx = document.getElementById("widgetChart2");
     if (ctx) {
-      ctx.height = 100;
+      ctx.height = 72;
        myChart2 = new Chart(ctx, {
         type: 'line',
         data: {
@@ -144,7 +144,7 @@ var myChart2;
     //WidgetChart 3
     var ctx = document.getElementById("widgetChart3");
     if (ctx) {
-      ctx.height = 100;
+      ctx.height = 72;
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -214,7 +214,7 @@ var myChart2;
     //WidgetChart 4
     var ctx = document.getElementById("widgetChart4");
     if (ctx) {
-      ctx.height = 100;
+      ctx.height = 72;
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {

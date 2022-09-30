@@ -33,4 +33,7 @@ export class BlogsService {
   getlistBlogsMostLike(): Observable<BlogMostLike[]> {
     return this.httpClient.get<BlogMostLike[]>("http://localhost:8080/userView/listBlogsMostLike")
   }
+  getTopTenBlogMostLike(): Observable<Blog[]> {
+    return this.httpClient.get<Blog[]>("http://localhost:8080/userView/top-10-like")
+  }
 }

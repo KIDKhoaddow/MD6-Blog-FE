@@ -4,6 +4,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {HomepageComponent} from "./homepage/homepage.component";
 import {LayoutComponent} from "./layout/layout.component";
 import {UserProfileComponent} from "./user-profile/user-profile.component";
+import {CategoriesComponent} from "./categories/categories.component";
 
 
 const homeRoutes: Routes = [
@@ -15,7 +16,8 @@ const homeRoutes: Routes = [
       path: '',
       children:[
         {path:'homepage',component:HomepageComponent},
-        {path:'userprofile',component:UserProfileComponent}
+        {path:'userprofile',component:UserProfileComponent},
+        {path:'categories',component:CategoriesComponent}
       ]
       }
 
