@@ -5,7 +5,7 @@ import {MatSort} from "@angular/material/sort";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {Blog} from "../../model/blog";
 import {SelectionModel} from "@angular/cdk/collections";
-import {CategoryService} from "../container/service/category.service";
+import {CategoryService} from "../../service/category.service";
 import {Category} from "../../model/category";
 
 @Component({

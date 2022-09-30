@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {UserInfo} from "../../../model/userInfo";
-import {UserStatus} from "../../../model/userStatus";
-import {AuthService} from "../../../authority/service/auth.service";
+import {UserInfo} from "../model/userInfo";
+import {UserStatus} from "../model/userStatus";
+import {AuthService} from "../authority/service/auth.service";
 
 @Injectable({
   providedIn: 'root'

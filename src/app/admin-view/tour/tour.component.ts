@@ -5,7 +5,7 @@ import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {Blog} from "../../model/blog";
 import {Tour} from "../../model/tour";
 import {MatDialog} from "@angular/material/dialog";
-import {TourService} from "../container/service/tour.service";
+import {TourService} from "../../service/tour.service";
 import {BlogInfoDialogComponent} from "../blogs/blog-info-dialog/blog-info-dialog.component";
 import {TourInfoDialogComponent} from "./tour-info-dialog/tour-info-dialog.component";
 import {TourCreateDialogComponent} from "./tour-create-dialog/tour-create-dialog.component";

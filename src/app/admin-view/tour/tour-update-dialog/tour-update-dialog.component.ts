@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {TourService} from "../../container/service/tour.service";
+import {TourService} from "../../../service/tour.service";
 import {Tour} from "../../../model/tour";
 import {FormBuilder, FormControl} from "@angular/forms";
 

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {UsersService} from "../container/service/users.service";
-import {BlogsService} from "../container/service/blogs.service";
+import {UsersService} from "../../service/users.service";
+import {BlogsService} from "../../service/blogs.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {Blog} from "../../model/blog";
 import {UserInfo} from "../../model/userInfo";

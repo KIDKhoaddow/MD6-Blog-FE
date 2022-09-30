@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 
-import {Blog} from "../../../model/blog";
-import {BlogStatus} from "../../../model/blog-status";
-import {BlogsOfUser} from "../../../model/blogsOfUser";
-import {BlogMostLike} from "../../../model/blog-most-like";
+import {Blog} from "../model/blog";
+import {BlogStatus} from "../model/blog-status";
+import {BlogsOfUser} from "../model/blogsOfUser";
+import {BlogMostLike} from "../model/blog-most-like";
 
 @Injectable({
   providedIn: 'root'
