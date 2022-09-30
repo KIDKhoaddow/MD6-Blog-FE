@@ -3,7 +3,7 @@ export interface UserInfo {
   name: string,
   email: string,
   avatar: string,
-  phoneNumber: string,
+  about: string,
   birthDay: string,
   registerDate: Date,
   user: {

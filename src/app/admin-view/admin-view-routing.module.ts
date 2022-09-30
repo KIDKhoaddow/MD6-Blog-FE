@@ -6,7 +6,7 @@ import {NavbarComponent} from "./container/navbar/navbar.component";
 import {AuthorityGuard} from "../authority/login/authority.guard";
 import {BlogsComponent} from "./blogs/blogs.component";
 import {CategoryComponent} from "./category/category.component";
-import {TourComponent} from "./tour/tour.component";
+
 
 
 
@@ -24,8 +24,7 @@ const adminRoutes: Routes = [
           { path: '', component: DashboardComponent },
           { path: 'users', component: UsersComponent },
           {path: 'blogs', component: BlogsComponent },
-          {path: 'category', component: CategoryComponent },
-          {path: 'tour', component: TourComponent }
+          {path: 'category', component: CategoryComponent }
 
         ]
       }

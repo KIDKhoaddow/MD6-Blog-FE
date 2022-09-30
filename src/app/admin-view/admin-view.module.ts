@@ -32,10 +32,7 @@ import { BlogBanActiveDialogComponent } from './blogs/blog-ban-active-dialog/blo
 import { BlogInfoDialogComponent } from './blogs/blog-info-dialog/blog-info-dialog.component';
 import {MatSortModule} from "@angular/material/sort";
 import { CategoryComponent } from './category/category.component';
-import { TourComponent } from './tour/tour.component';
-import { TourInfoDialogComponent } from './tour/tour-info-dialog/tour-info-dialog.component';
-import { TourCreateDialogComponent } from './tour/tour-create-dialog/tour-create-dialog.component';
-import { TourUpdateDialogComponent } from './tour/tour-update-dialog/tour-update-dialog.component';
+
 
 
 
@@ -79,11 +76,7 @@ import { TourUpdateDialogComponent } from './tour/tour-update-dialog/tour-update
     BlogsComponent,
     BlogBanActiveDialogComponent,
     BlogInfoDialogComponent,
-    CategoryComponent,
-    TourComponent,
-    TourInfoDialogComponent,
-    TourCreateDialogComponent,
-    TourUpdateDialogComponent,
+    CategoryComponent
   ]
 })
 export class AdminViewModule{}

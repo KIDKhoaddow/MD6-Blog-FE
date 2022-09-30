@@ -41,18 +41,21 @@ export class RegisterComponent implements OnInit {
   hidePassword = true;
   hideConfirmPassword = true;
 
-  constructor(private formBuilder: FormBuilder ,private authService:AuthService) {
-  }
 
-
-  ngOnInit(): void {
-  }
   registerGroup = this.formBuilder.group({
       username: this.username,
       password: this.password,
       confirmPassword: this.confirmPassword
     }
   );
+  constructor(private formBuilder: FormBuilder ,private authService:AuthService) {
+
+  }
+
+
+  ngOnInit(): void {
+  }
+
 
   register() {
     const val = this.registerGroup.value;

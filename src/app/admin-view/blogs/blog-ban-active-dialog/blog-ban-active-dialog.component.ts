@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {BlogInfoDialogComponent} from "../blog-info-dialog/blog-info-dialog.component";
 import {Blog} from "../../../model/blog";
-import {BlogsService} from "../../container/service/blogs.service";
+import {BlogsService} from "../../../service/blogs.service";
 import Swal from "sweetalert2";
 
 @Component({
