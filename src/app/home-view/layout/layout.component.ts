@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
 
 @Component({
   selector: 'app-layout',
@@ -7,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit(): void {
-    document.body.style.background="#f8f9fb"
+  constructor() {
+
   }
 
+  ngOnInit(): void {
+    document.body.style.background = "#f8f9fb"
+  }
+
+
 }
+
+

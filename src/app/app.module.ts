@@ -36,8 +36,8 @@ import {AdminViewRoutingModule} from "./admin-view/admin-view-routing.module";
 import {AuthorityModule} from "./authority/authority.module";
 import {AuthorityRoutingModule} from "./authority/authority-routing.module";
 import {httpInterceptorProviders} from "./authority/service/jwt-interceptor";
-import {HomeViewModule} from "./home-view/home-view.module";
 import {HomeViewRoutingModule} from "./home-view/home-view-routing.module";
+import {HomeViewModule} from "./home-view/home-view.module";
 
 
 
