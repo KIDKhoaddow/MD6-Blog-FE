@@ -46,7 +46,6 @@ import {environment} from "../environments/environment";
 
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {QuillModule} from "ngx-quill";
 
 
 
@@ -95,7 +94,7 @@ import {QuillModule} from "ngx-quill";
     HomeViewRoutingModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     FontAwesomeModule,
   ],
   providers: [httpInterceptorProviders],
