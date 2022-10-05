@@ -40,4 +40,12 @@
 /*  transform: translate(-50%, -50%);*/
 /*  opacity: 1;*/
 /*}*/
+.cross-validation-error-message {
+  font-size: 11px;
+  color: red;
+  padding: 0;
+  width: 472px;
+  padding-top: 20px;
+  border: 0;
+}
 

@@ -3,7 +3,7 @@ import {LoginComponent} from "./login/login.component";
 import {NgModule} from "@angular/core";
 import {RegisterComponent} from "./register/register.component";
 import {LayoutComponent} from "./layout/layout.component";
-import {PasswordMatchValidatorRevealedDirective} from "../model/passwordMatchValidator-revealed.directive";
+import {PasswordMatchValidatorRevealedDirective} from "../model/Validate/passwordMatchValidator-revealed.directive";
 import {VerifyComponent} from "./verify/verify.component";
 
 
