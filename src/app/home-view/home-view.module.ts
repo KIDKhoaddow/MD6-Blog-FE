@@ -16,23 +16,25 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FormCreateComponent} from "./form-create/form-create.component";
 import {QuillModule} from "ngx-quill";
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
-  imports: [
-    RouterModule,
-    CarouselModule,
-    CommonModule,
-    MatDividerModule,
-    FontAwesomeModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    QuillModule.forRoot(),
-    MatFormFieldModule,
-    FormsModule
+    imports: [
+        RouterModule,
+        CarouselModule,
+        CommonModule,
+        MatDividerModule,
+        FontAwesomeModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        QuillModule.forRoot(),
+        MatFormFieldModule,
+        FormsModule,
+        MatTabsModule
 
-  ],
+    ],
   declarations:[
     LayoutComponent,
     HomepageComponent,

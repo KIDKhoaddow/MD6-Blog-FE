@@ -2,9 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {BlogsService} from 'src/app/service/blogs.service';
-import {QuillModule} from 'ngx-quill'
-import 'quill-mention';
-import 'quill-emoji';
+
 const modules = {
   toolbar: [
     ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
