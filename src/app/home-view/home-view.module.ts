@@ -12,10 +12,10 @@ import {MatDividerModule} from "@angular/material/divider";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatIconModule} from "@angular/material/icon";
 import {UserProfileComponent } from './user-profile/user-profile.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FormCreateComponent} from "./form-create/form-create.component";
 import {QuillModule} from "ngx-quill";
-import {MatFormFieldModule} from "@angular/material/form-field";
 
 @NgModule({
   imports: [
@@ -25,6 +25,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatDividerModule,
     FontAwesomeModule,
     MatIconModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
     ReactiveFormsModule,
     QuillModule.forRoot(),
     MatFormFieldModule,

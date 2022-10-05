@@ -3,6 +3,7 @@ import {AuthService} from "../../../authority/service/auth.service";
 import {Router} from "@angular/router";
 import {UsersService} from "../../../service/users.service";
 import {UserInfo} from "../../../model/userInfo";
+import {UserInfoDTO} from "../../../model/userInfoDTO";
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import {UserInfo} from "../../../model/userInfo";
 })
 export class HeaderComponent implements OnInit {
   value = 'Clear me';
-  userInfoCurrent?: UserInfo;
+  userInfoCurrent?: UserInfoDTO;
 
   constructor(private authService: AuthService, private router: Router, private userService: UsersService) {
 

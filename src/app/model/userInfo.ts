@@ -1,3 +1,6 @@
+import {UserStatus} from "./userStatus";
+import {User} from "./user";
+
 export interface UserInfo {
   id: number,
   name: string,
@@ -5,20 +8,7 @@ export interface UserInfo {
   avatar: string,
   about: string,
   birthDay: string,
-  registerDate: Date,
-  user: {
-    id: number,
-    username: string,
-    password: string,
-    roles: {
-      id: number,
-      name: string
-    }
-  }
-  userStatus: {
-    id: number,
-    lastLogin: string,
-    status: string,
-    verify: boolean
-  }
+  registerDate : Date,
+  user: User,
+  userStatus: UserStatus,
 }
