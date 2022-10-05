@@ -78,7 +78,7 @@ export class UsersComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
     this.userService.findAll().subscribe(value => {
-      this.dataSource.data = value
+      this.dataSource.data =  value
     })
 
     this.dataSource.connect()

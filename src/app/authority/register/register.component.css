@@ -1,6 +1,6 @@
 .form {
   min-width: 150px;
-  max-width: 600px;
+  max-width: 800px;
   width: 100%;
   margin: 0;
 }
@@ -23,9 +23,11 @@ input.example-right-align::-webkit-outer-spin-button,
 input.example-right-align::-webkit-inner-spin-button {
   display: none;
 }
-input{
+
+input {
   height: 32px;
 }
+
 .card {
   border-radius: 16px;
   margin: 100px;
@@ -37,7 +39,7 @@ img {
   padding: 0;
   height: 320px;
   width: 320px;
-  margin-bottom:  24px;
+  margin-bottom: 24px;
 
 }
 
@@ -61,17 +63,20 @@ img {
   font-size: 24px;
   border-radius: 30px;
 }
-.mat-card-title{
+
+.mat-card-title {
   font-family: "Bauhaus 93";
 }
-.text-center{
+
+.text-center {
   text-align: center;
 }
-.cross-validation-error-message{
+
+.cross-validation-error-message {
   font-size: 11px;
   color: red;
   padding: 0;
-width: 472px;
-padding-top: 20px;
+  width: 472px;
+  padding-top: 20px;
   border: 0;
 }

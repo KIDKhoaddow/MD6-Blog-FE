@@ -12,8 +12,11 @@ import {MatDividerModule} from "@angular/material/divider";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatIconModule} from "@angular/material/icon";
 import {UserProfileComponent } from './user-profile/user-profile.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FormCreateComponent} from "./form-create/form-create.component";
+import {QuillModule} from "ngx-quill";
+import {MatFormFieldModule} from "@angular/material/form-field";
+
 @NgModule({
   imports: [
     RouterModule,
@@ -22,9 +25,12 @@ import {FormCreateComponent} from "./form-create/form-create.component";
     MatDividerModule,
     FontAwesomeModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    QuillModule.forRoot(),
+    MatFormFieldModule,
+    FormsModule
 
-    ],
+  ],
   declarations:[
     LayoutComponent,
     HomepageComponent,
@@ -33,7 +39,8 @@ import {FormCreateComponent} from "./form-create/form-create.component";
     CategoriesAreaComponent,
     BlogAreaComponent,
     UserProfileComponent,
-    FormCreateComponent
+    FormCreateComponent,
+
   ]
 })
 

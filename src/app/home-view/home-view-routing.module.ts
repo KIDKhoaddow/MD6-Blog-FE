@@ -8,6 +8,7 @@ import {CategoriesComponent} from "./categories/categories.component";
 import {FormCreateComponent} from "./form-create/form-create.component";
 
 
+
 const homeRoutes: Routes = [
   {
     path: "home",
@@ -19,7 +20,8 @@ const homeRoutes: Routes = [
         {path:'homepage',component:HomepageComponent},
         {path:'userprofile',component:UserProfileComponent},
         {path:'categories',component:CategoriesComponent},
-        {path:'createBlog',component:FormCreateComponent}
+        {path:'createBlog',component:FormCreateComponent},
+
       ]
       }
 

@@ -22,36 +22,40 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { LayoutComponent } from './layout/layout.component';
 import {PasswordMatchValidatorRevealedDirective} from "../model/passwordMatchValidator-revealed.directive";
+import { VerifyComponent } from './verify/verify.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
-  imports: [
-    AdminViewRoutingModule,
-    MatMenuModule,
-    MatChipsModule,
-    MatDividerModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatGridListModule,
-    MatCardModule,
-    MatTabsModule,
-    MatDialogModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatTableModule,
-    MatButtonModule,
-    MatInputModule,
-    CommonModule,
-    MatListModule,
-    MatSidenavModule,
-    MatPaginatorModule
-  ],
+    imports: [
+        AdminViewRoutingModule,
+        MatMenuModule,
+        MatChipsModule,
+        MatDividerModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatGridListModule,
+        MatCardModule,
+        MatTabsModule,
+        MatDialogModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatTableModule,
+        MatButtonModule,
+        MatInputModule,
+        CommonModule,
+        MatListModule,
+        MatSidenavModule,
+        MatPaginatorModule,
+        MatProgressSpinnerModule
+    ],
 
   declarations: [
     PasswordMatchValidatorRevealedDirective,
-    LayoutComponent
+    LayoutComponent,
+    VerifyComponent
   ],
   providers: [
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }

@@ -24,31 +24,41 @@ export class RegisterComponent implements OnInit {
   minPassword = 8
   maxPassword = 25
   maxUsername = 25
+  maxEmail = 25
+  minEmail = 10
   username = new FormControl('',
     [Validators.required, Validators.minLength(this.minUsername), Validators.maxLength(this.maxUsername)])
+  email = new FormControl('',
+    [Validators.email, Validators.maxLength(this.maxEmail), Validators.required, Validators.minLength(this.minEmail)])
   password = new FormControl('',
     [Validators.required, Validators.minLength(this.minPassword), Validators.maxLength(this.maxPassword),
-      this.regexValidator(new RegExp("\\w+([a-z])\\w+"),{lowercase:"false"}),
-      this.regexValidator(new RegExp("\\w+([A-Z])\\w+"),{uppercase:"false"}),
-      this.regexValidator(new RegExp("\\w+([0-9])\\w+"),{digital:"false"}),
-      this.regexValidator(new RegExp("\\w+([!@#&()–{}:;',?/*~$_^+=<>])\\w+"),{characters:"false"}),
+      this.regexValidator(new RegExp("\\w+([a-z])\\w+"), {lowercase: "false"}),
+      this.regexValidator(new RegExp("\\w+([A-Z])\\w+"), {uppercase: "false"}),
+      this.regexValidator(new RegExp("\\w+([0-9])\\w+"), {digital: "false"}),
+      this.regexValidator(new RegExp("\\w+([!@#&()–{}:;',?/*~$_^+=<>])\\w+"), {characters: "false"}),
     ])
   confirmPassword = new FormControl('',
     [Validators.required, Validators.minLength(this.minPassword), Validators.maxLength(this.maxPassword)])
   matcherUsername = new MyErrorStateMatcher()
   matcherPassword = new MyErrorStateMatcher()
   matcherRePassword = new MyErrorStateMatcher()
+  matcherEmail = new MyErrorStateMatcher()
   hidePassword = true;
   hideConfirmPassword = true;
-
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
 
   registerGroup = this.formBuilder.group({
+      email: this.email,
       username: this.username,
       password: this.password,
       confirmPassword: this.confirmPassword
+
     }
   );
-  constructor(private formBuilder: FormBuilder ,private authService:AuthService) {
+
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
 
   }
 
@@ -59,16 +69,23 @@ export class RegisterComponent implements OnInit {
 
   register() {
     const val = this.registerGroup.value;
-    if (val.username && val.password && val.confirmPassword) {
-      this.authService.register(val.username,val.password,val.confirmPassword).subscribe(result=>{
-        console.log(result)
-      })
-      window.location.reload();
+    if (val.username && val.password && val.confirmPassword && val.email) {
+      this.authService.register(val.username, val.password, val.confirmPassword, val.email).subscribe(result => {
+          console.log(result)
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+        }, error => {
+          this.errorMessage = error.error.message;
+          this.isSignUpFailed = true;
+        }
+      )
+
 
     }
   }
 
   //Group Pattern Validator
+
   private regexValidator(regex: RegExp, error: ValidationErrors): ValidatorFn {
     return (control: AbstractControl): { [p: string]: any } | null => {
       if (!control.value) {

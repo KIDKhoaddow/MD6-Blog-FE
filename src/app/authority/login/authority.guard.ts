@@ -38,8 +38,6 @@ export class AuthorityGuard implements CanActivate, CanActivateChild, CanLoad {
 
   checkLogin(url: string): boolean {
 
-
-
     if (this.authService.isLoggedIn ) {
       return true;
     }
@@ -59,11 +57,12 @@ export class AuthorityGuard implements CanActivate, CanActivateChild, CanLoad {
     // @ts-ignore
     if(this.authService.currentUserValue?.roles[0].authority !== "ROLE_ADMIN"){
       // Navigate to the login page with extras
-      this.router.navigate(['/login', {message: "bạn không đượcc quyền vào đây",alertType:"true"}], navigationExtras);
+      this.router.navigate(['/login', {message: "You are not allow to access this page ",alertType:"true"}], navigationExtras);
       return false;
     }
     // Navigate to the login page with extras
     this.router.navigate(['/login', {message: "Phiên đăng nhập của bạn đã hết",alertType:"true"}], navigationExtras);
     return false;
   }
+
 }

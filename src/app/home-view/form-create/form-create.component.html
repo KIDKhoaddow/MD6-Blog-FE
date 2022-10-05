@@ -8,8 +8,9 @@
         <div class="form-group">
           <label for="inputTopicTitle">Blog Title</label>
           <div class="tt-value-wrapper">
-            <input type="text" name="name" class="form-control" id="inputTopicTitle" placeholder="Subject of your topic">
-            <span class="tt-value-input">99</span>
+            <input type="text" name="name" class="form-control" id="inputTopicTitle"
+                   placeholder="Subject of your topic">
+            <span class="tt-value-input"></span>
           </div>
           <div class="tt-note">Describe your topic well, while keeping the subject as short as possible.</div>
         </div>
@@ -82,80 +83,11 @@
         </div>
         <div class="pt-editor">
           <h6 class="pt-title">Blog Body</h6>
-          <div class="pt-row">
-            <div class="col-left">
-              <ul class="pt-edit-btn">
-                <li><button type="button" class="btn-icon">
-                  <svg class="tt-icon">
-                    <use xlink:href="#icon-quote"></use>
-                  </svg>
-                </button></li>
-                <li><button type="button" class="btn-icon">
-                  <svg class="tt-icon">
-                    <use xlink:href="#icon-bold"></use>
-                  </svg>
-                </button></li>
-                <li><button type="button" class="btn-icon">
-                  <svg class="tt-icon">
-                    <use xlink:href="#icon-italic"></use>
-                  </svg>
-                </button></li>
-                <li><button type="button" class="btn-icon">
-                  <svg class="tt-icon">
-                    <use xlink:href="#icon-share_topic"></use>
-                  </svg>
-                </button></li>
-                <li><button type="button" class="btn-icon">
-                  <svg class="tt-icon">
-                    <use xlink:href="#icon-blockquote"></use>
-                  </svg>
-                </button></li>
-                <li><button type="button" class="btn-icon">
-                  <svg class="tt-icon">
-                    <use xlink:href="#icon-performatted"></use>
-                  </svg>
-                </button></li>
-                <li class="hr"></li>
-                <li><button type="button" class="btn-icon">
-                  <svg class="tt-icon">
-                    <use xlink:href="#icon-upload_files"></use>
-                  </svg>
-                </button></li>
-                <li><button type="button" class="btn-icon">
-                  <svg class="tt-icon">
-                    <use xlink:href="#icon-bullet_list"></use>
-                  </svg>
-                </button></li>
-                <li><button type="button" class="btn-icon">
-                  <svg class="tt-icon">
-                    <use xlink:href="#icon-heading"></use>
-                  </svg>
-                </button></li>
-                <li><button type="button" class="btn-icon">
-                  <svg class="tt-icon">
-                    <use xlink:href="#icon-horizontal_line"></use>
-                  </svg>
-                </button></li>
-                <li><button type="button" class="btn-icon">
-                  <svg class="tt-icon">
-                    <use xlink:href="#icon-emoticon"></use>
-                  </svg>
-                </button></li>
-                <li><button type="button" class="btn-icon">
-                  <svg class="tt-icon">
-                    <use xlink:href="#icon-settings"></use>
-                  </svg>
-                </button></li>
-                <li><button type="button" class="btn-icon">
-                  <svg class="tt-icon">
-                    <use xlink:href="#icon-color_picker"></use>
-                  </svg>
-                </button></li>
-              </ul>
-            </div>
-          </div>
-          <div class="form-group">
-            <textarea name="message" class="form-control" rows="5" placeholder="Lets get started"></textarea>
+          <quill-editor [styles]="editorStyle" [formControl]="content" placeholder="Enter Text"  ></quill-editor>
+          <div class="col-md-4 bg-light p-4">
+            <h3>Output</h3>
+            <p class="my-5">{{content.value}}</p>
+            <p>{{content.value}}</p>
           </div>
           <div class="row">
             <div class="col-md-4">
@@ -173,7 +105,8 @@
             <div class="col-md-8">
               <div class="form-group">
                 <label for="inputTopicTags">Tags</label>
-                <input type="text" name="name" class="form-control" id="inputTopicTags" placeholder="Use comma to separate tags">
+                <input type="text" name="name" class="form-control" id="inputTopicTags"
+                       placeholder="Use comma to separate tags">
               </div>
             </div>
           </div>
