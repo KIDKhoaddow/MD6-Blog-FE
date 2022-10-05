@@ -4,7 +4,16 @@
 
 export const environment = {
   production: false,
-  localhost:"http://localhost:8080"
+  localhost:"http://localhost:8080",
+  firebaseConfig : {
+    apiKey: "AIzaSyCklQrGR_JDVsUshv5IbJbjQ3XL5R4czG8",
+    authDomain: "uploadfile-4defc.firebaseapp.com",
+    projectId: "uploadfile-4defc",
+    storageBucket: "uploadfile-4defc.appspot.com",
+    messagingSenderId: "344867084542",
+    appId: "1:344867084542:web:b1cc8eeb5bdafe1c15adaf",
+    measurementId: "G-P6DP41EVYC"
+  }
 };
 
 /*

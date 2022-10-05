@@ -38,6 +38,12 @@ import {AuthorityRoutingModule} from "./authority/authority-routing.module";
 import {httpInterceptorProviders} from "./authority/service/jwt-interceptor";
 import {HomeViewModule} from "./home-view/home-view.module";
 import {HomeViewRoutingModule} from "./home-view/home-view-routing.module";
+import {AngularFireAnalyticsModule} from "@angular/fire/compat/analytics";
+import {AngularFireStorage, AngularFireStorageModule} from "@angular/fire/compat/storage";
+import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "../environments/environment";
+
 
 
 
@@ -47,6 +53,7 @@ import {HomeViewRoutingModule} from "./home-view/home-view-routing.module";
     AppComponent,
     LoginComponent,
     RegisterComponent,
+
 
   ],
   imports: [
@@ -85,6 +92,9 @@ import {HomeViewRoutingModule} from "./home-view/home-view-routing.module";
     ReactiveFormsModule,
     HomeViewModule,
     HomeViewRoutingModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
 
 
   ],

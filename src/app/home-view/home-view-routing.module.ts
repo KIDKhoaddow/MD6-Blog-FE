@@ -5,6 +5,7 @@ import {HomepageComponent} from "./homepage/homepage.component";
 import {LayoutComponent} from "./layout/layout.component";
 import {UserProfileComponent} from "./user-profile/user-profile.component";
 import {CategoriesComponent} from "./categories/categories.component";
+import {BlogsComponent} from "../admin-view/blogs/blogs.component";
 
 
 const homeRoutes: Routes = [
@@ -17,7 +18,10 @@ const homeRoutes: Routes = [
       children:[
         {path:'homepage',component:HomepageComponent},
         {path:'userprofile',component:UserProfileComponent},
-        {path:'categories',component:CategoriesComponent}
+        {path:'categories',component:CategoriesComponent},
+        {path:'blog',component:BlogsComponent
+
+        }
       ]
       }
 

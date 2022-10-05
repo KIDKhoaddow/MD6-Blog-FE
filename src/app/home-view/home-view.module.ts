@@ -13,6 +13,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatIconModule} from "@angular/material/icon";
 import {UserProfileComponent } from './user-profile/user-profile.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+
 
 @NgModule({
   imports: [
@@ -22,7 +24,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatDividerModule,
     FontAwesomeModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule
 
   ],
   declarations:[
@@ -32,7 +35,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     SlideShowComponent,
     CategoriesAreaComponent,
     BlogAreaComponent,
-    UserProfileComponent
+    UserProfileComponent,
+
   ]
 })
 

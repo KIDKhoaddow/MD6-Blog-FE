@@ -184,8 +184,6 @@ export class UsersComponent implements AfterViewInit, OnInit {
     this.selection.clear()
     this.displayStudent()
   }
-
-
 }
 
 
