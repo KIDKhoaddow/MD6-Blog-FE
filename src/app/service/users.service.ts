@@ -18,15 +18,17 @@ export class UsersService {
   }
 
   findAll(): Observable<UserInfo[]> {
-    return this.httpClient.get<UserInfo[]>("http://localhost:8080/admin/users")
+    return this.httpClient.get<UserInfo[]>("http://localhost:8080/api/users")
   }
 
   banUser(id: number): Observable<UserStatus> {
-    return this.httpClient.get<UserStatus>("http://localhost:8080/admin/banUser/" + id)
+    console.log(id)
+    return this.httpClient.get<UserStatus>("http://localhost:8080/api/users/ban/" + id)
   }
 
   activeUser(id: number): Observable<UserStatus> {
-    return this.httpClient.get<UserStatus>("http://localhost:8080/admin/activeUser/" + id)
+    console.log(id)
+    return this.httpClient.get<UserStatus>("http://localhost:8080/api/users/active/" + id)
   }
 
   findCurrentUser(): Observable<UserInfoDTO> {

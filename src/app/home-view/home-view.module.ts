@@ -30,7 +30,7 @@ import {QuillModule} from "ngx-quill";
     ReactiveFormsModule,
     QuillModule.forRoot(),
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
 
   ],
   declarations:[

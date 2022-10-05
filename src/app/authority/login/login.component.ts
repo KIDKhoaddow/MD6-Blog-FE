@@ -54,7 +54,9 @@ ngAfterViewInit() {
 
   ngOnInit(): void {
 
-      }
+
+
+  }
   login() {
     const val = this.signInGroup.value;
     if (val.username && val.password) {
@@ -64,7 +66,7 @@ ngAfterViewInit() {
           Swal.fire({
             icon: 'success',
             title: 'Login Success',
-            timer:1500
+            timer:5000
           }).finally(()=>{
             // @ts-ignore
             if (value.roles[0].authority === "ROLE_ADMIN") {
@@ -77,7 +79,7 @@ ngAfterViewInit() {
             icon: 'error',
             title: 'Login Fail',
             text:"Check your username or password please",
-            timer:1500
+            timer:4500
           }).finally(()=>{
             window.location.reload()
           })

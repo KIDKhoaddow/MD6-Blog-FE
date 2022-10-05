@@ -51,7 +51,7 @@
       <ng-container matColumnDef="avatar">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Avatar</th>
         <td mat-cell *matCellDef="let row">
-          <img class="avatarTable" src='http://localhost:8080/Image/{{row.avatar}}'>
+          <img class="avatarTable" src='{{row.avatar}}'>
         </td>
       </ng-container>
       <!-- Name Column -->

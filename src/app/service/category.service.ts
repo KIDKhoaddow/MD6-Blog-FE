@@ -11,6 +11,6 @@ export class CategoryService {
   constructor(private httpClient: HttpClient) {
   }
   findAll(): Observable<Category[]> {
-    return this.httpClient.get<Category[]>("http://localhost:8080/userView/listCategory")
+    return this.httpClient.get<Category[]>("http://localhost:8080/api/category")
   }
 }

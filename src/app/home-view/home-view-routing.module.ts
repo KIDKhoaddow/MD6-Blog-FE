@@ -24,13 +24,16 @@ const homeRoutes: Routes = [
         {path:'blog',component:BlogsComponent},
         {path:'categories',component:CategoriesComponent},
         {path:'createBlog',component:FormCreateComponent},
-
       ]
       }
-
     ]
-
-
+  },
+  {
+    path:"",
+    component:LayoutComponent,
+    children:[
+      {path: "",component:HomepageComponent}
+    ]
   }
 ]
 

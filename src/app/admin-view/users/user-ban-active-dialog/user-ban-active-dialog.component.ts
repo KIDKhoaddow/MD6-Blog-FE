@@ -20,6 +20,7 @@ export class UserBanActiveDialogComponent implements OnInit {
   ngOnInit(): void {
   }
   banUser(userInfo: UserInfo) {
+    console.log(userInfo)
     this.userService.banUser(userInfo.id).subscribe(compileResults=>{
       console.log(compileResults)
     })
@@ -27,6 +28,7 @@ export class UserBanActiveDialogComponent implements OnInit {
 
   }
   active(userInfo:UserInfo){
+    console.log(userInfo)
      this.userService.activeUser(userInfo.id).subscribe(compileResults=>{
       console.log(compileResults)
     })

@@ -58,7 +58,7 @@
           </div>
           <!-- Single Popular Post -->
           <div class="single-populer-post d-flex" *ngFor="let element of blogs">
-            <img src="http://localhost:8080/Image/{{element.picture}}" alt="" style="height: 160px">
+            <img src="{{element.picture}}" alt="" style="height: 160px">
             <div class="post-content">
               <a href="#">
                 <h6>{{element.title}}</h6>

@@ -16,24 +16,24 @@ export class BlogsService {
   }
 
   findAll(): Observable<Blog[]> {
-    return this.httpClient.get<Blog[]>("http://localhost:8080/admin/blogs")
+    return this.httpClient.get<Blog[]>("http://localhost:8080/api/blog")
   }
 
   banBlog(id: number): Observable<BlogStatus> {
-    return this.httpClient.get<BlogStatus>("http://localhost:8080/admin/banBlog/" + id)
+    return this.httpClient.get<BlogStatus>("http://localhost:8080/api/blog/ban/" + id)
   }
 
   activeBlog(id: number): Observable<BlogStatus> {
-    return this.httpClient.get<BlogStatus>("http://localhost:8080/admin/activeBlog/" + id)
+    return this.httpClient.get<BlogStatus>("http://localhost:8080/api/blog/active/" + id)
   }
 
   getlistBlogsOfUser(): Observable<BlogsOfUser[]> {
-    return this.httpClient.get<BlogsOfUser[]>("http://localhost:8080/userView/listBlogsOfUser")
+    return this.httpClient.get<BlogsOfUser[]>("http://localhost:8080/api/blog/listBlogsOfUser")
   }
   getlistBlogsMostLike(): Observable<BlogMostLike[]> {
-    return this.httpClient.get<BlogMostLike[]>("http://localhost:8080/userView/listBlogsMostLike")
+    return this.httpClient.get<BlogMostLike[]>("http://localhost:8080/api/blog/listBlogsMostLike")
   }
   getTopTenBlogMostLike(): Observable<Blog[]> {
-    return this.httpClient.get<Blog[]>("http://localhost:8080/userView/top-10-like")
+    return this.httpClient.get<Blog[]>("http://localhost:8080/api/blog/public/top-ten-most-like")
   }
 }

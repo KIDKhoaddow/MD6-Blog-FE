@@ -51,7 +51,7 @@ import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
-
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 
 @NgModule({
@@ -109,7 +109,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     provideRemoteConfig(() => getRemoteConfig()),
     provideStorage(() => getStorage()),
   ],
-  providers: [httpInterceptorProviders, ScreenTrackingService,UserTrackingService],
+  providers: [httpInterceptorProviders, ScreenTrackingService,UserTrackingService, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

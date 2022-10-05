@@ -27,7 +27,7 @@
         <!-- /toggle mobile menu -->
         <!-- logo -->
         <div class="tt-logo">
-          <a href="index.html"><img src="images/logo.png" alt=""></a>
+          <a routerLink="/home/homepage"><img src="./assets/image/logo.png" alt=""></a>
         </div>
         <!-- /logo -->
         <!-- desctop menu -->
@@ -140,11 +140,13 @@
             </i>
           </a>
           <div class="tt-avatar-icon tt-size-md">
-            <i class="tt-icon">
-              <svg>
-                <use routerLink="/home/userprofile" xlink:href="#icon-ava-a"></use>
-              </svg>
-            </i>
+            <a routerLink="/home/userprofile">
+              <i class="tt-icon">
+                <svg>
+                  <use  xlink:href="#icon-ava-a"></use>
+                </svg>
+              </i>
+            </a>
           </div>
           <div class="custom-select-01">
             <select>
@@ -250,9 +252,12 @@
 </div>
 <a href="./template/index.html" class="tt-btn-create-topic">
     <span class="tt-icon">
-        <svg>
-          <use xlink:href="#icon-create_new"></use>
+      <a routerLink="/home/createBlog">
+        <svg >
+          <use xlink:href="#icon-create_new" >
+          </use>
         </svg>
+      </a>
     </span>
 </a>
 
@@ -576,6 +581,7 @@
     <circle cx="80.76" cy="80.76" r="80.76" fill="#3571b8"></circle>
     <path d="M80.76 121.26c-2.49 0-4.5-2.01-4.5-4.5v-72a4.5 4.5 0 0 1 9 0v72c0 2.48-2.02 4.5-4.5 4.5z"></path>
     <path d="M116.76 85.26h-72a4.5 4.5 0 0 1 0-9h72a4.5 4.5 0 0 1 0 9z"></path>
+
   </symbol>
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 111 111" id="icon-discussion">
     <path

@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
     this.userService.findCurrentUser().subscribe(userInfo => {
       this.userInfoCurrent = userInfo
       // @ts-ignore
-      document.getElementById("avatar").setAttribute("src",'http://localhost:8080/Image/'+this.userInfoCurrent?.avatar)
+      document.getElementById("avatar").setAttribute("src",this.userInfoCurrent?.avatar)
     })
   }
 
