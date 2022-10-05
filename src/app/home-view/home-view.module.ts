@@ -17,6 +17,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FormCreateComponent} from "./form-create/form-create.component";
 import {QuillModule} from "ngx-quill";
 import {MatTabsModule} from "@angular/material/tabs";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import {MatTabsModule} from "@angular/material/tabs";
         QuillModule.forRoot(),
         MatFormFieldModule,
         FormsModule,
-        MatTabsModule
+        MatTabsModule,
+        MatInputModule
 
     ],
   declarations:[

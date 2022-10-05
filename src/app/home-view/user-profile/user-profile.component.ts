@@ -42,7 +42,12 @@ export class UserProfileComponent implements OnInit {
     username: this.username
   })
 
-  oldPassword = new FormControl('')
+  oldPassword = new FormControl('',[Validators.required, Validators.minLength(this.minNewPassword), Validators.maxLength(this.maxNewPassword),
+    this.regexValidator(new RegExp("\\w+([a-z])\\w+"), {lowercase: "false"}),
+    this.regexValidator(new RegExp("\\w+([A-Z])\\w+"), {uppercase: "false"}),
+    this.regexValidator(new RegExp("\\w+([0-9])\\w+"), {digital: "false"}),
+    this.regexValidator(new RegExp("\\w+([!@#&()–{}:;',?/*~$_^+=<>])\\w+"), {characters: "false"}),
+  ])
   newPassword = new FormControl('',
     [Validators.required, Validators.minLength(this.minNewPassword), Validators.maxLength(this.maxNewPassword),
       this.regexValidator(new RegExp("\\w+([a-z])\\w+"), {lowercase: "false"}),
@@ -57,7 +62,14 @@ export class UserProfileComponent implements OnInit {
   matcherPassword = new MyErrorStateMatcher()
   matcherRePassword = new MyErrorStateMatcher()
   hideNewPassword = true;
-  hideConFirPasswordPassword = true;
+  hideConfirmPassword = true;
+  hideOldPassword = true;
+
+  changePasswordGroup = this.formGroup.group({
+    oldPassword: this.oldPassword,
+    newPassword: this.newPassword,
+    confirmPassword: this.confirmPassword,
+  })
 
 
 
