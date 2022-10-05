@@ -33,24 +33,9 @@
   </div>
   <div class="container">
     <div class="tt-tab-wrapper">
-      <div class="tt-wrapper-inner">
-        <ul class="nav nav-tabs pt-tabs-default" role="tablist">
-          <li class="nav-item show">
-            <a class="nav-link " data-toggle="tab" href="#tt-tab-01" role="tab"><span style="margin-left: 10px">Activity</span></a>
-          </li>
-          <li class="nav-item  ">
-            <a class="nav-link" data-toggle="tab" href="#tt-tab-02" role="tab"><span style="margin-right: 16px">Threads</span></a>
-          </li>
-          <li class="nav-item tt-hide-md">
-            <a  class="nav-link" data-toggle="tab" href="#tt-tab-07" role="tab"><span style="margin-right: 16px">Setting</span></a>
-          </li>
-          <li class="nav-item tt-hide-md">
-            <a class="nav-link" data-toggle="tab" href="#tt-tab-08" role="tab"><span style="margin-right: 16px">ChangePassword</span></a>
-          </li>
-        </ul>
-      </div>
-      <div class="tab-content">
-        <div class="tab-pane tt-indent-none  show active" id="tt-tab-01" role="tabpanel">
+
+      <mat-tab-group>
+        <mat-tab label="Active">
           <div class="tt-topic-list">
             <div class="tt-list-header">
               <div class="tt-col-topic">Topic</div>
@@ -598,8 +583,8 @@
               </button>
             </div>
           </div>
-        </div>
-        <div class="tab-pane tt-indent-none" id="tt-tab-02" role="tabpanel">
+        </mat-tab>
+        <mat-tab label="Thread">
           <div class="tt-topic-list">
             <div class="tt-list-header">
               <div class="tt-col-topic">Topic</div>
@@ -643,302 +628,8 @@
             </div>
 
           </div>
-        </div>
-        <div class="tab-pane tt-indent-none" id="tt-tab-03" role="tabpanel">
-          <div class="tt-topic-list">
-            <div class="tt-list-header">
-              <div class="tt-col-topic">Topic</div>
-              <div class="tt-col-category">Category</div>
-              <div class="tt-col-value">Activity</div>
-            </div>
-            <div class="tt-item">
-              <div class="tt-col-avatar">
-                <svg class="tt-icon">
-                  <use xlink:href="#icon-ava-d"></use>
-                </svg>
-              </div>
-              <div class="tt-col-description">
-                <h6 class="tt-title"><a href="#">
-                  Does Envato act against the authors of Envato markets?
-                </a></h6>
-                <div class="row align-items-center no-gutters hide-desktope">
-                  <div class="col-9">
-                    <ul class="tt-list-badge">
-                      <li class="show-mobile"><a href="#"><span class="tt-color06 tt-badge">movies</span></a></li>
-                    </ul>
-                  </div>
-                  <div class="col-3 ml-auto show-mobile">
-                    <div class="tt-value">5 Jan,19</div>
-                  </div>
-                </div>
-                <div class="tt-content">
-                  I really liked new badge - T-shirt. Will there be new contests with new badges for AudioJungle?
-                </div>
-              </div>
-              <div class="tt-col-category"><a href="#"><span class="tt-color06 tt-badge">movies</span></a></div>
-              <div class="tt-col-value-large hide-mobile">5 Jan,19</div>
-            </div>
-            <div class="tt-item">
-              <div class="tt-col-avatar">
-                <svg class="tt-icon">
-                  <use xlink:href="#icon-ava-d"></use>
-                </svg>
-              </div>
-              <div class="tt-col-description">
-                <h6 class="tt-title"><a href="#">
-                  We Want to Hear From You! What Would You Like?
-                </a></h6>
-                <div class="row align-items-center no-gutters hide-desktope">
-                  <div class="col-9">
-                    <ul class="tt-list-badge">
-                      <li class="show-mobile"><a href="#"><span class="tt-color15 tt-badge">nature</span></a></li>
-                    </ul>
-                  </div>
-                  <div class="col-3 ml-auto show-mobile">
-                    <div class="tt-value">5 Jan,19</div>
-                  </div>
-                </div>
-                <div class="tt-content">
-                  Can it be in not vector format but in very big resolution (far far beyond enough for print on shirts)
-                  ?
-                </div>
-              </div>
-              <div class="tt-col-category"><a href="#"><span class="tt-color15 tt-badge">nature</span></a></div>
-              <div class="tt-col-value-large hide-mobile">5 Jan,19</div>
-            </div>
-            <div class="tt-item">
-              <div class="tt-col-avatar">
-                <svg class="tt-icon">
-                  <use xlink:href="#icon-ava-d"></use>
-                </svg>
-              </div>
-              <div class="tt-col-description">
-                <h6 class="tt-title"><a href="#">
-                  Seeking partner backend developer
-                </a></h6>
-                <div class="row align-items-center no-gutters hide-desktope">
-                  <div class="col-9">
-                    <ul class="tt-list-badge">
-                      <li class="show-mobile"><a href="#"><span class="tt-color05 tt-badge">music</span></a></li>
-                    </ul>
-                  </div>
-                  <div class="col-3 ml-auto show-mobile">
-                    <div class="tt-value">5 Jan,19</div>
-                  </div>
-                </div>
-                <div class="tt-content">
-                  One more question -> what is the maximum space (in cm or inches) the design can be?
-                </div>
-              </div>
-              <div class="tt-col-category"><a href="#"><span class="tt-color05 tt-badge">music</span></a></div>
-              <div class="tt-col-value-large hide-mobile">5 Jan,19</div>
-            </div>
-            <div class="tt-item">
-              <div class="tt-col-avatar">
-                <svg class="tt-icon">
-                  <use xlink:href="#icon-ava-d"></use>
-                </svg>
-              </div>
-              <div class="tt-col-description">
-                <h6 class="tt-title"><a href="#">
-                  Cannot customize my intro
-                </a></h6>
-                <div class="row align-items-center no-gutters hide-desktope">
-                  <div class="col-9">
-                    <ul class="tt-list-badge">
-                      <li class="show-mobile"><a href="#"><span class="tt-color05 tt-badge">music</span></a></li>
-                    </ul>
-                  </div>
-                  <div class="col-3 ml-auto show-mobile">
-                    <div class="tt-value">5 Jan,19</div>
-                  </div>
-                </div>
-                <div class="tt-content">
-                  Wow great to see another good contest, I hope we will submit one of our entry this time and try to win
-                  it
-                </div>
-              </div>
-              <div class="tt-col-category"><a href="#"><span class="tt-color05 tt-badge">music</span></a></div>
-              <div class="tt-col-value-large hide-mobile">5 Jan,19</div>
-            </div>
-            <div class="tt-item">
-              <div class="tt-col-avatar">
-                <svg class="tt-icon">
-                  <use xlink:href="#icon-ava-d"></use>
-                </svg>
-              </div>
-              <div class="tt-col-description">
-                <h6 class="tt-title"><a href="#">
-                  Web Hosting Packages for ThemeForest WordPress
-                </a></h6>
-                <div class="row align-items-center no-gutters hide-desktope">
-                  <div class="col-9">
-                    <ul class="tt-list-badge">
-                      <li class="show-mobile"><a href="#"><span class="tt-color03 tt-badge">exchange</span></a></li>
-                    </ul>
-                  </div>
-                  <div class="col-3 ml-auto show-mobile">
-                    <div class="tt-value">5 Jan,19</div>
-                  </div>
-                </div>
-                <div class="tt-content">
-                  Keep an eye on author dashboard or forums and thr are chances for such contest in each and every
-                  category on Envato market
-                </div>
-              </div>
-              <div class="tt-col-category"><a href="#"><span class="tt-color03 tt-badge">exchange</span></a></div>
-              <div class="tt-col-value-large hide-mobile">5 Jan,19</div>
-            </div>
-            <div class="tt-item">
-              <div class="tt-col-avatar">
-                <svg class="tt-icon">
-                  <use xlink:href="#icon-ava-d"></use>
-                </svg>
-              </div>
-              <div class="tt-col-description">
-                <h6 class="tt-title"><a href="#">
-                  Microsoft Word and Power Point
-                </a></h6>
-                <div class="row align-items-center no-gutters hide-desktope">
-                  <div class="col-9">
-                    <ul class="tt-list-badge">
-                      <li class="show-mobile"><a href="#"><span class="tt-color08 tt-badge">youtube</span></a></li>
-                    </ul>
-                  </div>
-                  <div class="col-3 ml-auto show-mobile">
-                    <div class="tt-value">5 Jan,19</div>
-                  </div>
-                </div>
-                <div class="tt-content">
-                  99% of authors are keeping eyes on the upper right corner hehehehe
-                </div>
-              </div>
-              <div class="tt-col-category"><a href="#"><span class="tt-color08 tt-badge">youtube</span></a></div>
-              <div class="tt-col-value-large hide-mobile">5 Jan,19</div>
-            </div>
-            <div class="tt-item">
-              <div class="tt-col-avatar">
-                <svg class="tt-icon">
-                  <use xlink:href="#icon-ava-d"></use>
-                </svg>
-              </div>
-              <div class="tt-col-description">
-                <h6 class="tt-title"><a href="#">
-                  Does Envato act against the authors of Envato markets?
-                </a></h6>
-                <div class="row align-items-center no-gutters hide-desktope">
-                  <div class="col-9">
-                    <ul class="tt-list-badge">
-                      <li class="show-mobile"><a href="#"><span class="tt-color06 tt-badge">movies</span></a></li>
-                    </ul>
-                  </div>
-                  <div class="col-3 ml-auto show-mobile">
-                    <div class="tt-value">5 Jan,19</div>
-                  </div>
-                </div>
-                <div class="tt-content">
-                  I really liked new badge - T-shirt. Will there be new contests with new badges for AudioJungle?
-                </div>
-              </div>
-              <div class="tt-col-category"><a href="#"><span class="tt-color06 tt-badge">movies</span></a></div>
-              <div class="tt-col-value-large hide-mobile">5 Jan,19</div>
-            </div>
-            <div class="tt-item">
-              <div class="tt-col-avatar">
-                <svg class="tt-icon">
-                  <use xlink:href="#icon-ava-d"></use>
-                </svg>
-              </div>
-              <div class="tt-col-description">
-                <h6 class="tt-title"><a href="#">
-                  We Want to Hear From You! What Would You Like?
-                </a></h6>
-                <div class="row align-items-center no-gutters hide-desktope">
-                  <div class="col-9">
-                    <ul class="tt-list-badge">
-                      <li class="show-mobile"><a href="#"><span class="tt-color15 tt-badge">nature</span></a></li>
-                    </ul>
-                  </div>
-                  <div class="col-3 ml-auto show-mobile">
-                    <div class="tt-value">5 Jan,19</div>
-                  </div>
-                </div>
-                <div class="tt-content">
-                  Can it be in not vector format but in very big resolution (far far beyond enough for print on shirts)
-                  ?
-                </div>
-              </div>
-              <div class="tt-col-category"><a href="#"><span class="tt-color15 tt-badge">nature</span></a></div>
-              <div class="tt-col-value-large hide-mobile">5 Jan,19</div>
-            </div>
-
-            <div class="tt-item">
-              <div class="tt-col-avatar">
-                <svg class="tt-icon">
-                  <use xlink:href="#icon-ava-d"></use>
-                </svg>
-              </div>
-              <div class="tt-col-description">
-                <h6 class="tt-title"><a href="#">
-                  Cannot customize my intro
-                </a></h6>
-                <div class="row align-items-center no-gutters hide-desktope">
-                  <div class="col-9">
-                    <ul class="tt-list-badge">
-                      <li class="show-mobile"><a href="#"><span class="tt-color15 tt-badge">music</span></a></li>
-                    </ul>
-                  </div>
-                  <div class="col-3 ml-auto show-mobile">
-                    <div class="tt-value">5 Jan,19</div>
-                  </div>
-                </div>
-                <div class="tt-content">
-                  Wow great to see another good contest, I hope we will submit one of our entry this time and try to win
-                  it
-                </div>
-              </div>
-              <div class="tt-col-category"><a href="#"><span class="tt-color15 tt-badge">music</span></a></div>
-              <div class="tt-col-value-large hide-mobile">5 Jan,19</div>
-            </div>
-            <div class="tt-item">
-              <div class="tt-col-avatar">
-                <svg class="tt-icon">
-                  <use xlink:href="#icon-ava-d"></use>
-                </svg>
-              </div>
-              <div class="tt-col-description">
-                <h6 class="tt-title"><a href="#">
-                  Web Hosting Packages for ThemeForest WordPress
-                </a></h6>
-                <div class="row align-items-center no-gutters hide-desktope">
-                  <div class="col-9">
-                    <ul class="tt-list-badge">
-                      <li class="show-mobile"><a href="#"><span class="tt-color03 tt-badge">exchange</span></a></li>
-                    </ul>
-                  </div>
-                  <div class="col-3 ml-auto show-mobile">
-                    <div class="tt-value">5 Jan,19</div>
-                  </div>
-                </div>
-                <div class="tt-content">
-                  Keep an eye on author dashboard or forums and thr are chances for such contest in each and every
-                  category on Envato market
-                </div>
-              </div>
-              <div class="tt-col-category"><a href="#"><span class="tt-color03 tt-badge">exchange</span></a></div>
-              <div class="tt-col-value-large hide-mobile">5 Jan,19</div>
-            </div>
-            <div class="tt-row-btn">
-              <button type="button" class="btn-icon js-topiclist-showmore">
-                <svg class="tt-icon">
-                  <use xlink:href="#icon-load_lore_icon"></use>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="tab-pane tt-indent-none" id="tt-tab-07" role="tabpanel">
+        </mat-tab>
+        <mat-tab label="Setting">
           <table style="margin: 0 auto;">
             <div class="container-xl px-4 mt-4">
               <hr class="mt-0 mb-4">
@@ -1016,43 +707,97 @@
               </div>
             </div>
           </table>
-        </div>
-        <div style="margin-top: 22px" class="tab-pane tt-indent-none" id="tt-tab-08" role="tabpanel">
-          <div class="col-md-6 offset-md-3">
+        </mat-tab>
+        <mat-tab label="Change Password">
+          <div class="col-md-6 offset-md-3" style="margin-top: 16px ">
             <div class="card card-outline-secondary">
               <div class="card-header">
                 <h3 class="mb-0">Change Password</h3>
               </div>
               <div class="card-body">
-                <form class="form" role="form" autocomplete="off">
-                  <div class="form-group">
-                    <label for="inputPasswordOld">Current Password</label>
-                    <input type="password" class="form-control" id="inputPasswordOld" required="">
+<!--                <form class="form" role="form" autocomplete="off">-->
+<!--                  <div class="form-group">-->
+<!--                    <label for="inputPasswordOld">Current Password</label>-->
+<!--                    <input type="password" class="form-control" id="inputPasswordOld" required="">-->
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <label for="inputPasswordNew">New Password</label>-->
+<!--                    <input type="password" class="form-control" id="inputPasswordNew" required="">-->
+<!--                    <span class="form-text small text-muted">-->
+<!--                                            The password must be 8-20 characters, and must <em>not</em> contain spaces.-->
+<!--                                        </span>-->
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <label for="inputPasswordNewVerify">Confirm Password</label>-->
+<!--                    <input type="password" class="form-control" id="inputPasswordNewVerify" required="">-->
+<!--                    <span class="form-text small text-muted">-->
+<!--                                            To confirm, type the new password again.-->
+<!--                                        </span>-->
+<!--                  </div>-->
+<!--                  <div class="form-group">-->
+<!--                    <button type="submit" class="btn btn-success btn-lg float-right">Save</button>-->
+<!--                  </div>-->
+<!--                </form>-->
+                <form class="form row justify-content-center" [formGroup]="changePasswordGroup" #heroForm="ngForm" appPasswordMatchValidator>
+                  <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Enter old password</mat-label>
+                    <input matInput [type]=" hideOldPassword ? 'password' : 'text'" [formControl]="oldPassword"
+                           [errorStateMatcher]="matcherOldPassword">
+                    <button mat-icon-button matSuffix (click)=" hideOldPassword = ! hideOldPassword" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]=" hideOldPassword">
+                      <mat-icon>{{ hideOldPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="oldPassword.hasError('required')">Password is required</mat-error>
+                    <mat-error *ngIf="oldPassword.hasError('maxlength')">Password must have {{maxNewPassword}} maximum characters </mat-error>
+                    <mat-error *ngIf="oldPassword.hasError('minlength')">Password must have at least {{minNewPassword}} characters</mat-error>
+                    <mat-error *ngIf="oldPassword.hasError('lowercase')&&!oldPassword.hasError('minlength')">Password must contain one lowercase letter.</mat-error>
+                    <mat-error *ngIf="oldPassword.hasError('uppercase')&&!oldPassword.hasError('minlength')">Password must contain one uppercase letter.</mat-error>
+                    <mat-error *ngIf="oldPassword.hasError('characters')&&!oldPassword.hasError('minlength')">Password must contain one characters letter.</mat-error>
+                    <mat-error *ngIf="oldPassword.hasError('digital')&&!oldPassword.hasError('minlength')">Password must contain one digital letter.</mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>New password</mat-label>
+                    <input matInput [type]=" hideNewPassword ? 'password' : 'text'" [formControl]="newPassword"
+                           [errorStateMatcher]="matcherPassword">
+                    <button mat-icon-button matSuffix (click)=" hideNewPassword = ! hideNewPassword" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]=" hideNewPassword">
+                      <mat-icon>{{ hideNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="newPassword.hasError('required')">Password is required</mat-error>
+                    <mat-error *ngIf="newPassword.hasError('maxlength')">Password must have {{maxNewPassword}} maximum characters </mat-error>
+                    <mat-error *ngIf="newPassword.hasError('minlength')">Password must have at least {{minNewPassword}} characters</mat-error>
+                    <mat-error *ngIf="newPassword.hasError('lowercase')&&!newPassword.hasError('minlength')">Password must contain one lowercase letter.</mat-error>
+                    <mat-error *ngIf="newPassword.hasError('uppercase')&&!newPassword.hasError('minlength')">Password must contain one uppercase letter.</mat-error>
+                    <mat-error *ngIf="newPassword.hasError('characters')&&!newPassword.hasError('minlength')">Password must contain one characters letter.</mat-error>
+                    <mat-error *ngIf="newPassword.hasError('digital')&&!newPassword.hasError('minlength')">Password must contain one digital letter.</mat-error>
+                  </mat-form-field>
+                  <div *ngIf="changePasswordGroup.errors?.['passwordMismatch']" class="cross-validation-error-message alert"> Confirm-password does not match password
                   </div>
-                  <div class="form-group">
-                    <label for="inputPasswordNew">New Password</label>
-                    <input type="password" class="form-control" id="inputPasswordNew" required="">
-                    <span class="form-text small text-muted">
-                                            The password must be 8-20 characters, and must <em>not</em> contain spaces.
-                                        </span>
+                  <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Enter your confirm password</mat-label>
+                    <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" [formControl]="confirmPassword"
+                           [errorStateMatcher]="matcherRePassword" >
+
+                    <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword"
+                            [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hideConfirmPassword">
+                      <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="confirmPassword.hasError('required')">Password is required</mat-error>
+                    <mat-error *ngIf="confirmPassword.hasError('minlength')">Password must have at least {{ minNewPassword}} characters</mat-error>
+
+                  </mat-form-field>
+                  <div *ngIf="changePasswordGroup.errors?.['passwordMismatch']" class="cross-validation-error-message alert">Confirm-password does not match password
                   </div>
-                  <div class="form-group">
-                    <label for="inputPasswordNewVerify">Verify</label>
-                    <input type="password" class="form-control" id="inputPasswordNewVerify" required="">
-                    <span class="form-text small text-muted">
-                                            To confirm, type the new password again.
-                                        </span>
-                  </div>
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-lg float-right">Save</button>
-                  </div>
+                  <button class="button" mat-raised-button color="primary" style="margin-top: 10px"
+                          [disabled]="matcherOldPassword.isErrorState(oldPassword,heroForm)||matcherPassword.isErrorState(newPassword,heroForm)
+                  ||matcherRePassword.isErrorState(confirmPassword,heroForm)">Register</button>
                 </form>
               </div>
             </div>
-          </div><!-- form card change password -->
-          <!-- /form card change password -->
-        </div>
-      </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
     </div>
   </div>
 </main>
