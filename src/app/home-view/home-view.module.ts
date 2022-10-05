@@ -21,6 +21,7 @@ import {MatInputModule} from "@angular/material/input";
 import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
 import {ChangePasswordMatchValidatorRevealedDirective} from "../model/Validate/changePasswordMatchValidator-revealed.directive";
 import {MatButton, MatButtonModule} from "@angular/material/button";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import {MatButton, MatButtonModule} from "@angular/material/button";
     FormsModule,
     MatTabsModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatMenuModule
   ],
   declarations: [
     LayoutComponent,

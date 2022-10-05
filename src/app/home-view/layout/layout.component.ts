@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
+import {AuthService} from "../../authority/service/auth.service";
+import {UsersService} from "../../service/users.service";
+import {UserInfoDTO} from "../../model/userInfoDTO";
 
 
 @Component({
@@ -8,9 +12,21 @@ import {Component, OnInit} from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
+  hide = false;
+  userInfoCurrent?: UserInfoDTO;
 
-  constructor() {
-
+  constructor(private router: Router,
+              private authService: AuthService, private userService: UsersService) {
+    if (authService.currentUserValue == null) {
+      this.hide = false;
+    } else {
+      this.hide = true
+      this.userService.findCurrentUser().subscribe(userInfo => {
+        this.userInfoCurrent = userInfo
+        // @ts-ignore
+        document.getElementById("avatar").setAttribute("src", this.userInfoCurrent?.avatar)
+      })
+    }
   }
 
   ngOnInit(): void {
@@ -18,6 +34,13 @@ export class LayoutComponent implements OnInit {
   }
 
 
+  logout() {
+    console.log(this.authService.logout())
+    window.location.reload();
+  }
+  goToProfile(){
+    this.router.navigateByUrl("/home/userprofile")
+  }
 }
 
 

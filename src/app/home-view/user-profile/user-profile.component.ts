@@ -76,7 +76,8 @@ export class UserProfileComponent implements OnInit {
   constructor(private userService: UsersService,
               private formGroup: FormBuilder,
               private storage: AngularFireStorage,
-              private  authService:AuthService) {
+              private  authService:AuthService,
+              ) {
     this.getUser()
   }
 
@@ -96,7 +97,6 @@ export class UserProfileComponent implements OnInit {
       console.log(value)
     })
   }
-
 
 
   updateUsers() {

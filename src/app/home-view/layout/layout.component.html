@@ -27,7 +27,7 @@
         <!-- /toggle mobile menu -->
         <!-- logo -->
         <div class="tt-logo">
-          <a routerLink="/home/homepage"><img src="./assets/image/logo.png" alt=""></a>
+          <a routerLink=""><img src="./assets/image/logo.png" alt=""></a>
         </div>
         <!-- /logo -->
         <!-- desctop menu -->
@@ -124,7 +124,9 @@
                   </li>
                 </ul>
               </div>
-              <button type="button" class="tt-view-all" data-toggle="modal" data-target="#modalAdvancedSearch">Advanced Search</button>
+              <button type="button" class="tt-view-all" data-toggle="modal" data-target="#modalAdvancedSearch">Advanced
+                Search
+              </button>
             </div>
           </form>
         </div>
@@ -139,22 +141,38 @@
               </svg>
             </i>
           </a>
-          <div class="tt-avatar-icon tt-size-md">
-            <a routerLink="/home/userprofile">
-              <i class="tt-icon">
-                <svg>
-                  <use  xlink:href="#icon-ava-a"></use>
-                </svg>
-              </i>
-            </a>
+          <div *ngIf="hide; else login_register" style="display: flex ;">
+            <div class="tt-avatar-icon tt-size-md">
+              <a [matMenuTriggerFor]="belowMenu">
+                <img class="avatar" id="avatar" alt="Photo of a Shiba Inu">
+              </a>
+            </div>
+            <div >
+              <button mat-icon-button [matMenuTriggerFor]="belowMenu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #belowMenu="matMenu" yPosition="below">
+                <mat-label>Account</mat-label>
+                <mat-divider></mat-divider>
+                <button mat-menu-item (click)="goToProfile()">
+                  <img src="./assets/icon/user.png" class="icon">profile
+                </button>
+                <button mat-menu-item>
+                  <img src="./assets/icon/comments.png" class="icon">message
+                </button>
+                <mat-label>Item 2</mat-label>
+                <mat-divider></mat-divider>
+                <button mat-menu-item (click)="logout()">
+                  <img src="./assets/icon/turn-off.png" class="icon">
+                  Log out
+                </button>
+              </mat-menu>
+            </div>
           </div>
-          <div class="custom-select-01">
-            <select>
-              <option value="Default Sorting">khoa dowd</option>
-              <option value="value 01">updateUser</option>
-              <option value="value 02">value 02</option>
-            </select>
-          </div>
+          <ng-template #login_register>
+            <a routerLink="/login" style="text-decoration: none"><span>Login</span>/</a>
+            <a routerLink="/register" style="text-decoration: none"><span>Register</span></a>
+          </ng-template>
         </div>
       </div>
     </div>
@@ -253,15 +271,16 @@
 <a href="./template/index.html" class="tt-btn-create-topic">
     <span class="tt-icon">
       <a routerLink="/home/createBlog">
-        <svg >
-          <use xlink:href="#icon-create_new" >
+        <svg>
+          <use xlink:href="#icon-create_new">
           </use>
         </svg>
       </a>
     </span>
 </a>
 
-<div class="modal fade" id="modalAdvancedSearch" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalAdvancedSearch" tabindex="-1" role="dialog" aria-label="myModalLabel"
+     aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="tt-modal-advancedSearch">
@@ -285,7 +304,8 @@
                 <use xlink:href="#icon-search"></use>
               </svg>
             </i>
-            <input type="text" name="name" class="form-control pt-customInputSearch" id="searchForum" placeholder="Search all forums">
+            <input type="text" name="name" class="form-control pt-customInputSearch" id="searchForum"
+                   placeholder="Search all forums">
           </div>
           <div class="form-group">
             <label for="searchName">Posted by</label>
