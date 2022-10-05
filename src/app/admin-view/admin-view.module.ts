@@ -33,11 +33,7 @@ import { BlogInfoDialogComponent } from './blogs/blog-info-dialog/blog-info-dial
 import {MatSortModule} from "@angular/material/sort";
 import { CategoryComponent } from './category/category.component';
 
-
-
-
-
-
+// @ts-ignore
 @NgModule({
   imports: [
     AdminViewRoutingModule,

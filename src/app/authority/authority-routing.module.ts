@@ -4,19 +4,18 @@ import {NgModule} from "@angular/core";
 import {RegisterComponent} from "./register/register.component";
 import {LayoutComponent} from "./layout/layout.component";
 import {PasswordMatchValidatorRevealedDirective} from "../model/passwordMatchValidator-revealed.directive";
+import {VerifyComponent} from "./verify/verify.component";
 
 
 const authorityRoutes: Routes = [
-      {path: 'login', component: LoginComponent},
-      {path: 'register', component: RegisterComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'verify', component: VerifyComponent}
 ]
 
 @NgModule({
   imports: [RouterModule.forChild(authorityRoutes)],
-  declarations: [
-
-
-  ],
+  declarations: [],
   exports: [RouterModule]
 })
 export class AuthorityRoutingModule {

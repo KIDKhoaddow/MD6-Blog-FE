@@ -45,6 +45,8 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
 
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {QuillModule} from "ngx-quill";
 
 
 
@@ -53,7 +55,6 @@ import {environment} from "../environments/environment";
     AppComponent,
     LoginComponent,
     RegisterComponent,
-
 
   ],
   imports: [
@@ -95,8 +96,7 @@ import {environment} from "../environments/environment";
     AngularFireStorageModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
-
-
+    FontAwesomeModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

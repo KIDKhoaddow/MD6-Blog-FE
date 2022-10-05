@@ -34,7 +34,7 @@ export class AuthService {
 
 
   login(username: string, password: string) {
-    return this.http.post<User>('http://localhost:8080/login', {username, password}).pipe(
+    return this.http.post<User>('http://localhost:8080/api/login', {username, password}).pipe(
       map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject?.next(user)
@@ -47,7 +47,7 @@ export class AuthService {
 
   logout() {
     // @ts-ignore
-    return this.http.get<UserStatus>("http://localhost:8080/logout/" + this.currentUserValue?.id).subscribe(
+    return this.http.get<UserStatus>("http://localhost:8080/api/logout/" + this.currentUserValue?.id).subscribe(
       userStatus => {
         localStorage.removeItem("currentUser");
         // @ts-ignore
@@ -58,13 +58,15 @@ export class AuthService {
       })
   }
 
-  register(username: string, password: string, confirmPassword: string) {
-    let user = {
+  register(username: string, password: string, confirmPassword: string, email: string) {
+    let SignUpForm = {
+      email:email,
       username: username,
       password: password,
       confirmPassword: confirmPassword
     }
-    return this.http.post<Message>("http://localhost:8080/register", user).pipe(map(result=>{
+    console.log(SignUpForm)
+    return this.http.post<Message>("http://localhost:8080/api/register", SignUpForm).pipe(map(result => {
       console.log(result.message)
       return result.message;
     }))

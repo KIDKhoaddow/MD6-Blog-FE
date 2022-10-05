@@ -15,6 +15,10 @@ import {UserProfileComponent } from './user-profile/user-profile.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormCreateComponent} from "./form-create/form-create.component";
+import {QuillModule} from "ngx-quill";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 @NgModule({
   imports: [
@@ -26,6 +30,10 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatIconModule,
     ReactiveFormsModule,
     MatFormFieldModule
+    ReactiveFormsModule,
+    QuillModule.forRoot(),
+    MatFormFieldModule,
+    FormsModule
 
   ],
   declarations:[
@@ -36,6 +44,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     CategoriesAreaComponent,
     BlogAreaComponent,
     UserProfileComponent,
+    FormCreateComponent,
 
   ]
 })

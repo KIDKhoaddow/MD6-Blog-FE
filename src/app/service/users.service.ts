@@ -6,6 +6,7 @@ import {UserStatus} from "../model/userStatus";
 import {AuthService} from "../authority/service/auth.service";
 import {User} from "../model/user";
 import {UserInfoDTO} from "../model/userInfoDTO";
+import {Message} from "../model/message";
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +39,7 @@ export class UsersService {
   uploadImgUser(img:string, id: any): Observable<UserInfoDTO>{
     return this.httpClient.patch("http://localhost:8080/api/users/avatar/" + id,img)
   }
+ verify(token:String){
+    return this.httpClient.get<Message>("http://localhost:8080/api/token/verify?"+"token="+token)
+ }
 }

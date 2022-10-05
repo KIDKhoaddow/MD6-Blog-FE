@@ -58,7 +58,7 @@ ngAfterViewInit() {
   login() {
     const val = this.signInGroup.value;
     if (val.username && val.password) {
-      if(!this.authService.login(val.username, val.password)
+    this.authService.login(val.username, val.password)
         .subscribe(value => {
             console.log(value);
           Swal.fire({
@@ -71,17 +71,18 @@ ngAfterViewInit() {
               this.router.navigateByUrl('/admin/dashboard');
               // @ts-ignore
             } else if(value.roles[0].authority === "ROLE_USER"){
-              this.router.navigateByUrl('/homepage')
-            }})})){
-        Swal.fire({
-          icon: 'error',
-          title: 'Login Fail',
-          text:"Check your username or password please",
-          timer:1500
-        }).finally(()=>{
-          window.location.reload()
+              this.router.navigateByUrl('/home/homepage')
+            }})},error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Login Fail',
+            text:"Check your username or password please",
+            timer:1500
+          }).finally(()=>{
+            window.location.reload()
+          })
         })
-      }
+
     }
   }
 }
