@@ -28,8 +28,11 @@ export class SlideShowComponent implements OnInit {
       0: {
         items: 1
       },
-      800: {
+      400: {
         items: 2
+      },
+      800:{
+        items:3
       }
     },
     nav: true
