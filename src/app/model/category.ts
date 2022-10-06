@@ -1,5 +1,5 @@
 export interface Category {
-  id: number,
-  name: String,
-  picture: String
+  id?: number|null,
+  name?: string|null,
+  picture?: string|null
 }

@@ -6,6 +6,7 @@ import {Blog} from "../model/blog";
 import {BlogStatus} from "../model/blog-status";
 import {BlogsOfUser} from "../model/blogsOfUser";
 import {BlogMostLike} from "../model/blog-most-like";
+import {BlogDTO} from "../model/blogDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,10 @@ export class BlogsService {
   }
   getTopTenBlogMostLike(): Observable<Blog[]> {
     return this.httpClient.get<Blog[]>("http://localhost:8080/userView/top-10-like")
+  }
+
+
+  createBlog(blog: BlogDTO): Observable<BlogDTO>{
+    return  this.httpClient.post<BlogDTO>("http://localhost:8080/blog",blog)
   }
 }

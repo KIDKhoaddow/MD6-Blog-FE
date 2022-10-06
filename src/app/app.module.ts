@@ -39,7 +39,10 @@ import {httpInterceptorProviders} from "./authority/service/jwt-interceptor";
 import {HomeViewModule} from "./home-view/home-view.module";
 import {HomeViewRoutingModule} from "./home-view/home-view-routing.module";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "../environments/environment";
 
 
 @NgModule({
@@ -86,6 +89,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HomeViewModule,
     HomeViewRoutingModule,
     FontAwesomeModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule,
+    // Khởi tạo vào gọi tới Environment được khai báo biến ở trong environment
+    AngularFireModule.initializeApp(environment.firebaseConfig),
 
   ],
   providers: [httpInterceptorProviders],
