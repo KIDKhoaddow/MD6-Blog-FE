@@ -39,7 +39,6 @@ import {httpInterceptorProviders} from "./authority/service/jwt-interceptor";
 import {HomeViewModule} from "./home-view/home-view.module";
 import {HomeViewRoutingModule} from "./home-view/home-view-routing.module";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {QuillModule} from "ngx-quill";
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
