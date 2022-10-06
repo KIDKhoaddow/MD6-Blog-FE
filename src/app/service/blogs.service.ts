@@ -15,8 +15,16 @@ export class BlogsService {
   constructor(private httpClient: HttpClient) {
   }
 
+  getTopBlogMostLike(): Observable<Blog> {
+    return this.httpClient.get<Blog>("http://localhost:8080/api/blog/public/most-like")
+  }
+
   findAll(): Observable<Blog[]> {
     return this.httpClient.get<Blog[]>("http://localhost:8080/api/blog")
+  }
+
+  getAllBlogOfUser(id: number ): Observable<Blog[]> {
+    return this.httpClient.get<Blog[]>("http://localhost:8080/api/blog/user/" + id)
   }
 
   banBlog(id: number): Observable<BlogStatus> {
@@ -30,9 +38,11 @@ export class BlogsService {
   getlistBlogsOfUser(): Observable<BlogsOfUser[]> {
     return this.httpClient.get<BlogsOfUser[]>("http://localhost:8080/api/blog/listBlogsOfUser")
   }
+
   getlistBlogsMostLike(): Observable<BlogMostLike[]> {
     return this.httpClient.get<BlogMostLike[]>("http://localhost:8080/api/blog/listBlogsMostLike")
   }
+
   getTopTenBlogMostLike(): Observable<Blog[]> {
     return this.httpClient.get<Blog[]>("http://localhost:8080/api/blog/public/top-ten-most-like")
   }

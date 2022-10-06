@@ -20,6 +20,10 @@ const homeRoutes: Routes = [
       children:[
         {path:'homepage',component:HomepageComponent},
         {path:'userprofile',component:UserProfileComponent},
+        {path:'userprofile1/:selected',component:UserProfileComponent},
+        {path:'userprofile2/:selected',component:UserProfileComponent},
+        {path:'userprofile3/:selected',component:UserProfileComponent},
+        {path:'userprofile4/:selected',component:UserProfileComponent},
         {path:'categories',component:CategoriesComponent},
         {path:'blog',component:BlogsComponent},
         {path:'categories',component:CategoriesComponent},

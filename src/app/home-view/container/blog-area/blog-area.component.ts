@@ -9,8 +9,15 @@ import {BlogsService} from "../../../service/blogs.service";
   styleUrls: ['./blog-area.component.css']
 })
 export class BlogAreaComponent implements OnInit {
+  oneBlog?: Blog
   blogs: Blog[] = []
   constructor(private  blogService :BlogsService) {
+    this.blogService.getTopBlogMostLike().subscribe(result=>{
+      console.log(result)
+      if(result!=null){
+        this.oneBlog=result
+      }
+    })
     this.blogService.getTopTenBlogMostLike().subscribe(result=>{
       console.log(result)
       this.blogs=result
@@ -18,6 +25,8 @@ export class BlogAreaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
   }
 
 }

@@ -7,6 +7,10 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs";
 import {AuthService} from "../../authority/service/auth.service";
 import {MyErrorStateMatcher} from "../../model/Validate/ErrorStateMatcher";
+import {BlogsService} from "../../service/blogs.service";
+import {Blog} from "../../model/blog";
+import {DatePipe} from "@angular/common";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-user-profile',
@@ -15,7 +19,7 @@ import {MyErrorStateMatcher} from "../../model/Validate/ErrorStateMatcher";
 })
 export class UserProfileComponent implements OnInit {
   idUpdate = 0
-  ava?: string | null
+  ava: string = ""
   uploadedImage: File | undefined;
   imageFile!: any;
   imageSrc: string = "";
@@ -42,7 +46,7 @@ export class UserProfileComponent implements OnInit {
     username: this.username
   })
 
-  oldPassword = new FormControl('',[Validators.required, Validators.minLength(this.minNewPassword), Validators.maxLength(this.maxNewPassword),
+  oldPassword = new FormControl('', [Validators.required, Validators.minLength(this.minNewPassword), Validators.maxLength(this.maxNewPassword),
     this.regexValidator(new RegExp("\\w+([a-z])\\w+"), {lowercase: "false"}),
     this.regexValidator(new RegExp("\\w+([A-Z])\\w+"), {uppercase: "false"}),
     this.regexValidator(new RegExp("\\w+([0-9])\\w+"), {digital: "false"}),
@@ -64,35 +68,55 @@ export class UserProfileComponent implements OnInit {
   hideNewPassword = true;
   hideConfirmPassword = true;
   hideOldPassword = true;
-
   changePasswordGroup = this.formGroup.group({
     oldPassword: this.oldPassword,
     newPassword: this.newPassword,
     confirmPassword: this.confirmPassword,
   })
-
-
+  pipe = new DatePipe('en-US');
+  blogs: Blog[] = []
+  selected = 0;
+  animation = "";
 
   constructor(private userService: UsersService,
               private formGroup: FormBuilder,
               private storage: AngularFireStorage,
-              private  authService:AuthService,
-              ) {
+              private authService: AuthService,
+              private blogService: BlogsService,
+              private route: ActivatedRoute
+  ) {
+
+
     this.getUser()
+
+    // @ts-ignore
+    this.blogService.getAllBlogOfUser(this.authService.currentUserValue?.id).subscribe(result => {
+      console.log(result)
+      this.blogs = result
+    })
   }
 
 
   ngOnInit(): void {
+
+  }
+
+  ngAfterViewInit() {
+    let message = this.route.snapshot.paramMap.get("selected")
+    if (message) {
+      console.log(message)
+      this.selected = Number(message)
+    }
   }
 
   getUser() {
     this.userService.findCurrentUser().subscribe(value => {
       this.formUpdateUser.patchValue(value)
-      this.ava = value.avatar
-      if(value.avatar){
-        this.imageSrc=value.avatar
+      if (value.avatar) {
+        this.ava = value.avatar
+        this.imageSrc = value.avatar
       }
-      this.username=value.username
+      this.username = value.username
       // this.formUpdate.patchValue(this.userUpdate)
       console.log(value)
     })
@@ -112,7 +136,9 @@ export class UserProfileComponent implements OnInit {
     }
     this.userService.updateUser(users).subscribe(value => {
       this.formUpdateUser.patchValue(value)
-      this.ava = value.avatar
+      if (value.avatar) {
+        this.ava = value.avatar
+      }
       Swal.fire({
         icon: 'success',
         title: 'Update complete',
@@ -126,7 +152,7 @@ export class UserProfileComponent implements OnInit {
     this.submitImage(event.target.files[0]);
   }
 
-  submitImage(file:any) {
+  submitImage(file: any) {
     if (this.imageFile != null) {
       const fileName = this.imageFile.name;
       const fileRef = this.storage.ref(fileName);
@@ -158,7 +184,6 @@ export class UserProfileComponent implements OnInit {
       })
     );
   }
-
 
 
   private regexValidator(regex: RegExp, error: ValidationErrors): ValidatorFn {

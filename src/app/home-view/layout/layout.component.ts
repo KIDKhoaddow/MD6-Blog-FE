@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {AuthService} from "../../authority/service/auth.service";
 import {UsersService} from "../../service/users.service";
 import {UserInfoDTO} from "../../model/userInfoDTO";
+import {UserProfileComponent} from "../user-profile/user-profile.component";
 
 
 @Component({
@@ -38,8 +39,15 @@ export class LayoutComponent implements OnInit {
     console.log(this.authService.logout())
     window.location.reload();
   }
-  goToProfile(){
-    this.router.navigateByUrl("/home/userprofile")
+  goToProfile(selected:number){
+    if(selected==0){
+      this.router.navigate(["/home/userprofile1",selected])}
+    else if(selected==1){
+      this.router.navigate(["/home/userprofile2",selected])}
+    else if(selected==2){
+      this.router.navigate(["/home/userprofile3",selected])}
+    else if(selected==3){
+      this.router.navigate(["/home/userprofile4",selected])}
   }
 }
 
