@@ -5,7 +5,7 @@ export const passwordMatchValidator: ValidatorFn = (formGroup: AbstractControl):
   let password = formGroup.get('password')?.value
   let confirmPassword = formGroup.get('confirmPassword')?.value
   //test dữ liễu
-
+  console.log(password)
   // console.log(password)
   // console.log(confirmPassword)
   if (password !== confirmPassword) {

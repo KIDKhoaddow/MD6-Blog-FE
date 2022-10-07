@@ -9,7 +9,7 @@ export const changePasswordMatchValidator: ValidatorFn = (formGroup: AbstractCon
   // console.log(password)
   // console.log(confirmPassword)
   if (password !== confirmPassword) {
-    return {passwordMismatch: true};
+    return {changePasswordMismatch: true};
   } else return null;
 
 };

@@ -22,6 +22,7 @@ import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material
 import {ChangePasswordMatchValidatorRevealedDirective} from "../model/Validate/changePasswordMatchValidator-revealed.directive";
 import {MatButton, MatButtonModule} from "@angular/material/button";
 import {MatMenuModule} from "@angular/material/menu";
+import { LikeComponent } from './container/like/like.component';
 
 @NgModule({
   imports: [
@@ -51,7 +52,8 @@ import {MatMenuModule} from "@angular/material/menu";
     BlogAreaComponent,
     UserProfileComponent,
     FormCreateComponent,
-    ChangePasswordMatchValidatorRevealedDirective
+    ChangePasswordMatchValidatorRevealedDirective,
+    LikeComponent
 
   ],
   providers: [

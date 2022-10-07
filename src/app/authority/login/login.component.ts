@@ -13,14 +13,12 @@ import {ActivatedRoute, Router} from "@angular/router";
 import Swal from 'sweetalert2';
 
 
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit ,AfterViewInit{
+export class LoginComponent implements OnInit, AfterViewInit {
   minLengthUserName = 3
   minLength = 4
   username = new FormControl('', [Validators.required, Validators.minLength(this.minLengthUserName)])
@@ -36,51 +34,62 @@ export class LoginComponent implements OnInit ,AfterViewInit{
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService,
               private router: Router, private route: ActivatedRoute) {
-
+    // @ts-ignore
+    let role = this.authService.currentUserValue?.roles[0].authority
+    if(this.authService.isLoggedIn){
+      if (role == "ROLE_ADMIN") {
+        this.router.navigateByUrl("/admin/dashboard")
+      }else {
+        this.router.navigateByUrl("")
+      }
+    }
   }
-ngAfterViewInit() {
-  let message = this.route.snapshot.paramMap.get("message")
-  let alertType = this.route.snapshot.paramMap.get("alertType")
-  if (alertType === "true"&&message!==null){
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      // @ts-ignore
-      text: message,
 
-    })
+  ngAfterViewInit() {
+    let message = this.route.snapshot.paramMap.get("message")
+    let alertType = this.route.snapshot.paramMap.get("alertType")
+    if (alertType === "true" && message !== null) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        // @ts-ignore
+        text: message,
+
+      })
+    }
   }
-}
 
   ngOnInit(): void {
 
 
-
   }
+
   login() {
     const val = this.signInGroup.value;
     if (val.username && val.password) {
-    this.authService.login(val.username, val.password)
+      this.authService.login(val.username, val.password)
         .subscribe(value => {
-            console.log(value);
+          console.log(value);
           Swal.fire({
             icon: 'success',
             title: 'Login Success',
-            timer:5000
-          }).finally(()=>{
+            timer: 1000
+          }).finally(() => {
             // @ts-ignore
             if (value.roles[0].authority === "ROLE_ADMIN") {
               this.router.navigateByUrl('/admin/dashboard');
               // @ts-ignore
-            } else if(value.roles[0].authority === "ROLE_USER"){
+            } else if (value.roles[0].authority === "ROLE_USER") {
               this.router.navigateByUrl('/home/homepage')
-            }})},error => {
+            }
+          })
+        }, error => {
           Swal.fire({
             icon: 'error',
             title: 'Login Fail',
-            text:"Check your username or password please",
-            timer:4500
-          }).finally(()=>{
+            text: "Check your username or password please",
+            timer: 4500
+          }).finally(() => {
             window.location.reload()
           })
         })

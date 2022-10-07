@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {BlogsService} from "../../service/blogs.service";
-import {BlogDTO} from "../../model/blogDTO";
+import {BlogDTO} from "../../model/blog/blogDTO";
 import {Category} from "../../model/category";
 import {CategoryService} from "../../service/category.service";
 import {finalize, Observable} from "rxjs";
@@ -26,11 +26,11 @@ export class FormCreateComponent implements OnInit {
 
 
   username = new FormControl('')
-  categories:Category[]
+  categories: Category[]
   category = new FormControl('')
   title = new FormControl('')
   description = new FormControl('')
-  content = new FormControl('' ,[Validators.required , Validators.maxLength(100000000000000000)])
+  content = new FormControl('', [Validators.required, Validators.maxLength(100000000000000000)])
   picture = ""
   createAt = new FormControl('')
   status = new FormControl('')
@@ -54,16 +54,12 @@ export class FormCreateComponent implements OnInit {
 
   })
 
-  constructor(private blogsService: BlogsService,
-              private formGroup: FormBuilder,
-              private storage: AngularFireStorage,
-              private categoryService : CategoryService) {
-    this.categories=[]
-    categoryService.findAll().subscribe(result=>{
-      this.categories=result
-      console.log(result)
+  constructor(private blogsService: BlogsService, private formGroup: FormBuilder,
+              private storage: AngularFireStorage, private categoryService: CategoryService) {
+    this.categories = []
+    categoryService.findAll().subscribe(result => {
+      this.categories = result
     })
-console.log(this.formCreateBlog)
   };
 
 
@@ -72,11 +68,11 @@ console.log(this.formCreateBlog)
 
   createBlog() {
 
-    let blog:BlogDTO = {
+    let blog: BlogDTO = {
       username: this.formCreateBlog.value.username,
       category: {
         // @ts-ignore
-        id :this.formCreateBlog.value.category
+        id: this.formCreateBlog.value.category
 
       },
       title: this.formCreateBlog.value.title,
@@ -85,21 +81,20 @@ console.log(this.formCreateBlog)
       picture: this.picture,
       createAt: this.formCreateBlog.value.createAt,
       status: this.formCreateBlog.value.status,
-      countLike:Number( this.formCreateBlog.value.countLike),
+      countLike: Number(this.formCreateBlog.value.countLike),
       updateAt: this.formCreateBlog.value.updateAt
     }
-    console.log(blog)
     this.blogsService.createBlog(blog).subscribe(value => {
       alert("Tạo thành công")
     })
   }
 
-  test(){
+  test() {
     console.log(this.category)
   }
 
   createImage() {
-    if (this.selectedImages.length !== 0){
+    if (this.selectedImages.length !== 0) {
       let URLs = []
       for (let i = 0; i < this.selectedImages.length; i++) {
         let selectedImage = this.selectedImages[i];
@@ -107,30 +102,28 @@ console.log(this.formCreateBlog)
         const filePath = `Images/${n}`;
         const fileRef = this.storage.ref(filePath);
         this.storage.upload(filePath, selectedImage).snapshotChanges().pipe(
-          finalize(() =>{
+          finalize(() => {
             fileRef.getDownloadURL().subscribe(url => {
               this.picture = url
-              console.log(this.picture)
               this.listURL.push(url)
 
             });
           })
         ).subscribe()
-      }   }
+      }
+    }
   }
 
-  showPreview(event: any){
-    if (event.target.files && event.target.files[0]){
+  showPreview(event: any) {
+    if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       this.selectedImages = event.target.files;
-      console.log(this.selectedImages)
-    }else {
+    } else {
       this.selectedImages = []
     }
     this.createImage();
   }
-
 
 
 }

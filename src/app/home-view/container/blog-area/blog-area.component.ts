@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Blog} from "../../../model/blog";
+import {Blog} from "../../../model/blog/blog";
 import {BlogsService} from "../../../service/blogs.service";
 
 
@@ -13,13 +13,11 @@ export class BlogAreaComponent implements OnInit {
   blogs: Blog[] = []
   constructor(private  blogService :BlogsService) {
     this.blogService.getTopBlogMostLike().subscribe(result=>{
-      console.log(result)
       if(result!=null){
         this.oneBlog=result
       }
     })
     this.blogService.getTopTenBlogMostLike().subscribe(result=>{
-      console.log(result)
       this.blogs=result
     })
   }

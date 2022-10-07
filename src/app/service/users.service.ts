@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {UserInfo} from "../model/userInfo";
-import {UserStatus} from "../model/userStatus";
+import {UserInfo} from "../model/user/userInfo";
+import {UserStatus} from "../model/user/userStatus";
 import {AuthService} from "../authority/service/auth.service";
-import {User} from "../model/user";
-import {UserInfoDTO} from "../model/userInfoDTO";
+import {User} from "../model/user/user";
+import {UserInfoDTO} from "../model/user/userInfoDTO";
 import {Message} from "../model/message";
 
 @Injectable({

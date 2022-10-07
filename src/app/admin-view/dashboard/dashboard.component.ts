@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {UsersService} from "../../service/users.service";
 import {BlogsService} from "../../service/blogs.service";
 import {MatTableDataSource} from "@angular/material/table";
-import {Blog} from "../../model/blog";
-import {UserInfo} from "../../model/userInfo";
-import {BlogsOfUser} from "../../model/blogsOfUser";
-import {BlogMostLike} from "../../model/blog-most-like";
+import {Blog} from "../../model/blog/blog";
+import {UserInfo} from "../../model/user/userInfo";
+import {BlogsOfUser} from "../../model/blog/blogsOfUser";
+import {BlogMostLike} from "../../model/blog/blog-most-like";
 
 declare function updateChart1(data: number[]): any
 declare function updateChart2(data: number[]): any

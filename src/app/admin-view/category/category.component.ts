@@ -3,7 +3,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
-import {Blog} from "../../model/blog";
+import {Blog} from "../../model/blog/blog";
 import {SelectionModel} from "@angular/cdk/collections";
 import {CategoryService} from "../../service/category.service";
 import {Category} from "../../model/category";

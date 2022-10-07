@@ -134,7 +134,7 @@
       </div>
       <div class="col-auto ml-auto">
         <div class="tt-user-info d-flex justify-content-center">
-          <a href="#" class="tt-btn-icon">
+          <a href="#" class="tt-btn-icon" *ngIf="hide">-
             <i class="tt-icon">
               <svg>
                 <use xlink:href="#icon-notification"></use>
@@ -147,34 +147,39 @@
                 <img class="avatar" id="avatar" alt="Photo of a Shiba Inu">
               </a>
             </div>
-            <div >
+            <div>
               <button mat-icon-button [matMenuTriggerFor]="belowMenu" aria-label="Example icon-button with a menu">
-                <mat-icon>more_vert</mat-icon>
+                <mat-icon>expand_more</mat-icon>
               </button>
-              <mat-menu #belowMenu="matMenu" yPosition="below">
-                <mat-label>Account</mat-label>
-                <mat-divider></mat-divider>
-                <button mat-menu-item (click)="goToProfile(0)">
-                  <img src="./assets/icon/user.png" class="icon">Profile
-                </button>
-                <button mat-menu-item (click)="goToProfile(1)">
-                  <img src="./assets/icon/user.png" class="icon">Activity
-                </button>
-                <button mat-menu-item (click)="goToProfile(2)">
-                  <img src="./assets/icon/user.png" class="icon">Setting
-                </button>
-                <button mat-menu-item (click)="goToProfile(3)">
-                  <img src="./assets/icon/user.png" class="icon">Change Password
-                </button>
-                <button mat-menu-item>
-                  <img src="./assets/icon/comments.png" class="icon">message
-                </button>
-                <mat-label>Item 2</mat-label>
-                <mat-divider></mat-divider>
-                <button mat-menu-item (click)="logout()">
-                  <img src="./assets/icon/turn-off.png" class="icon">
-                  Log out
-                </button>
+              <mat-menu #belowMenu="matMenu" style="width: 480px;max-width: 480px; " yPosition="below">
+                <div style="margin: 16px" >
+                  <mat-label>Account</mat-label>
+                  <mat-divider></mat-divider>
+                  <div style="display: flex ">
+                    <div>
+                      <button mat-menu-item (click)="goToProfile(0)">
+                        <img src="./assets/icon/user.png" class="icon">Profile
+                      </button>
+                      <button mat-menu-item (click)="goToProfile(1)">
+                        <img src="./assets/icon/history.png" class="icon">Activity
+                      </button>
+                    </div>
+                  <div>
+                    <button mat-menu-item (click)="goToProfile(2)">
+                      <img src="./assets/icon/gear.png" class="icon">Setting
+                    </button>
+                    <button mat-menu-item (click)="goToProfile(3)">
+                      <img src="./assets/icon/secure.png" class="icon">Password
+                    </button>
+                  </div>
+                  </div>
+                  <mat-label>Item 2</mat-label>
+                  <mat-divider></mat-divider>
+                  <button mat-menu-item (click)="logout()">
+                    <img src="./assets/icon/turn-off.png" class="icon">
+                    Log out
+                  </button>
+                </div>
               </mat-menu>
             </div>
           </div>
@@ -277,14 +282,12 @@
     </div>
   </form>
 </div>
-<a href="./template/index.html" class="tt-btn-create-topic">
+<a routerLink="/home/createBlog" class="tt-btn-create-topic" *ngIf="hide">
     <span class="tt-icon">
-      <a routerLink="/home/createBlog">
         <svg>
           <use xlink:href="#icon-create_new">
           </use>
         </svg>
-      </a>
     </span>
 </a>
 

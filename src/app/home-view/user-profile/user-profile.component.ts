@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from "../../service/users.service";
 import {AbstractControl, FormBuilder, FormControl, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
-import {UserInfoDTO} from "../../model/userInfoDTO";
+import {UserInfoDTO} from "../../model/user/userInfoDTO";
 import Swal from "sweetalert2";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs";
 import {AuthService} from "../../authority/service/auth.service";
 import {MyErrorStateMatcher} from "../../model/Validate/ErrorStateMatcher";
 import {BlogsService} from "../../service/blogs.service";
-import {Blog} from "../../model/blog";
+import {Blog} from "../../model/blog/blog";
 import {DatePipe} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
 
@@ -91,7 +91,7 @@ export class UserProfileComponent implements OnInit {
 
     // @ts-ignore
     this.blogService.getAllBlogOfUser(this.authService.currentUserValue?.id).subscribe(result => {
-      console.log(result)
+
       this.blogs = result
     })
   }
@@ -104,7 +104,6 @@ export class UserProfileComponent implements OnInit {
   ngAfterViewInit() {
     let message = this.route.snapshot.paramMap.get("selected")
     if (message) {
-      console.log(message)
       this.selected = Number(message)
     }
   }
@@ -118,7 +117,7 @@ export class UserProfileComponent implements OnInit {
       }
       this.username = value.username
       // this.formUpdate.patchValue(this.userUpdate)
-      console.log(value)
+
     })
   }
 

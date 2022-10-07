@@ -73,20 +73,11 @@
                 <span class="tt-color05 tt-badge" *ngIf="element.category.name=='Music'">music</span>
                 <span class="tt-color06 tt-badge" *ngIf="element.category.name=='Movie'">movie</span>
                 <span class="tt-color04 tt-badge" *ngIf="element.category.name=='Pet'">pet</span>
-                <span class="tt-color03 tt-badge" *ngIf="element.category.name=='Car'">car</span>
-                <span class="tt-color02 tt-badge" *ngIf="element.category.name=='Game'">game</span>
-                <span class="tt-color01 tt-badge" *ngIf="element.category.name=='Food'">food</span>
+                <span class="tt-color13 tt-badge" *ngIf="element.category.name=='Car'">car</span>
+                <span class="tt-color09 tt-badge" *ngIf="element.category.name=='Game'">game</span>
+                <span class="tt-color10 tt-badge" *ngIf="element.category.name=='Food'">food</span>
               </div>
-              <div class="tt-col-value-large hide-mobile" style="display: flex">
-                <a href="#" class="tt-btn-icon" >
-                  <i class="tt-icon">
-                    <svg>
-                      <use xlink:href="#icon-like"></use>
-                    </svg>
-                  </i>
-
-                </a><span style="margin-top: 10px">{{element.countLike}}</span>
-              </div>
+              <app-like value="{{element.countLike}}" ></app-like>
               <div class="tt-col-value-large hide-mobile" style="display: flex">
                 <a href="#" class="tt-btn-icon">
                   <i class="tt-icon">
@@ -94,7 +85,6 @@
                       <use xlink:href="#icon-reply"></use>
                     </svg>
                   </i>
-
                 </a><span style="margin-top: 10px">{{element.countLike}}</span>
               </div>
               <div class="tt-col-value-large hide-mobile" style="margin-left:15px;padding: 0">{{this.pipe.transform(element.createAt,"MMM d, y")}}</div>
@@ -273,7 +263,7 @@
                     <mat-error *ngIf="newPassword.hasError('characters')&&!newPassword.hasError('minlength')">Password must contain one characters letter.</mat-error>
                     <mat-error *ngIf="newPassword.hasError('digital')&&!newPassword.hasError('minlength')">Password must contain one digital letter.</mat-error>
                   </mat-form-field>
-                  <div *ngIf="changePasswordGroup.errors?.['passwordMismatch']" class="cross-validation-error-message alert"> Confirm-password does not match password
+                  <div *ngIf="changePasswordGroup.errors?.['changePasswordMismatch']" class="cross-validation-error-message alert" style="width: 100%"> Confirm-password does not match password
                   </div>
                   <mat-form-field class="full-width" appearance="fill">
                     <mat-label>Enter your confirm password</mat-label>
@@ -289,7 +279,7 @@
                     <mat-error *ngIf="confirmPassword.hasError('minlength')">Password must have at least {{ minNewPassword}} characters</mat-error>
 
                   </mat-form-field>
-                  <div *ngIf="changePasswordGroup.errors?.['passwordMismatch']" class="cross-validation-error-message alert">Confirm-password does not match password
+                  <div *ngIf="changePasswordGroup.errors?.['changePasswordMismatch']" class="cross-validation-error-message alert" style="width: 100%" >Confirm-password does not match password
                   </div>
                   <button class="button" mat-raised-button color="primary" style="margin-top: 10px"
                           [disabled]="matcherOldPassword.isErrorState(oldPassword,heroForm)||matcherPassword.isErrorState(newPassword,heroForm)

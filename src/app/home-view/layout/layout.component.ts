@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../../authority/service/auth.service";
 import {UsersService} from "../../service/users.service";
-import {UserInfoDTO} from "../../model/userInfoDTO";
+import {UserInfoDTO} from "../../model/user/userInfoDTO";
 import {UserProfileComponent} from "../user-profile/user-profile.component";
 
 
@@ -18,7 +18,7 @@ export class LayoutComponent implements OnInit {
 
   constructor(private router: Router,
               private authService: AuthService, private userService: UsersService) {
-    if (authService.currentUserValue == null) {
+    if (this.authService.currentUserValue == null) {
       this.hide = false;
     } else {
       this.hide = true
@@ -37,7 +37,10 @@ export class LayoutComponent implements OnInit {
 
   logout() {
     console.log(this.authService.logout())
+    // this.hide=false
     window.location.reload();
+    // window.location.href="http://localhost:4200/login"
+    console.log(this.authService.isLoggedIn)
   }
   goToProfile(selected:number){
     if(selected==0){

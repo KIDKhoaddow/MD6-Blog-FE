@@ -7,6 +7,9 @@ import {UserProfileComponent} from "./user-profile/user-profile.component";
 import {CategoriesComponent} from "./categories/categories.component";
 import {BlogsComponent} from "../admin-view/blogs/blogs.component";
 import {FormCreateComponent} from "./form-create/form-create.component";
+import {AuthorityModule} from "../authority/authority.module";
+import {AuthorityGuard} from "../authority/login/authority.guard";
+import {AuthorityHomeGuard} from "./authority-home.guard";
 
 
 
@@ -19,15 +22,14 @@ const homeRoutes: Routes = [
       path: '',
       children:[
         {path:'homepage',component:HomepageComponent},
-        {path:'userprofile',component:UserProfileComponent},
-        {path:'userprofile1/:selected',component:UserProfileComponent},
-        {path:'userprofile2/:selected',component:UserProfileComponent},
-        {path:'userprofile3/:selected',component:UserProfileComponent},
-        {path:'userprofile4/:selected',component:UserProfileComponent},
+        {path:'userprofile',component:UserProfileComponent,canActivate:[AuthorityHomeGuard]},
+        {path:'userprofile1/:selected',component:UserProfileComponent,canActivate:[AuthorityHomeGuard]},
+        {path:'userprofile2/:selected',component:UserProfileComponent,canActivate:[AuthorityHomeGuard]},
+        {path:'userprofile3/:selected',component:UserProfileComponent,canActivate:[AuthorityHomeGuard]},
+        {path:'userprofile4/:selected',component:UserProfileComponent,canActivate:[AuthorityHomeGuard]},
+        {path:'createBlog',component:FormCreateComponent,canActivate:[AuthorityHomeGuard]},
         {path:'categories',component:CategoriesComponent},
         {path:'blog',component:BlogsComponent},
-        {path:'categories',component:CategoriesComponent},
-        {path:'createBlog',component:FormCreateComponent},
       ]
       }
     ]

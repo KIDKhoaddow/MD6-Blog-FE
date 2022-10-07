@@ -47,7 +47,6 @@ export class SlideShowComponent implements OnInit {
   }
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
-    console.log(this.activeSlides);
   }
   ngOnInit(): void {
   }

@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {Blog} from "../../../model/blog";
+import {Blog} from "../../../model/blog/blog";
 
 @Component({
   selector: 'app-blog-info-dialog',

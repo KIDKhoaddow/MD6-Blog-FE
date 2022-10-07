@@ -59,3 +59,9 @@ img {
 .mat-card-title{
 font-family: "Bauhaus 93";
 }
+.mat-raised-button {
+  width: 480px;
+  height: 60px;
+  font-size: 24px;
+  border-radius: 30px;
+}

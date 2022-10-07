@@ -1,9 +1,9 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {User} from "../../model/user";
+import {User} from "../../model/user/user";
 import {BehaviorSubject, Observable} from "rxjs";
 import {map} from "rxjs/operators";
-import {UserStatus} from "../../model/userStatus";
+import {UserStatus} from "../../model/user/userStatus";
 import {environment} from "../../../environments/environment";
 import {Message} from "../../model/message";
 
@@ -38,22 +38,26 @@ export class AuthService {
       map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject?.next(user)
-        this.update.emit('login')
+        // @ts-ignore
+        this.currentUser = this.currentUserSubject.asObservable();
         this.isLoggedIn = true
+        this.update.emit('login')
         return user;
       })
     )
   }
 
   logout() {
-    // @ts-ignore
+    localStorage.removeItem("currentUser");
     return this.http.get<UserStatus>("http://localhost:8080/api/logout/" + this.currentUserValue?.id).subscribe(
       userStatus => {
-        localStorage.removeItem("currentUser");
         // @ts-ignore
-        this.currentUserSubject?.next(null);
-        console.log(userStatus)
+        this.currentUserSubject?.next(undefined);
+        // @ts-ignore
+        this.currentUser = this.currentUserSubject.asObservable();
         this.isLoggedIn = false
+        this.update.emit('logout')
+        console.log(userStatus)
         return userStatus
       })
   }

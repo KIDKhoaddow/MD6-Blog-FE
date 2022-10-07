@@ -2,11 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 
-import {Blog} from "../model/blog";
-import {BlogStatus} from "../model/blog-status";
-import {BlogsOfUser} from "../model/blogsOfUser";
-import {BlogMostLike} from "../model/blog-most-like";
-import {BlogDTO} from "../model/blogDTO";
+import {Blog} from "../model/blog/blog";
+import {BlogStatus} from "../model/blog/blog-status";
+import {BlogsOfUser} from "../model/blog/blogsOfUser";
+import {BlogMostLike} from "../model/blog/blog-most-like";
+import {BlogDTO} from "../model/blog/blogDTO";
 
 @Injectable({
   providedIn: 'root'
