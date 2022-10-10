@@ -10,7 +10,7 @@ import {MyErrorStateMatcher} from "../../model/Validate/ErrorStateMatcher";
 import {BlogsService} from "../../service/blogs.service";
 import {Blog} from "../../model/blog/blog";
 import {DatePipe} from "@angular/common";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BlogDTO} from "../../model/blog/blogDTO";
 
 @Component({
@@ -81,14 +81,13 @@ export class UserProfileComponent implements OnInit {
   animation = "";
 
 
-
-
   constructor(private userService: UsersService,
               private formGroup: FormBuilder,
               private storage: AngularFireStorage,
               private authService: AuthService,
               private blogService: BlogsService,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private router: Router
   ) {
 
   }
@@ -111,10 +110,10 @@ export class UserProfileComponent implements OnInit {
 
   }
 
-  selectionChange(event:any){
+  selectionChange(event: any) {
     console.log(event)
     // @ts-ignore
-    document.getElementById("inputBirthday").value=this.birthday1
+    document.getElementById("inputBirthday").value = this.birthday1
   }
 
 
@@ -194,6 +193,10 @@ export class UserProfileComponent implements OnInit {
         timer: 1500
       })
     );
+  }
+
+  goToUpdateBlog(id:number|null|undefined) {
+    this.router.navigateByUrl("/home/updateBlog/"+id)
   }
 
 

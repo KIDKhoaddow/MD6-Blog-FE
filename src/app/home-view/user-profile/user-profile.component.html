@@ -75,9 +75,20 @@
                 <mat-icon *ngIf="element.status=='PRIVATE'" matTooltip="Private">lock</mat-icon>
               </div>
               <div class="tt-col-value hide-mobile">
-                <a href="/home/updateBlog/{{element.id}}">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                   <mat-icon matTooltip="Edit Blog">edit</mat-icon>
-                </a>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item>
+                    <mat-icon>lock</mat-icon>
+                    <span>Edit audience</span>
+                  </button>
+                    <button mat-menu-item (click)="goToUpdateBlog(element.id)">
+                      <mat-icon>edit</mat-icon>
+                      <span>Edit blog</span>
+                    </button>
+
+                </mat-menu>
               </div>
             </div>
             <div class="tt-row-btn">

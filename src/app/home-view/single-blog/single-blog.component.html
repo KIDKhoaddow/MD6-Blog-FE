@@ -26,17 +26,9 @@
                   </div>
                   <!-- Post Comment & Share Area -->
                   <div class="post-comment-share-area d-flex">
-                    <div class="post-favourite">
-                      <a href="#">
-                        <mat-icon fontIcon="favorite" aria-hidden="true" style="size: 10px"></mat-icon>
-                        {{blog.countLike}}</a>
-                    </div>
+                    <app-icon icon="favorite" iconReplace="favorite_border" value="{{blog.countLike}}" idBlog="{{blogId}}"></app-icon>
+                    <app-icon iconReplace="comment" icon="comment" value="{{blog.countComment}}"></app-icon>
                     <!-- Post Comments -->
-                    <div class="post-comments">
-                      <a href="#">
-                        <mat-icon fontIcon="comment" aria-hidden="true"></mat-icon>
-                        {{blog.countComment}}</a>
-                    </div>
                   </div>
                 </div>
                 <a href="#">

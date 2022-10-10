@@ -12,30 +12,21 @@
             <div class="post-author-date-area d-flex">
               <!-- Post Author -->
               <div class="post-author">
-                <a href="#">{{blogs.username}}</a>
+                <a routerLink="/home/blog/{{blogs.id}}">{{blogs.username}}</a>
               </div>
               <!-- Post Date -->
               <div class="post-date">
-                <a href="#">{{this.pipe.transform(blogs.createAt, "MMM d, y")}}</a>
+                <a routerLink="/home/blog/{{blogs.id}}">{{this.pipe.transform(blogs.createAt, "MMM d, y")}}</a>
               </div>
             </div>
             <!-- Post Comment & Share Area -->
             <div class="post-comment-share-area d-flex">
               <!-- Post Favourite -->
-              <div class="post-favourite">
-                <a href="#">
-                  <mat-icon fontIcon="favorite" aria-hidden="true" style="size: 10px"></mat-icon>
-                  {{blogs.countLike}}</a>
-              </div>
-              <!-- Post Comments -->
-              <div class="post-comments">
-                <a href="#">
-                  <mat-icon fontIcon="comment" aria-hidden="true"></mat-icon>
-                  {{blogs.countComment}}</a>
-              </div>
+              <app-icon icon="favorite" iconReplace="favorite_border" value="{{blogs.countLike}}"></app-icon>
+              <app-icon iconReplace="comment" icon="comment" value="{{blogs.countComment}}"></app-icon>
             </div>
           </div>
-          <a href="#">
+          <a routerLink="/home/blog/{{blogs.id}}">
             <h3 class="post-headline">{{blogs.title}}</h3>
           </a>
           <p>{{blogs.description}}</p>

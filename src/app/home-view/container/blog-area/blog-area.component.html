@@ -23,21 +23,11 @@
                 </div>
                 <!-- Post Comment & Share Area -->
                 <div class="post-comment-share-area d-flex">
-                  <!-- Post Favourite -->
-                  <div class="post-favourite">
-                    <a href="#">
-                      <mat-icon fontIcon="favorite" aria-hidden="true"></mat-icon>
-                      {{oneBlog.countLike}}</a>
-                  </div>
-                  <!-- Post Comments -->
-                  <div class="post-comments">
-                    <a href="#">
-                      <mat-icon fontIcon="comment" aria-hidden="true"></mat-icon>
-                      {{oneBlog.countComment}}</a>
-                  </div>
+                  <app-icon icon="favorite" iconReplace="favorite_border" value="{{oneBlog.countLike}}"></app-icon>
+                  <app-icon iconReplace="comment" icon="comment" value="{{oneBlog.countComment}}"></app-icon>
                 </div>
               </div>
-              <a href="#">
+              <a routerLink="/home/blog/{{oneBlog.id}}">
                 <h2 class="post-headline">{{oneBlog.title}}</h2>
               </a>
               <p>{{oneBlog.description}}</p>
@@ -68,21 +58,11 @@
                 </div>
                 <!-- Post Comment & Share Area -->
                 <div class="post-comment-share-area d-flex">
-                  <!-- Post Favourite -->
-                  <div class="post-favourite">
-                    <a href="#">
-                      <mat-icon fontIcon="favorite" aria-hidden="true"></mat-icon>
-                      {{blogRecently.countLike}}</a>
-                  </div>
-                  <!-- Post Comments -->
-                  <div class="post-comments">
-                    <a href="#">
-                      <mat-icon fontIcon="comment" aria-hidden="true"></mat-icon>
-                      {{blogRecently.countComment}}</a>
-                  </div>
+                  <app-icon icon="favorite" iconReplace="favorite_border" value="{{blogRecently.countLike}}" idBlog="{{blogRecently.id}}"></app-icon>
+                  <app-icon iconReplace="comment" icon="comment" value="{{blogRecently.countComment}}"></app-icon>
                 </div>
               </div>
-              <a href="#">
+              <a routerLink="/home/blog/{{blogRecently.id}}">
                 <h2 class="post-headline">{{blogRecently.title}}</h2>
               </a>
               <p>{{blogRecently.description}}</p>
@@ -115,21 +95,11 @@
                   </div>
                   <!-- Post Comment & Share Area -->
                   <div class="post-comment-share-area d-flex">
-                    <!-- Post Favourite -->
-                    <div class="post-favourite">
-                      <a href="#">
-                        <mat-icon fontIcon="favorite" aria-hidden="true" style="size: 10px"></mat-icon>
-                        {{blogs.countLike}}</a>
-                    </div>
-                    <!-- Post Comments -->
-                    <div class="post-comments">
-                      <a href="#">
-                        <mat-icon fontIcon="comment" aria-hidden="true"></mat-icon>
-                        {{blogs.countComment}}</a>
-                    </div>
+                    <app-icon icon="favorite" iconReplace="favorite_border" value="{{blogs.countLike}}" idBlog="{{blogs.id}}"></app-icon>
+                    <app-icon iconReplace="comment" icon="comment" value="{{blogs.countComment}}" ></app-icon>
                   </div>
                 </div>
-                <a href="#">
+                <a routerLink="/home/blog/{{blogs.id}}">
                   <h3 class="post-headline">{{blogs.title}}</h3>
                 </a>
                 <p>{{blogs.description}}</p>
