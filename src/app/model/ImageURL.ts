@@ -1,5 +1,5 @@
+import {BlogDTO} from "./blog/blogDTO";
 
-import {BlogDTO} from "./blogDTO";
 
 export interface ImageURL{
   id?: number,
