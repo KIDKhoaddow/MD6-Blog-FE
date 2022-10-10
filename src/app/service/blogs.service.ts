@@ -70,4 +70,9 @@ export class BlogsService {
   getPublicBlogByCategory(idCategory:number):Observable<BlogDTO[]>{
     return this.httpClient.get<BlogDTO[]>("http://localhost:8080/api/blog/public/category/"+idCategory)
   }
+
+  saveImage(image?: ImageURL): Observable<ImageURL>{
+    return this.httpClient.post<ImageURL>("http://localhost:8081/api/blogs/imageURL", image)
+  }
+
 }

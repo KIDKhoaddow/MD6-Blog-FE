@@ -27,6 +27,9 @@ import { SingleCategoryComponent } from './single-category/single-category.compo
 import { BlogCategoryComponent } from './single-category/blog-category/blog-category.component';
 import { SingleBlogComponent } from './single-blog/single-blog.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   imports: [
