@@ -11,5 +11,5 @@ export interface Blog{
   picture:String,
   createAt:Date,
   blogStatus:BlogStatus,
-  userInfo:UserInfo
+  userInfo:UserInfo,
 }

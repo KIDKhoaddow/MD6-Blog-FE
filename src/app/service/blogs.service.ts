@@ -7,6 +7,7 @@ import {BlogStatus} from "../model/blog-status";
 import {BlogsOfUser} from "../model/blogsOfUser";
 import {BlogMostLike} from "../model/blog-most-like";
 import {BlogDTO} from "../model/blogDTO";
+import {ImageURL} from "../model/ImageURL";
 
 @Injectable({
   providedIn: 'root'
@@ -42,4 +43,9 @@ export class BlogsService {
   createBlog(blog: BlogDTO): Observable<BlogDTO>{
     return  this.httpClient.post<BlogDTO>("http://localhost:8080/blog",blog)
   }
+
+  saveImage(image?: ImageURL): Observable<ImageURL>{
+    return this.httpClient.post<ImageURL>("http://localhost:8081/api/blogs/imageURL", image)
+  }
+
 }

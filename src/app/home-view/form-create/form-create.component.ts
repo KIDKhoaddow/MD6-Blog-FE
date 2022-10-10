@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {BlogsService} from "../../service/blogs.service";
 import {BlogDTO} from "../../model/blogDTO";
@@ -6,6 +6,8 @@ import {Category} from "../../model/category";
 import {CategoryService} from "../../service/category.service";
 import {finalize, Observable} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {Blog} from "../../model/blog";
+import {MyErrorStateMatcher} from "../../model/ErrorStateMatcher";
 
 
 @Component({
@@ -14,8 +16,16 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
   styleUrls: ['./form-create.component.css']
 })
 export class FormCreateComponent implements OnInit {
+
+  minDescription = 50
+  maxDescription = 100
+
+  minTittle = 20
+  maxTittle = 50
+
+  blogDTOs?: Blog []
   editorStyle = {
-    height: '600px'
+    height: '100px'
   }
   selectedImages: any[] = []
   213: 'uploadFireBase';
@@ -25,24 +35,22 @@ export class FormCreateComponent implements OnInit {
   listURL: any[] = []
 
 
-  username = new FormControl('')
-  categories:Category[]
-  category = new FormControl('')
-  title = new FormControl('')
-  description = new FormControl('')
-  content = new FormControl('' ,[Validators.required , Validators.maxLength(100000000000000000)])
+  username = new FormControl('', Validators.required)
+  categories: Category[]
+  category = new FormControl('', Validators.required)
+  title = new FormControl('', [Validators.required , Validators.minLength(this.minTittle) , Validators.maxLength(this.maxTittle)])
+  description = new FormControl('', [Validators.required , Validators.minLength(this.minDescription) , Validators.maxLength(this.maxDescription)] )
+  content = new FormControl('', [Validators.required, Validators.maxLength(100000000000000000)])
   picture = ""
   createAt = new FormControl('')
   status = new FormControl('')
   countLike = new FormControl('')
   updateAt = new FormControl('')
-
+  titleMatcher=new MyErrorStateMatcher()
 
   formCreateBlog = this.formGroup.group({
     username: this.username,
-    category: {
-      id: this.category
-    },
+    category: this.category,
     title: this.title,
     description: this.description,
     content: this.content,
@@ -57,49 +65,105 @@ export class FormCreateComponent implements OnInit {
   constructor(private blogsService: BlogsService,
               private formGroup: FormBuilder,
               private storage: AngularFireStorage,
-              private categoryService : CategoryService) {
-    this.categories=[]
-    categoryService.findAll().subscribe(result=>{
-      this.categories=result
+              private categoryService: CategoryService) {
+    this.categories = []
+    categoryService.findAll().subscribe(result => {
+      this.categories = result
       console.log(result)
     })
-console.log(this.formCreateBlog)
+    console.log(this.formCreateBlog)
   };
 
 
   ngOnInit(): void {
+    this.findAllBlog()
+  }
+
+  findAllBlog() {
+    this.blogsService.findAll().subscribe(value => this.blogDTOs = value)
+
   }
 
   createBlog() {
 
-    let blog:BlogDTO = {
+    let blog: BlogDTO = {
       username: this.formCreateBlog.value.username,
-      category: {
-        // @ts-ignore
-        id :this.formCreateBlog.value.category
-
-      },
+      category: Number(this.formCreateBlog.value.category),
       title: this.formCreateBlog.value.title,
       description: this.formCreateBlog.value.description,
       content: this.formCreateBlog.value.content,
       picture: this.picture,
       createAt: this.formCreateBlog.value.createAt,
       status: this.formCreateBlog.value.status,
-      countLike:Number( this.formCreateBlog.value.countLike),
+      countLike: Number(this.formCreateBlog.value.countLike),
       updateAt: this.formCreateBlog.value.updateAt
     }
     console.log(blog)
     this.blogsService.createBlog(blog).subscribe(value => {
-      alert("Tạo thành công")
+      if (this.selectedImages.length !== 0) {
+        if (this.selectedImages.length <= 4) {
+          console.log(this.selectedImages.length)
+          for (let i = 0; i < this.selectedImages.length; i++) {
+            let selectedImage = this.selectedImages[i];
+            var n = Date.now();
+            const filePath = `Images/${n}`;
+            const fileRef = this.storage.ref(filePath);
+            this.storage.upload(filePath, selectedImage).snapshotChanges().pipe(
+              finalize(() => {
+                fileRef.getDownloadURL().subscribe(url => {
+                  console.log(url)
+                  this.listURL.push(url)
+                  let image = {
+                    name: url,
+                    product: {
+                      id: value.id
+                    }
+                  }
+                  this.blogsService.saveImage(image).subscribe(() => {
+                    console.log("Create Successfully")
+                  })
+                });
+              })
+            ).subscribe()
+          }
+        } else if (this.selectedImages.length > 4) {
+          console.log(this.selectedImages.length)
+          for (let i = 0; i < 4; i++) {
+            let selectedImage = this.selectedImages[i];
+            var n = Date.now();
+            const filePath = `Images/${n}`;
+            const fileRef = this.storage.ref(filePath);
+            this.storage.upload(filePath, selectedImage).snapshotChanges().pipe(
+              finalize(() => {
+                fileRef.getDownloadURL().subscribe(url => {
+                  console.log(url)
+                  this.listURL.push(url)
+                  let image = {
+                    name: url,
+                    product: {
+                      id: value.id
+                    }
+                  }
+                  this.blogsService.saveImage(image).subscribe(() => {
+                    console.log("Create Successfully")
+                  })
+                });
+              })
+            ).subscribe()
+          }
+        }
+      }
+      console.log(value)
+    }, error => {
     })
   }
 
-  test(){
+  test() {
     console.log(this.category)
   }
 
   createImage() {
-    if (this.selectedImages.length !== 0){
+    if (this.selectedImages.length !== 0) {
       let URLs = []
       for (let i = 0; i < this.selectedImages.length; i++) {
         let selectedImage = this.selectedImages[i];
@@ -107,30 +171,30 @@ console.log(this.formCreateBlog)
         const filePath = `Images/${n}`;
         const fileRef = this.storage.ref(filePath);
         this.storage.upload(filePath, selectedImage).snapshotChanges().pipe(
-          finalize(() =>{
+          finalize(() => {
             fileRef.getDownloadURL().subscribe(url => {
               this.picture = url
               console.log(this.picture)
               this.listURL.push(url)
-
+              console.log(url)
             });
           })
         ).subscribe()
-      }   }
+      }
+    }
   }
 
-  showPreview(event: any){
-    if (event.target.files && event.target.files[0]){
+  showPreview(event: any) {
+    if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
-      this.selectedImages = event.target.files;
-      console.log(this.selectedImages)
-    }else {
+      this.selectedImages[0] = event.target.files[0];
+      console.log(event.target.files)
+    } else {
       this.selectedImages = []
     }
     this.createImage();
   }
-
 
 
 }

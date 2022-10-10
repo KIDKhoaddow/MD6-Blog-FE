@@ -15,6 +15,9 @@ import {UserProfileComponent } from './user-profile/user-profile.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {FormCreateComponent} from "./form-create/form-create.component";
 import {QuillModule} from "ngx-quill";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   imports: [
@@ -25,6 +28,8 @@ import {QuillModule} from "ngx-quill";
     MatIconModule,
     ReactiveFormsModule,
     QuillModule.forRoot(),
+    MatFormFieldModule,
+    MatInputModule,
 
 
   ],
@@ -37,7 +42,8 @@ import {QuillModule} from "ngx-quill";
     BlogAreaComponent,
     UserProfileComponent,
     FormCreateComponent
-  ]
+  ],
+  providers:[ {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }]
 })
 
 
