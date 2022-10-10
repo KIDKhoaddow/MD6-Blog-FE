@@ -715,29 +715,6 @@
                 <h3 class="mb-0">Change Password</h3>
               </div>
               <div class="card-body">
-<!--                <form class="form" role="form" autocomplete="off">-->
-<!--                  <div class="form-group">-->
-<!--                    <label for="inputPasswordOld">Current Password</label>-->
-<!--                    <input type="password" class="form-control" id="inputPasswordOld" required="">-->
-<!--                  </div>-->
-<!--                  <div class="form-group">-->
-<!--                    <label for="inputPasswordNew">New Password</label>-->
-<!--                    <input type="password" class="form-control" id="inputPasswordNew" required="">-->
-<!--                    <span class="form-text small text-muted">-->
-<!--                                            The password must be 8-20 characters, and must <em>not</em> contain spaces.-->
-<!--                                        </span>-->
-<!--                  </div>-->
-<!--                  <div class="form-group">-->
-<!--                    <label for="inputPasswordNewVerify">Confirm Password</label>-->
-<!--                    <input type="password" class="form-control" id="inputPasswordNewVerify" required="">-->
-<!--                    <span class="form-text small text-muted">-->
-<!--                                            To confirm, type the new password again.-->
-<!--                                        </span>-->
-<!--                  </div>-->
-<!--                  <div class="form-group">-->
-<!--                    <button type="submit" class="btn btn-success btn-lg float-right">Save</button>-->
-<!--                  </div>-->
-<!--                </form>-->
                 <form class="form row justify-content-center" [formGroup]="changePasswordGroup" #heroForm="ngForm" appPasswordMatchValidator>
                   <mat-form-field class="full-width" appearance="fill">
                     <mat-label>Enter old password</mat-label>
@@ -775,7 +752,7 @@
                   </div>
                   <mat-form-field class="full-width" appearance="fill">
                     <mat-label>Enter your confirm password</mat-label>
-                    <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" [formControl]="confirmPassword"
+                    <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" [formControl]="confirmNewPassword"
                            [errorStateMatcher]="matcherRePassword" >
 
                     <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword"
@@ -783,15 +760,15 @@
                             [attr.aria-pressed]="hideConfirmPassword">
                       <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
-                    <mat-error *ngIf="confirmPassword.hasError('required')">Password is required</mat-error>
-                    <mat-error *ngIf="confirmPassword.hasError('minlength')">Password must have at least {{ minNewPassword}} characters</mat-error>
+                    <mat-error *ngIf="confirmNewPassword.hasError('required')">Password is required</mat-error>
+                    <mat-error *ngIf="confirmNewPassword.hasError('minlength')">Password must have at least {{ minNewPassword}} characters</mat-error>
 
                   </mat-form-field>
                   <div *ngIf="changePasswordGroup.errors?.['passwordMismatch']" class="cross-validation-error-message alert">Confirm-password does not match password
                   </div>
                   <button class="button" mat-raised-button color="primary" style="margin-top: 10px"
                           [disabled]="matcherOldPassword.isErrorState(oldPassword,heroForm)||matcherPassword.isErrorState(newPassword,heroForm)
-                  ||matcherRePassword.isErrorState(confirmPassword,heroForm)">Register</button>
+                  ||matcherRePassword.isErrorState(confirmNewPassword,heroForm)" (click)="changePasswordUpload()">Register</button>
                 </form>
               </div>
             </div>

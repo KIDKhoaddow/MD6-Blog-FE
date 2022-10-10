@@ -7,6 +7,7 @@ import {UserProfileComponent} from "./user-profile/user-profile.component";
 import {CategoriesComponent} from "./categories/categories.component";
 import {BlogsComponent} from "../admin-view/blogs/blogs.component";
 import {FormCreateComponent} from "./form-create/form-create.component";
+import {LoginComponent} from "../authority/login/login.component";
 
 
 
@@ -24,6 +25,7 @@ const homeRoutes: Routes = [
         {path:'blog',component:BlogsComponent},
         {path:'categories',component:CategoriesComponent},
         {path:'createBlog',component:FormCreateComponent},
+
 
       ]
       }

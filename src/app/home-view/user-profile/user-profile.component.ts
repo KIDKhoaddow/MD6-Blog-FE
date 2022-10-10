@@ -7,6 +7,7 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs";
 import {AuthService} from "../../authority/service/auth.service";
 import {MyErrorStateMatcher} from "../../model/ErrorStateMatcher";
+import {user} from "@angular/fire/auth";
 
 @Component({
   selector: 'app-user-profile',
@@ -55,7 +56,7 @@ export class UserProfileComponent implements OnInit {
       this.regexValidator(new RegExp("\\w+([0-9])\\w+"), {digital: "false"}),
       this.regexValidator(new RegExp("\\w+([!@#&()–{}:;',?/*~$_^+=<>])\\w+"), {characters: "false"}),
     ])
-  confirmPassword = new FormControl('',
+  confirmNewPassword = new FormControl('',
     [Validators.required, Validators.minLength(this.minNewPassword), Validators.maxLength(this.maxNewPassword)])
 
   matcherOldPassword = new MyErrorStateMatcher()
@@ -68,15 +69,14 @@ export class UserProfileComponent implements OnInit {
   changePasswordGroup = this.formGroup.group({
     oldPassword: this.oldPassword,
     newPassword: this.newPassword,
-    confirmPassword: this.confirmPassword,
+    confirmNewPassword: this.confirmNewPassword,
   })
-
 
 
   constructor(private userService: UsersService,
               private formGroup: FormBuilder,
               private storage: AngularFireStorage,
-              private  authService:AuthService) {
+              private  authService:AuthService ) {
     this.getUser()
   }
 
@@ -94,6 +94,21 @@ export class UserProfileComponent implements OnInit {
       this.username=value.username
       // this.formUpdate.patchValue(this.userUpdate)
       console.log(value)
+    })
+  }
+
+  changePasswordUpload(){
+    let password = {
+      oldPassword : this.changePasswordGroup.value.oldPassword,
+      newPassword : this.changePasswordGroup.value.newPassword,
+      confirmNewPassword : this.changePasswordGroup.value.confirmNewPassword,
+    }
+    this.userService.changePassword(password).subscribe(value => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Change Password complete',
+        timer: 1500
+      })
     })
   }
 
