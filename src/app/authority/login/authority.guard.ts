@@ -5,8 +5,7 @@ import {
 } from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthService} from "../service/auth.service";
-import {Role} from "../../model/role";
-import {Message} from "../../model/message";
+
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +34,9 @@ export class AuthorityGuard implements CanActivate, CanActivateChild, CanLoad {
 
     return this.checkLogin(url);
   }
+
+
+
 
   checkLogin(url: string): boolean {
 

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {OwlOptions, SlidesOutputData} from "ngx-owl-carousel-o";
-import {Category} from "../../../model/category";
+
 import {CategoryService} from "../../../service/category.service";
+import {BlogsService} from "../../../service/blogs.service";
+import {Blog} from "../../../model/blog/blog";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-slide-show',
@@ -9,42 +12,55 @@ import {CategoryService} from "../../../service/category.service";
   styleUrls: ['./slide-show.component.css']
 })
 export class SlideShowComponent implements OnInit {
-  categories: Category[]
+  blogs: Blog[]
   customOptions: OwlOptions = {
-    center: true,
-    autoplay: true,
-    autoHeight:true,
-    autoplayTimeout: 6000,
     autoplayHoverPause: true,
-    margin: 30,
-    loop: true,
+    margin: 100,
+    autoHeight:true,
+    autoWidth:true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: false,
     dots: false,
     navSpeed: 1000,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
-      },
-      800: {
-        items: 2
-      }
-    },
-    nav: true
+    nav:true,
+    navText: ['', '']
+    // responsive: {
+    //   0: {
+    //     items: 1
+    //   },
+    //   300: {
+    //     items: 2
+    //   },
+    //   600:{
+    //     items:3
+    //   },
+    //   900:{
+    //     items:4
+    //   },
+    //   1200:{
+    //     items:5
+    //   },
+    //   1500:{
+    //     items:6
+    //   },
+    //
+    // },
+
   }
   activeSlides: SlidesOutputData | undefined;
-
-  constructor(private categoryService: CategoryService) {
-    this.categories = []
-    this.categoryService.findAll().subscribe(result => {
-      this.categories = result
+  pipe = new DatePipe('en-US');
+  constructor(private categoryService: CategoryService,private  blogService:BlogsService) {
+    this.blogs = []
+    this.blogService.getNewBlogPerCategory().subscribe(result => {
+      this.blogs = result
+      console.log(this.blogs)
     })
+
   }
+
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
-    console.log(this.activeSlides);
   }
   ngOnInit(): void {
   }

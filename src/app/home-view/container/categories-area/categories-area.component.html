@@ -6,9 +6,9 @@
     <ng-template carouselSlide id="{{slide.id}}">
 
       <div class="single_catagory">
-        <img src="http://localhost:8080/Image/{{slide.picture}}" alt="" style="border-radius: 10px">
+        <img src="{{slide.picture}}" alt="" style="border-radius: 10px">
         <div class="catagory-title">
-          <a href="#">
+          <a href="/home/category/{{slide.name}}/{{slide.id}}">
             <h5>{{slide.name}}</h5>
           </a>
         </div>

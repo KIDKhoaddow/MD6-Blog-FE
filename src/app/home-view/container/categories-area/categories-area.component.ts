@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Category} from "../../../model/category";
+import {Category} from "../../../model/category/category";
 import {CategoryService} from "../../../service/category.service";
 import {OwlOptions, SlidesOutputData} from "ngx-owl-carousel-o";
 import {getHoverColor} from "chart.js/types/helpers";
@@ -52,7 +52,6 @@ export class CategoriesAreaComponent implements OnInit {
 
   getData(data: SlidesOutputData) {
     this.activeSlides = data;
-    console.log(this.activeSlides);
   }
 
   ngOnInit(): void {

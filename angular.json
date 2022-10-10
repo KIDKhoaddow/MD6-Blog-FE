@@ -108,6 +108,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "case5:build:production",
+            "firebaseProject": "uploadfile-4defc",
+            "firebaseHostingSite": "uploadfile-4defc"
+          }
         }
       }
     }

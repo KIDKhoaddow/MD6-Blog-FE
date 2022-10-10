@@ -27,7 +27,7 @@
         <!-- /toggle mobile menu -->
         <!-- logo -->
         <div class="tt-logo">
-          <a href="index.html"><img src="images/logo.png" alt=""></a>
+          <a routerLink=""><img src="./assets/image/logo.png" alt=""></a>
         </div>
         <!-- /logo -->
         <!-- desctop menu -->
@@ -35,7 +35,15 @@
           <nav>
             <ul>
               <li><a routerLink="/home/homepage"><span>Home</span></a></li>
-              <li><a routerLink="/home/categories"><span>Categories</span></a></li>
+              <li>
+                <a routerLink="/home/categories"><span>Categories</span></a>
+                <ul>
+                  <li *ngFor="let element of categories">
+                    <a routerLink="/home/category/{{element.name}}/{{element.id}}"
+                       style="text-decoration: none">{{element.name}}</a>
+                  </li>
+                </ul>
+              </li>
               <li><a><span>Trending</span></a></li>
               <li>
                 <a><span>Pages</span></a>
@@ -124,7 +132,9 @@
                   </li>
                 </ul>
               </div>
-              <button type="button" class="tt-view-all" data-toggle="modal" data-target="#modalAdvancedSearch">Advanced Search</button>
+              <button type="button" class="tt-view-all" data-toggle="modal" data-target="#modalAdvancedSearch">Advanced
+                Search
+              </button>
             </div>
           </form>
         </div>
@@ -132,27 +142,59 @@
       </div>
       <div class="col-auto ml-auto">
         <div class="tt-user-info d-flex justify-content-center">
-          <a href="#" class="tt-btn-icon">
+          <a href="#" class="tt-btn-icon" *ngIf="hide">
             <i class="tt-icon">
               <svg>
                 <use xlink:href="#icon-notification"></use>
               </svg>
             </i>
           </a>
-          <div class="tt-avatar-icon tt-size-md">
-            <i class="tt-icon">
-              <svg>
-                <use routerLink="/home/userprofile" xlink:href="#icon-ava-a"></use>
-              </svg>
-            </i>
+          <div *ngIf="hide; else login_register" style="display: flex ;">
+            <div class="tt-avatar-icon tt-size-md">
+              <a [matMenuTriggerFor]="belowMenu">
+                <img class="avatar" id="avatar" alt="Photo of a Shiba Inu">
+              </a>
+            </div>
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="belowMenu" aria-label="Example icon-button with a menu">
+                <mat-icon>expand_more</mat-icon>
+              </button>
+              <mat-menu #belowMenu="matMenu" style="width: 480px;max-width: 480px; " yPosition="below">
+                <div style="margin: 16px">
+                  <mat-label>Account</mat-label>
+                  <mat-divider></mat-divider>
+                  <div style="display: flex ">
+                    <div>
+                      <button mat-menu-item (click)="goToProfile(0)">
+                        <img src="./assets/icon/user.png" class="icon">Profile
+                      </button>
+                      <button mat-menu-item (click)="goToProfile(1)">
+                        <img src="./assets/icon/history.png" class="icon">Activity
+                      </button>
+                    </div>
+                    <div>
+                      <button mat-menu-item (click)="goToProfile(2)">
+                        <img src="./assets/icon/gear.png" class="icon">Setting
+                      </button>
+                      <button mat-menu-item (click)="goToProfile(3)">
+                        <img src="./assets/icon/secure.png" class="icon">Password
+                      </button>
+                    </div>
+                  </div>
+                  <mat-label>Item 2</mat-label>
+                  <mat-divider></mat-divider>
+                  <button mat-menu-item (click)="logout()">
+                    <img src="./assets/icon/turn-off.png" class="icon">
+                    Log out
+                  </button>
+                </div>
+              </mat-menu>
+            </div>
           </div>
-          <div class="custom-select-01">
-            <select>
-              <option value="Default Sorting">khoa dowd</option>
-              <option value="value 01">updateUser</option>
-              <option value="value 02">value 02</option>
-            </select>
-          </div>
+          <ng-template #login_register>
+            <a routerLink="/login" style="text-decoration: none"><span>Login</span>/</a>
+            <a routerLink="/register" style="text-decoration: none"><span>Register</span></a>
+          </ng-template>
         </div>
       </div>
     </div>
@@ -248,15 +290,17 @@
     </div>
   </form>
 </div>
-<a href="./template/index.html" class="tt-btn-create-topic">
+<a routerLink="/home/createBlog" class="tt-btn-create-topic" *ngIf="hide">
     <span class="tt-icon">
         <svg>
-          <use xlink:href="#icon-create_new"></use>
+          <use xlink:href="#icon-create_new">
+          </use>
         </svg>
     </span>
 </a>
 
-<div class="modal fade" id="modalAdvancedSearch" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalAdvancedSearch" tabindex="-1" role="dialog" aria-label="myModalLabel"
+     aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="tt-modal-advancedSearch">
@@ -280,7 +324,8 @@
                 <use xlink:href="#icon-search"></use>
               </svg>
             </i>
-            <input type="text" name="name" class="form-control pt-customInputSearch" id="searchForum" placeholder="Search all forums">
+            <input type="text" name="name" class="form-control pt-customInputSearch" id="searchForum"
+                   placeholder="Search all forums">
           </div>
           <div class="form-group">
             <label for="searchName">Posted by</label>
@@ -576,6 +621,7 @@
     <circle cx="80.76" cy="80.76" r="80.76" fill="#3571b8"></circle>
     <path d="M80.76 121.26c-2.49 0-4.5-2.01-4.5-4.5v-72a4.5 4.5 0 0 1 9 0v72c0 2.48-2.02 4.5-4.5 4.5z"></path>
     <path d="M116.76 85.26h-72a4.5 4.5 0 0 1 0-9h72a4.5 4.5 0 0 1 0 9z"></path>
+
   </symbol>
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 111 111" id="icon-discussion">
     <path

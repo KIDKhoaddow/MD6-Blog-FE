@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../authority/service/auth.service";
 import {Router} from "@angular/router";
 import {UsersService} from "../../../service/users.service";
-import {UserInfo} from "../../../model/userInfo";
-import {UserInfoDTO} from "../../../model/userInfoDTO";
+import {UserInfo} from "../../../model/user/userInfo";
+import {UserInfoDTO} from "../../../model/user/userInfoDTO";
 
 @Component({
   selector: 'app-header',
@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
     this.userService.findCurrentUser().subscribe(userInfo => {
       this.userInfoCurrent = userInfo
       // @ts-ignore
-      document.getElementById("avatar").setAttribute("src",'http://localhost:8080/Image/'+this.userInfoCurrent?.avatar)
+      document.getElementById("avatar").setAttribute("src",this.userInfoCurrent?.avatar)
     })
   }
 

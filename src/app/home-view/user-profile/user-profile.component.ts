@@ -1,11 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from "../../service/users.service";
 import {AbstractControl, FormBuilder, FormControl, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
-import {UserInfoDTO} from "../../model/userInfoDTO";
+import {UserInfoDTO} from "../../model/user/userInfoDTO";
 import Swal from "sweetalert2";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs";
 import {AuthService} from "../../authority/service/auth.service";
+import {MyErrorStateMatcher} from "../../model/Validate/ErrorStateMatcher";
+import {BlogsService} from "../../service/blogs.service";
+import {Blog} from "../../model/blog/blog";
+import {DatePipe} from "@angular/common";
+import {ActivatedRoute} from "@angular/router";
+import {BlogDTO} from "../../model/blog/blogDTO";
 import {MyErrorStateMatcher} from "../../model/ErrorStateMatcher";
 import {user} from "@angular/fire/auth";
 
@@ -71,29 +77,60 @@ export class UserProfileComponent implements OnInit {
     newPassword: this.newPassword,
     confirmNewPassword: this.confirmNewPassword,
   })
+  pipe = new DatePipe('en-US');
+  blogs: BlogDTO[] = []
+  selected = 0;
+  animation = "";
+
+
 
 
   constructor(private userService: UsersService,
               private formGroup: FormBuilder,
               private storage: AngularFireStorage,
-              private  authService:AuthService ) {
+              private authService: AuthService,
+              private blogService: BlogsService,
+              private route: ActivatedRoute
+  ) {
     this.getUser()
   }
 
 
   ngOnInit(): void {
+    let message = this.route.snapshot.paramMap.get("selected")
+    if (message) {
+      this.selected = Number(message)
+    }
+    this.getUser()
+    // @ts-ignore
+    this.blogService.getAllBlogOfUser(this.authService.currentUserValue?.id).subscribe(result => {
+      this.blogs = result
+    })
   }
+
+  ngAfterContentInit() {
+
+
+  }
+
+  selectionChange(event:any){
+    console.log(event)
+    // @ts-ignore
+    document.getElementById("inputBirthday").value=this.birthday1
+  }
+
 
   getUser() {
     this.userService.findCurrentUser().subscribe(value => {
       this.formUpdateUser.patchValue(value)
-      this.ava = value.avatar
-      if(value.avatar){
-        this.imageSrc=value.avatar
+      if (value.avatar != null) {
+        this.ava = value.avatar
+        this.imageSrc = value.avatar
       }
-      this.username=value.username
-      // this.formUpdate.patchValue(this.userUpdate)
-      console.log(value)
+
+      this.username = value.username
+      this.birthday1 = value.birthday
+      console.log(this.birthday1)
     })
   }
 
@@ -115,19 +152,21 @@ export class UserProfileComponent implements OnInit {
 
 
   updateUsers() {
-    let users: UserInfoDTO = {
+    let users = {
       id: this.formUpdateUser.value.id,
       username: this.formUpdateUser.value.username,
       name: this.formUpdateUser.value.name,
       email: this.formUpdateUser.value.email,
       avatar: this.formUpdateUser.value.avatar,
       about: this.formUpdateUser.value.about,
-      birthDay: this.formUpdateUser.value.birthDay,
+      birthday: this.formUpdateUser.value.birthDay,
       registerDate: this.formUpdateUser.value.registerDate,
     }
     this.userService.updateUser(users).subscribe(value => {
       this.formUpdateUser.patchValue(value)
-      this.ava = value.avatar
+      if (value.avatar) {
+        this.ava = value.avatar
+      }
       Swal.fire({
         icon: 'success',
         title: 'Update complete',
@@ -141,7 +180,7 @@ export class UserProfileComponent implements OnInit {
     this.submitImage(event.target.files[0]);
   }
 
-  submitImage(file:any) {
+  submitImage(file: any) {
     if (this.imageFile != null) {
       const fileName = this.imageFile.name;
       const fileRef = this.storage.ref(fileName);
@@ -173,6 +212,8 @@ export class UserProfileComponent implements OnInit {
       })
     );
   }
+
+
   private regexValidator(regex: RegExp, error: ValidationErrors): ValidatorFn {
     return (control: AbstractControl): { [p: string]: any } | null => {
       if (!control.value) {

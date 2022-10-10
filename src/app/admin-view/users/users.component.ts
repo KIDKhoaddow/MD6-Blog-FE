@@ -2,7 +2,7 @@ import {AfterViewInit, ChangeDetectorRef, Component, Inject, OnInit, ViewChild} 
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
-import {UserInfo} from "../../model/userInfo";
+import {UserInfo} from "../../model/user/userInfo";
 import {UsersService} from "../../service/users.service";
 import {SelectionModel} from "@angular/cdk/collections";
 

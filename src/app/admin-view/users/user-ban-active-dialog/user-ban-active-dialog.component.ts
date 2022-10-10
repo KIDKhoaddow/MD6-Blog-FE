@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {UserInfo} from "../../../model/userInfo";
+import {UserInfo} from "../../../model/user/userInfo";
 import {UsersService} from "../../../service/users.service";
 import Swal from "sweetalert2";
 
@@ -20,6 +20,7 @@ export class UserBanActiveDialogComponent implements OnInit {
   ngOnInit(): void {
   }
   banUser(userInfo: UserInfo) {
+    console.log(userInfo)
     this.userService.banUser(userInfo.id).subscribe(compileResults=>{
       console.log(compileResults)
     })
@@ -27,6 +28,7 @@ export class UserBanActiveDialogComponent implements OnInit {
 
   }
   active(userInfo:UserInfo){
+    console.log(userInfo)
      this.userService.activeUser(userInfo.id).subscribe(compileResults=>{
       console.log(compileResults)
     })

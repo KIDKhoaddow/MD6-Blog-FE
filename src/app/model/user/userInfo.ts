@@ -7,7 +7,7 @@ export interface UserInfo {
   email: string,
   avatar: string,
   about: string,
-  birthDay: string,
+  birthday: string,
   registerDate : Date,
   user: User,
   userStatus: UserStatus,

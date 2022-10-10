@@ -40,4 +40,28 @@
 /*  transform: translate(-50%, -50%);*/
 /*  opacity: 1;*/
 /*}*/
+.cross-validation-error-message {
+  font-size: 11px;
+  color: red;
+  padding: 0;
+  width: 472px;
+  padding-top: 20px;
+  border: 0;
+  margin-left: 48px;
+  margin-bottom: 0;
+}
+.mat-raised-button {
+  width: 320px;
+  height: 60px;
+  font-size: 16px;
+  border-radius: 30px;
+}
 
+.mat-form-field {
+  margin-top: 16px;
+
+  height: 88px;
+}
+a{
+  text-decoration: none;
+}

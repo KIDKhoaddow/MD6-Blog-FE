@@ -1,31 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {BlogsService} from 'src/app/service/blogs.service';
-
-const modules = {
-  toolbar: [
-    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-    ['blockquote', 'code-block'],
-
-    [{'header': 1}, {'header': 2}],               // custom button values
-    [{'list': 'ordered'}, {'list': 'bullet'}],
-    [{'script': 'sub'}, {'script': 'super'}],      // superscript/subscript
-    [{'indent': '-1'}, {'indent': '+1'}],          // outdent/indent
-    [{'direction': 'rtl'}],                         // text direction
-
-    [{'size': ['small', false, 'large', 'huge']}],  // custom dropdown
-    [{'header': [1, 2, 3, 4, 5, 6, false]}],
-
-    [{'color': []}, {'background': []}],          // dropdown with defaults from theme
-    [{'font': []}],
-    [{'align': []}],
-
-    ['clean'],                                         // remove formatting button
-
-    ['link', 'image', 'video']                         // link and image, video
-  ]
-};
+import {BlogsService} from "../../service/blogs.service";
+import {BlogDTO} from "../../model/blog/blogDTO";
+import {Category} from "../../model/category/category";
+import {CategoryService} from "../../service/category.service";
+import {finalize, Observable} from "rxjs";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 
 @Component({
@@ -36,44 +16,108 @@ const modules = {
 export class FormCreateComponent implements OnInit {
   editorStyle = {
     height: '600px'
-  };
+  }
+  selectedImages: any[] = []
+  213: 'uploadFireBase';
 
+  downloadURL: Observable<string> | undefined
+  fb: any
+  listURL: any[] = []
+
+
+  username = new FormControl('')
+  categories: Category[]
+  category = new FormControl('')
   title = new FormControl('')
   description = new FormControl('')
   content = new FormControl('', [Validators.required, Validators.maxLength(100000000000000000)])
+  picture = ""
   createAt = new FormControl('')
-  blogStatus = new FormControl('')
-  userInfo = new FormControl('')
+  status = new FormControl('')
+  countLike = new FormControl('')
+  updateAt = new FormControl('')
 
 
   formCreateBlog = this.formGroup.group({
+    username: this.username,
+    category: this.category,
     title: this.title,
     description: this.description,
     content: this.content,
+    picture: this.picture,
     createAt: this.createAt,
-    blogStatus: this.blogStatus,
-    userInfo: this.userInfo,
+    status: this.status,
+    countLike: this.countLike,
+    updateAt: this.updateAt
+
   })
 
-
-  constructor(private blogsService: BlogsService,
-              private formGroup: FormBuilder) {
-  }
-
-
+  constructor(private blogsService: BlogsService, private formGroup: FormBuilder,
+              private storage: AngularFireStorage, private categoryService: CategoryService) {
+    this.categories = []
+    categoryService.findAll().subscribe(result => {
+      this.categories = result
+    })
+  };
 
 
   ngOnInit(): void {
   }
 
   createBlog() {
-    let blogs = {
+
+    let blog: BlogDTO = {
+      username: this.formCreateBlog.value.username,
+      category:Number(this.formCreateBlog.value.category),
       title: this.formCreateBlog.value.title,
       description: this.formCreateBlog.value.description,
       content: this.formCreateBlog.value.content,
+      picture: this.picture,
       createAt: this.formCreateBlog.value.createAt,
-      blogStatus: this.formCreateBlog.value
+      status: this.formCreateBlog.value.status,
+      countLike: Number(this.formCreateBlog.value.countLike),
+      updateAt: this.formCreateBlog.value.updateAt
+    }
+    this.blogsService.createBlog(blog).subscribe(value => {
+      alert("Tạo thành công")
+    })
+  }
+
+  test() {
+    console.log(this.category)
+  }
+
+  createImage() {
+    if (this.selectedImages.length !== 0) {
+      let URLs = []
+      for (let i = 0; i < this.selectedImages.length; i++) {
+        let selectedImage = this.selectedImages[i];
+        var n = Date.now();
+        const filePath = `Images/${n}`;
+        const fileRef = this.storage.ref(filePath);
+        this.storage.upload(filePath, selectedImage).snapshotChanges().pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe(url => {
+              this.picture = url
+              this.listURL.push(url)
+
+            });
+          })
+        ).subscribe()
+      }
     }
   }
+
+  showPreview(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImages = event.target.files;
+    } else {
+      this.selectedImages = []
+    }
+    this.createImage();
+  }
+
 
 }

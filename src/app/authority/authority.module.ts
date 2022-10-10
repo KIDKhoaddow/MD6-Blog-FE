@@ -21,7 +21,7 @@ import {MatListModule} from "@angular/material/list";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { LayoutComponent } from './layout/layout.component';
-import {PasswordMatchValidatorRevealedDirective} from "../model/passwordMatchValidator-revealed.directive";
+import {PasswordMatchValidatorRevealedDirective} from "../model/Validate/passwordMatchValidator-revealed.directive";
 import { VerifyComponent } from './verify/verify.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 

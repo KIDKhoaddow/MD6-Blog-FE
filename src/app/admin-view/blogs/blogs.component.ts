@@ -4,7 +4,7 @@ import {MatSort} from "@angular/material/sort";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {SelectionModel} from "@angular/cdk/collections";
 import {MatDialog} from "@angular/material/dialog";
-import {Blog} from "../../model/blog";
+import {Blog} from "../../model/blog/blog";
 import {BlogsService} from "../../service/blogs.service";
 import {UserInfoDialogComponent} from "../users/user-info-dialog/user-info-dialog.component";
 import {BlogInfoDialogComponent} from "./blog-info-dialog/blog-info-dialog.component";

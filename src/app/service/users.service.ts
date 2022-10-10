@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {UserInfo} from "../model/userInfo";
-import {UserStatus} from "../model/userStatus";
+import {UserInfo} from "../model/user/userInfo";
+import {UserStatus} from "../model/user/userStatus";
 import {AuthService} from "../authority/service/auth.service";
-import {User} from "../model/user";
-import {UserInfoDTO} from "../model/userInfoDTO";
+import {User} from "../model/user/user";
+import {UserInfoDTO} from "../model/user/userInfoDTO";
 import {Message} from "../model/message";
 import {ChangePassword} from "../model/changePassword";
 
@@ -19,22 +19,24 @@ export class UsersService {
   }
 
   findAll(): Observable<UserInfo[]> {
-    return this.httpClient.get<UserInfo[]>("http://localhost:8080/admin/users")
+    return this.httpClient.get<UserInfo[]>("http://localhost:8080/api/users")
   }
 
   banUser(id: number): Observable<UserStatus> {
-    return this.httpClient.get<UserStatus>("http://localhost:8080/admin/banUser/" + id)
+    console.log(id)
+    return this.httpClient.get<UserStatus>("http://localhost:8080/api/users/ban/" + id)
   }
 
   activeUser(id: number): Observable<UserStatus> {
-    return this.httpClient.get<UserStatus>("http://localhost:8080/admin/activeUser/" + id)
+    console.log(id)
+    return this.httpClient.get<UserStatus>("http://localhost:8080/api/users/active/" + id)
   }
 
   findCurrentUser(): Observable<UserInfoDTO> {
     return this.httpClient.get<UserInfoDTO>('http://localhost:8080/api/users/' + this.authService.currentUserValue?.id)
   }
 
-  updateUser( user: UserInfoDTO): Observable<UserInfoDTO> {
+  updateUser( user: any): Observable<UserInfoDTO> {
     return this.httpClient.put<UserInfoDTO>("http://localhost:8080/api/users/" + user.id, user);
   }
   uploadImgUser(img:string, id: any): Observable<UserInfoDTO>{
