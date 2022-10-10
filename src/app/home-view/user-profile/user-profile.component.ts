@@ -35,7 +35,7 @@ export class UserProfileComponent implements OnInit {
   avatar?: string = ""
   about = new FormControl('')
   birthday = new FormControl('')
-  birthday1:string|null|undefined=""
+  birthday1: string | null | undefined = ""
   registerDate = new FormControl('')
   username: string | null | undefined = ""
 
@@ -50,7 +50,7 @@ export class UserProfileComponent implements OnInit {
     username: this.username
   })
 
-  oldPassword = new FormControl('',[Validators.required, Validators.minLength(this.minNewPassword), Validators.maxLength(this.maxNewPassword),
+  oldPassword = new FormControl('', [Validators.required, Validators.minLength(this.minNewPassword), Validators.maxLength(this.maxNewPassword),
     this.regexValidator(new RegExp("\\w+([a-z])\\w+"), {lowercase: "false"}),
     this.regexValidator(new RegExp("\\w+([A-Z])\\w+"), {uppercase: "false"}),
     this.regexValidator(new RegExp("\\w+([0-9])\\w+"), {digital: "false"}),
@@ -84,8 +84,6 @@ export class UserProfileComponent implements OnInit {
   animation = "";
 
 
-
-
   constructor(private userService: UsersService,
               private formGroup: FormBuilder,
               private storage: AngularFireStorage,
@@ -114,10 +112,10 @@ export class UserProfileComponent implements OnInit {
 
   }
 
-  selectionChange(event:any){
+  selectionChange(event: any) {
     console.log(event)
     // @ts-ignore
-    document.getElementById("inputBirthday").value=this.birthday1
+    document.getElementById("inputBirthday").value = this.birthday1
   }
 
 
@@ -135,21 +133,28 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
-  changePasswordUpload(){
+  changePasswordUpload() {
     let password = {
-      oldPassword : this.changePasswordGroup.value.oldPassword,
-      newPassword : this.changePasswordGroup.value.newPassword,
-      confirmNewPassword : this.changePasswordGroup.value.confirmNewPassword,
+      oldPassword: this.changePasswordGroup.value.oldPassword,
+      newPassword: this.changePasswordGroup.value.newPassword,
+      confirmNewPassword: this.changePasswordGroup.value.confirmNewPassword,
     }
-    this.userService.changePassword(password).subscribe(value => {
+    if (this.changePasswordGroup.value.newPassword == this.changePasswordGroup.value.oldPassword) {
       Swal.fire({
-        icon: 'success',
-        title: 'Change Password complete',
+        icon: 'error',
+        title: 'Change fail',
         timer: 1500
       })
-    })
+    } else if (this.changePasswordGroup.value.newPassword == this.changePasswordGroup.value.confirmNewPassword) {
+      this.userService.changePassword(password).subscribe(value => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Change Password complete',
+          timer: 1500
+        })
+      })
+    }
   }
-
 
 
   updateUsers() {

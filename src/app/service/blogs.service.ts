@@ -9,6 +9,7 @@ import {BlogMostLike} from "../model/blog/blog-most-like";
 import {BlogDTO} from "../model/blog/blogDTO";
 import {KeyValue} from "@angular/common";
 import {BlogRecentlyPerCategory} from "../model/blog/blog-recently-per-category";
+import {ImageURL} from "../model/ImageURL";
 
 @Injectable({
   providedIn: 'root'

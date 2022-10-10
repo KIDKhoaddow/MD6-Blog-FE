@@ -6,8 +6,9 @@ import {Category} from "../../model/category/category";
 import {CategoryService} from "../../service/category.service";
 import {finalize, Observable} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {Blog} from "../../model/blog";
-import {MyErrorStateMatcher} from "../../model/ErrorStateMatcher";
+import {MyErrorStateMatcher} from "../../model/Validate/ErrorStateMatcher";
+import {Blog} from "../../model/blog/blog";
+
 
 
 @Component({

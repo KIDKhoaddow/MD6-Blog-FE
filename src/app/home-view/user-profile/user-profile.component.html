@@ -309,7 +309,7 @@
                   </div>
                   <button class="button" mat-raised-button color="primary" style="margin-top: 10px"
                           [disabled]="matcherOldPassword.isErrorState(oldPassword,heroForm)||matcherPassword.isErrorState(newPassword,heroForm)
-                  ||matcherRePassword.isErrorState(confirmNewPassword,heroForm)">Change Password
+                  ||matcherRePassword.isErrorState(confirmNewPassword,heroForm)" (click)="changePasswordUpload()">Change Password
                   </button>
                 </form>
               </div>
