@@ -6,14 +6,14 @@ import Swal from "sweetalert2";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs";
 import {AuthService} from "../../authority/service/auth.service";
-import {MyErrorStateMatcher} from "../../model/Validate/ErrorStateMatcher";
 import {BlogsService} from "../../service/blogs.service";
 import {Blog} from "../../model/blog/blog";
 import {DatePipe} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
 import {BlogDTO} from "../../model/blog/blogDTO";
-import {MyErrorStateMatcher} from "../../model/ErrorStateMatcher";
+
 import {user} from "@angular/fire/auth";
+import {MyErrorStateMatcher} from "../../model/Validate/ErrorStateMatcher";
 
 @Component({
   selector: 'app-user-profile',
@@ -35,6 +35,7 @@ export class UserProfileComponent implements OnInit {
   avatar?: string = ""
   about = new FormControl('')
   birthday = new FormControl('')
+  birthday1:string|null|undefined=""
   registerDate = new FormControl('')
   username: string | null | undefined = ""
 

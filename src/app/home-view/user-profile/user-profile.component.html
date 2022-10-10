@@ -289,7 +289,7 @@
                   </div>
                   <mat-form-field class="full-width" appearance="fill">
                     <mat-label>Enter your confirm password</mat-label>
-                    <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" [formControl]="confirmPassword"
+                    <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" [formControl]="confirmNewPassword"
                            [errorStateMatcher]="matcherRePassword">
 
                     <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword"
@@ -297,8 +297,8 @@
                             [attr.aria-pressed]="hideConfirmPassword">
                       <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
-                    <mat-error *ngIf="confirmPassword.hasError('required')">Password is required</mat-error>
-                    <mat-error *ngIf="confirmPassword.hasError('minlength')">Password must have at
+                    <mat-error *ngIf="confirmNewPassword.hasError('required')">Password is required</mat-error>
+                    <mat-error *ngIf="confirmNewPassword.hasError('minlength')">Password must have at
                       least {{ minNewPassword}} characters
                     </mat-error>
 
@@ -309,7 +309,7 @@
                   </div>
                   <button class="button" mat-raised-button color="primary" style="margin-top: 10px"
                           [disabled]="matcherOldPassword.isErrorState(oldPassword,heroForm)||matcherPassword.isErrorState(newPassword,heroForm)
-                  ||matcherRePassword.isErrorState(confirmPassword,heroForm)">Change Password
+                  ||matcherRePassword.isErrorState(confirmNewPassword,heroForm)">Change Password
                   </button>
                 </form>
               </div>
