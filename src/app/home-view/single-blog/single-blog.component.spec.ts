@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LikeComponent } from './like.component';
+import { SingleBlogComponent } from './single-blog.component';
 
-describe('LikeComponent', () => {
-  let component: LikeComponent;
-  let fixture: ComponentFixture<LikeComponent>;
+describe('SingleBlogComponent', () => {
+  let component: SingleBlogComponent;
+  let fixture: ComponentFixture<SingleBlogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LikeComponent ]
+      declarations: [ SingleBlogComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LikeComponent);
+    fixture = TestBed.createComponent(SingleBlogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

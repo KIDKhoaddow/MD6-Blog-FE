@@ -50,7 +50,6 @@
   margin-left: 48px;
   margin-bottom: 0;
 }
-
 .mat-raised-button {
   width: 320px;
   height: 60px;
@@ -62,4 +61,7 @@
   margin-top: 16px;
 
   height: 88px;
+}
+a{
+  text-decoration: none;
 }

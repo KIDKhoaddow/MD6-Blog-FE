@@ -1,6 +1,6 @@
 import {UserInfo} from "../user/userInfo";
 import {BlogStatus} from "./blog-status";
-import {Category} from "../category";
+import {Category} from "../category/category";
 
 export interface Blog{
   id:number,
@@ -12,5 +12,6 @@ export interface Blog{
   createAt:Date,
   blogStatus:BlogStatus,
   userInfo:UserInfo,
-  countLike:number
+  countLike:number,
+  countComment:number
 }

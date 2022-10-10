@@ -35,7 +35,15 @@
           <nav>
             <ul>
               <li><a routerLink="/home/homepage"><span>Home</span></a></li>
-              <li><a routerLink="/home/categories"><span>Categories</span></a></li>
+              <li>
+                <a routerLink="/home/categories"><span>Categories</span></a>
+                <ul>
+                  <li *ngFor="let element of categories">
+                    <a routerLink="/home/category/{{element.name}}/{{element.id}}"
+                       style="text-decoration: none">{{element.name}}</a>
+                  </li>
+                </ul>
+              </li>
               <li><a><span>Trending</span></a></li>
               <li>
                 <a><span>Pages</span></a>
@@ -134,7 +142,7 @@
       </div>
       <div class="col-auto ml-auto">
         <div class="tt-user-info d-flex justify-content-center">
-          <a href="#" class="tt-btn-icon" *ngIf="hide">-
+          <a href="#" class="tt-btn-icon" *ngIf="hide">
             <i class="tt-icon">
               <svg>
                 <use xlink:href="#icon-notification"></use>
@@ -152,7 +160,7 @@
                 <mat-icon>expand_more</mat-icon>
               </button>
               <mat-menu #belowMenu="matMenu" style="width: 480px;max-width: 480px; " yPosition="below">
-                <div style="margin: 16px" >
+                <div style="margin: 16px">
                   <mat-label>Account</mat-label>
                   <mat-divider></mat-divider>
                   <div style="display: flex ">
@@ -164,14 +172,14 @@
                         <img src="./assets/icon/history.png" class="icon">Activity
                       </button>
                     </div>
-                  <div>
-                    <button mat-menu-item (click)="goToProfile(2)">
-                      <img src="./assets/icon/gear.png" class="icon">Setting
-                    </button>
-                    <button mat-menu-item (click)="goToProfile(3)">
-                      <img src="./assets/icon/secure.png" class="icon">Password
-                    </button>
-                  </div>
+                    <div>
+                      <button mat-menu-item (click)="goToProfile(2)">
+                        <img src="./assets/icon/gear.png" class="icon">Setting
+                      </button>
+                      <button mat-menu-item (click)="goToProfile(3)">
+                        <img src="./assets/icon/secure.png" class="icon">Password
+                      </button>
+                    </div>
                   </div>
                   <mat-label>Item 2</mat-label>
                   <mat-divider></mat-divider>

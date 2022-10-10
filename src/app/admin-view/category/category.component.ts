@@ -6,7 +6,8 @@ import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {Blog} from "../../model/blog/blog";
 import {SelectionModel} from "@angular/cdk/collections";
 import {CategoryService} from "../../service/category.service";
-import {Category} from "../../model/category";
+import {Category} from "../../model/category/category";
+import {CategoryDTO} from "../../model/category/categoryDTO";
 
 @Component({
   selector: 'app-category',
@@ -16,15 +17,15 @@ import {Category} from "../../model/category";
 export class CategoryComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<Category>;
-  dataSource: MatTableDataSource<Category>;
+  @ViewChild(MatTable) table!: MatTable<CategoryDTO>;
+  dataSource: MatTableDataSource<CategoryDTO>;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
     displayedColumns = [ 'id' ,'picture', 'title'];
   selected: string = "";
   disableButton = false
 
   constructor(private categoryService:CategoryService, public dialog: MatDialog, private cd: ChangeDetectorRef) {
-    this.dataSource = new MatTableDataSource<Category>;
+    this.dataSource = new MatTableDataSource<CategoryDTO>;
     this.categoryService.findAll().subscribe(value => {
       console.log(value)
       this.dataSource.data = value;

@@ -7,9 +7,9 @@ import {UserProfileComponent} from "./user-profile/user-profile.component";
 import {CategoriesComponent} from "./categories/categories.component";
 import {BlogsComponent} from "../admin-view/blogs/blogs.component";
 import {FormCreateComponent} from "./form-create/form-create.component";
-import {AuthorityModule} from "../authority/authority.module";
-import {AuthorityGuard} from "../authority/login/authority.guard";
 import {AuthorityHomeGuard} from "./authority-home.guard";
+import {SingleCategoryComponent} from "./single-category/single-category.component";
+import {SingleBlogComponent} from "./single-blog/single-blog.component";
 
 
 
@@ -28,8 +28,16 @@ const homeRoutes: Routes = [
         {path:'userprofile3/:selected',component:UserProfileComponent,canActivate:[AuthorityHomeGuard]},
         {path:'userprofile4/:selected',component:UserProfileComponent,canActivate:[AuthorityHomeGuard]},
         {path:'createBlog',component:FormCreateComponent,canActivate:[AuthorityHomeGuard]},
+        {path:'updateBlog/:blog',component:FormCreateComponent,canActivate:[AuthorityHomeGuard]},
         {path:'categories',component:CategoriesComponent},
-        {path:'blog',component:BlogsComponent},
+        {path:'category',component:SingleCategoryComponent},
+        {path:'category/Food/:category',component:SingleCategoryComponent},
+        {path:'category/Game/:category',component:SingleCategoryComponent},
+        {path:'category/Movie/:category',component:SingleCategoryComponent},
+        {path:'category/Car/:category',component:SingleCategoryComponent},
+        {path:'category/Music/:category',component:SingleCategoryComponent},
+        {path:'category/Pet/:category',component:SingleCategoryComponent},
+        {path:'blog/:blog',component:SingleBlogComponent}
       ]
       }
     ]

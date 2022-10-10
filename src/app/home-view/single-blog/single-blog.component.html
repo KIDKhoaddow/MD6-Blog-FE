@@ -1,0 +1,107 @@
+<main id="tt-pageContent" >
+  <div class="container" >
+    <div class="row justify-content-center">
+      <div class="col-6 col-lg-8">
+        <div class="row no-gutters">
+          <!-- Single Post Share Info -->
+          <!-- Single Post -->
+          <div class="col-10 col-sm-11">
+            <div class="single-post">
+              <!-- Post Thumb -->
+              <div class="post-thumb justify-content-center" style="display: flex">
+                <img src="{{blog.picture}}" alt="">
+              </div>
+              <!-- Post Content -->
+              <div class="post-content">
+                <div class="post-meta d-flex">
+                  <div class="post-author-date-area d-flex">
+                    <!-- Post Author -->
+                    <div class="post-author">
+                      <a href="#">By {{blog.username}}</a>
+                    </div>
+                    <!-- Post Date -->
+                    <div class="post-date">
+                      <a href="#">{{pipe.transform(blog.createAt, "MMM d, y")}}</a>
+                    </div>
+                  </div>
+                  <!-- Post Comment & Share Area -->
+                  <div class="post-comment-share-area d-flex">
+                    <div class="post-favourite">
+                      <a href="#">
+                        <mat-icon fontIcon="favorite" aria-hidden="true" style="size: 10px"></mat-icon>
+                        {{blog.countLike}}</a>
+                    </div>
+                    <!-- Post Comments -->
+                    <div class="post-comments">
+                      <a href="#">
+                        <mat-icon fontIcon="comment" aria-hidden="true"></mat-icon>
+                        {{blog.countComment}}</a>
+                    </div>
+                  </div>
+                </div>
+                <a href="#">
+                  <h2 class="post-headline">{{blog.title}}</h2>
+                </a>
+                <div id="content" >
+                </div>
+              </div>
+            </div>
+            <!-- Tags Area -->
+            <div class="tags-area">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ****** Blog Sidebar ****** -->
+      <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+        <div class="blog-sidebar mt-5 mt-lg-0">
+          <!-- Single Widget Area -->
+          <div class="single-widget-area about-me-widget text-center">
+            <div class="widget-title">
+              <h6>About Me</h6>
+            </div>
+            <div class="about-me-widget-thumb">
+              <img src="{{blog.avatar}}" alt="">
+            </div>
+            <h4 class="font-shadow-into-light">{{blog.username}}</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
+          </div>
+
+          <!-- Single Widget Area -->
+          <div class="single-widget-area popular-post-widget" style="padding-left: 30px;padding-right: 0">
+            <div class="widget-title text-center">
+              <h6>Populer Post</h6>
+            </div>
+            <!-- Single Popular Post -->
+            <div class="single-populer-post d-flex" *ngFor="let element of blogs">
+              <img src="{{element.picture}}" alt="" style="height: 160px">
+              <div class="post-content">
+                <a href="#">
+                  <h6>{{element.title}}</h6>
+                </a>
+                <p>{{pipe.transform(element.createAt, "MMMM d, y")}}</p>
+              </div>
+            </div>
+          </div>
+          <!-- Single Widget Area -->
+          <div class="single-widget-area newsletter-widget">
+            <div class="widget-title text-center">
+              <h6>Newsletter</h6>
+            </div>
+            <p>Subscribe our newsletter gor get notification about new updates, information discount, etc.</p>
+            <div class="newsletter-form">
+              <form action="#" method="post">
+                <input type="email" name="newsletter-email" id="email" placeholder="Your email">
+                <button type="submit">
+                  <mat-icon fontIcon="send" aria-hidden="true"></mat-icon>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+

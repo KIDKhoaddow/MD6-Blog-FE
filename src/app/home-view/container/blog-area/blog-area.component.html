@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-12 col-lg-8" >
-      <div class="row" >
+    <div class="col-12 col-lg-8">
+      <div class="row">
         <div class="col-12">
           <div class="single-post wow fadeInUp" data-wow-delay=".2s">
             <!-- Post Thumb -->
             <div class="post-thumb">
-              <img src="http://localhost:8080/Image/1.jpg" alt="">
+              <img src="{{oneBlog.picture}}" alt="">
             </div>
             <!-- Post Content -->
             <div class="post-content">
@@ -14,45 +14,136 @@
                 <div class="post-author-date-area d-flex">
                   <!-- Post Author -->
                   <div class="post-author">
-                    <a href="#">By Marian</a>
+                    <a href="#">{{oneBlog.username}}</a>
                   </div>
                   <!-- Post Date -->
                   <div class="post-date">
-                    <a href="#">May 19, 2017</a>
+                    <a href="#">{{this.pipe.transform(oneBlog.createAt, "MMM d, y")}}</a>
                   </div>
                 </div>
                 <!-- Post Comment & Share Area -->
                 <div class="post-comment-share-area d-flex">
                   <!-- Post Favourite -->
                   <div class="post-favourite">
-                    <a href="#"><mat-icon fontIcon="favorite" aria-hidden="true"></mat-icon> 10</a>
+                    <a href="#">
+                      <mat-icon fontIcon="favorite" aria-hidden="true"></mat-icon>
+                      {{oneBlog.countLike}}</a>
                   </div>
                   <!-- Post Comments -->
                   <div class="post-comments">
-                    <a href="#"><mat-icon fontIcon="comment" aria-hidden="true"></mat-icon> 12</a>
-                  </div>
-                  <!-- Post Share -->
-                  <div class="post-share">
-                    <a href="#"><mat-icon fontIcon="share" aria-hidden="true"></mat-icon></a>
+                    <a href="#">
+                      <mat-icon fontIcon="comment" aria-hidden="true"></mat-icon>
+                      {{oneBlog.countComment}}</a>
                   </div>
                 </div>
               </div>
               <a href="#">
-                <h2 class="post-headline">Boil The Kettle And Make A Cup Of Tea Folks, This Is Going To Be A Big One!</h2>
+                <h2 class="post-headline">{{oneBlog.title}}</h2>
               </a>
-              <p>Tiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</p>
+              <p>{{oneBlog.description}}</p>
               <a href="#" class="read-more">Continue Reading..</a>
             </div>
           </div>
         </div>
-
+        <mat-divider></mat-divider>
+        <h3 style="margin: 16px">Recently</h3>
+        <div class="col-12 col-md-4" *ngFor="let blogRecently of blogsRecently">
+          <div class="single-post wow fadeInUp" data-wow-delay=".2s">
+            <!-- Post Thumb -->
+            <div class="post-thumb">
+              <img src="{{blogRecently.picture}}" alt="" style="height: 240px ;border-radius: 10px;width: 240px">
+            </div>
+            <!-- Post Content -->
+            <div class="post-content">
+              <div class="post-meta d-flex">
+                <div class="post-author-date-area d-flex">
+                  <!-- Post Author -->
+                  <div class="post-author">
+                    <a href="#">{{blogRecently.username}}</a>
+                  </div>
+                  <!-- Post Date -->
+                  <div class="post-date">
+                    <a href="#">{{this.pipe.transform(blogRecently.createAt, "MMM d, y")}}</a>
+                  </div>
+                </div>
+                <!-- Post Comment & Share Area -->
+                <div class="post-comment-share-area d-flex">
+                  <!-- Post Favourite -->
+                  <div class="post-favourite">
+                    <a href="#">
+                      <mat-icon fontIcon="favorite" aria-hidden="true"></mat-icon>
+                      {{blogRecently.countLike}}</a>
+                  </div>
+                  <!-- Post Comments -->
+                  <div class="post-comments">
+                    <a href="#">
+                      <mat-icon fontIcon="comment" aria-hidden="true"></mat-icon>
+                      {{blogRecently.countComment}}</a>
+                  </div>
+                </div>
+              </div>
+              <a href="#">
+                <h2 class="post-headline">{{blogRecently.title}}</h2>
+              </a>
+              <p>{{blogRecently.description}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 row" *ngFor="let element of blogsPerCategory">
+          <mat-divider></mat-divider>
+          <div class="widget-title text-center" >
+            <h3>{{element.category}}</h3>
+          </div>
+          <div class="col-12 col-md-4" *ngFor="let blogs of element.blogs">
+            <div class="single-post wow fadeInUp" data-wow-delay=".2s">
+              <!-- Post Thumb -->
+              <div class="post-thumb">
+                <img src="{{blogs.picture}}" alt="" style="height: 240px ;border-radius: 10px;width: 240px">
+              </div>
+              <!-- Post Content -->
+              <div class="post-content">
+                <div class="post-meta d-flex">
+                  <div class="post-author-date-area d-flex">
+                    <!-- Post Author -->
+                    <div class="post-author">
+                      <a href="#">{{blogs.username}}</a>
+                    </div>
+                    <!-- Post Date -->
+                    <div class="post-date">
+                      <a href="#">{{this.pipe.transform(blogs.createAt, "MMM d, y")}}</a>
+                    </div>
+                  </div>
+                  <!-- Post Comment & Share Area -->
+                  <div class="post-comment-share-area d-flex">
+                    <!-- Post Favourite -->
+                    <div class="post-favourite">
+                      <a href="#">
+                        <mat-icon fontIcon="favorite" aria-hidden="true" style="size: 10px"></mat-icon>
+                        {{blogs.countLike}}</a>
+                    </div>
+                    <!-- Post Comments -->
+                    <div class="post-comments">
+                      <a href="#">
+                        <mat-icon fontIcon="comment" aria-hidden="true"></mat-icon>
+                        {{blogs.countComment}}</a>
+                    </div>
+                  </div>
+                </div>
+                <a href="#">
+                  <h3 class="post-headline">{{blogs.title}}</h3>
+                </a>
+                <p>{{blogs.description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-12 col-sm-8 col-md-6 col-lg-4" style="background: none ">
       <div class="blog-sidebar mt-5 mt-lg-0">
 
         <!-- Single Widget Area -->
-        <div class="single-widget-area popular-post-widget">
+        <div class="single-widget-area popular-post-widget" style="padding-left: 30px;padding-right: 0">
           <div class="widget-title text-center">
             <h6>Populer Post</h6>
           </div>
@@ -63,7 +154,7 @@
               <a href="#">
                 <h6>{{element.title}}</h6>
               </a>
-              <p>{{element.createAt}}</p>
+              <p>{{pipe.transform(element.createAt, "MMMM d, y")}}</p>
             </div>
           </div>
         </div>
@@ -76,7 +167,9 @@
           <div class="newsletter-form">
             <form action="#" method="post">
               <input type="email" name="newsletter-email" id="email" placeholder="Your email">
-              <button type="submit"><mat-icon fontIcon="send" aria-hidden="true"></mat-icon></button>
+              <button type="submit">
+                <mat-icon fontIcon="send" aria-hidden="true"></mat-icon>
+              </button>
             </form>
           </div>
         </div>

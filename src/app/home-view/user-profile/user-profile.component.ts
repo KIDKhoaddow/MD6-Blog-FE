@@ -11,6 +11,7 @@ import {BlogsService} from "../../service/blogs.service";
 import {Blog} from "../../model/blog/blog";
 import {DatePipe} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
+import {BlogDTO} from "../../model/blog/blogDTO";
 
 @Component({
   selector: 'app-user-profile',
@@ -31,7 +32,8 @@ export class UserProfileComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email])
   avatar?: string = ""
   about = new FormControl('')
-  birthday = new FormControl('')
+  birthday = new FormControl(new Date());
+  birthday1: string | null | undefined = ""
   registerDate = new FormControl('')
   username: string | null | undefined = ""
 
@@ -74,9 +76,12 @@ export class UserProfileComponent implements OnInit {
     confirmPassword: this.confirmPassword,
   })
   pipe = new DatePipe('en-US');
-  blogs: Blog[] = []
+  blogs: BlogDTO[] = []
   selected = 0;
   animation = "";
+
+
+
 
   constructor(private userService: UsersService,
               private formGroup: FormBuilder,
@@ -86,51 +91,58 @@ export class UserProfileComponent implements OnInit {
               private route: ActivatedRoute
   ) {
 
-
-    this.getUser()
-
-    // @ts-ignore
-    this.blogService.getAllBlogOfUser(this.authService.currentUserValue?.id).subscribe(result => {
-
-      this.blogs = result
-    })
   }
 
 
   ngOnInit(): void {
-
-  }
-
-  ngAfterViewInit() {
     let message = this.route.snapshot.paramMap.get("selected")
     if (message) {
       this.selected = Number(message)
     }
+    this.getUser()
+    // @ts-ignore
+    this.blogService.getAllBlogOfUser(this.authService.currentUserValue?.id).subscribe(result => {
+      this.blogs = result
+    })
   }
 
+  ngAfterContentInit() {
+
+
+  }
+
+  selectionChange(event:any){
+    console.log(event)
+    // @ts-ignore
+    document.getElementById("inputBirthday").value=this.birthday1
+  }
+
+
   getUser() {
+
     this.userService.findCurrentUser().subscribe(value => {
       this.formUpdateUser.patchValue(value)
-      if (value.avatar) {
+      if (value.avatar != null) {
         this.ava = value.avatar
         this.imageSrc = value.avatar
       }
-      this.username = value.username
-      // this.formUpdate.patchValue(this.userUpdate)
 
+      this.username = value.username
+      this.birthday1 = value.birthday
+      console.log(this.birthday1)
     })
   }
 
 
   updateUsers() {
-    let users: UserInfoDTO = {
+    let users = {
       id: this.formUpdateUser.value.id,
       username: this.formUpdateUser.value.username,
       name: this.formUpdateUser.value.name,
       email: this.formUpdateUser.value.email,
       avatar: this.formUpdateUser.value.avatar,
       about: this.formUpdateUser.value.about,
-      birthDay: this.formUpdateUser.value.birthDay,
+      birthday: this.formUpdateUser.value.birthDay,
       registerDate: this.formUpdateUser.value.registerDate,
     }
     this.userService.updateUser(users).subscribe(value => {

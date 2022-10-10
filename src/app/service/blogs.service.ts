@@ -7,6 +7,8 @@ import {BlogStatus} from "../model/blog/blog-status";
 import {BlogsOfUser} from "../model/blog/blogsOfUser";
 import {BlogMostLike} from "../model/blog/blog-most-like";
 import {BlogDTO} from "../model/blog/blogDTO";
+import {KeyValue} from "@angular/common";
+import {BlogRecentlyPerCategory} from "../model/blog/blog-recently-per-category";
 
 @Injectable({
   providedIn: 'root'
@@ -16,18 +18,28 @@ export class BlogsService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getTopBlogMostLike(): Observable<Blog> {
-    return this.httpClient.get<Blog>("http://localhost:8080/api/blog/public/most-like")
+  getBlog(idBlog:number) :Observable<BlogDTO>{
+    return this.httpClient.get<BlogDTO>("http://localhost:8080/api/blog/"+idBlog)
+  }
+  getTopBlogMostLike(): Observable<BlogDTO> {
+    return this.httpClient.get<BlogDTO>("http://localhost:8080/api/blog/public/most-like")
   }
 
   findAll(): Observable<Blog[]> {
     return this.httpClient.get<Blog[]>("http://localhost:8080/api/blog")
   }
 
-  getAllBlogOfUser(id: number ): Observable<Blog[]> {
-    return this.httpClient.get<Blog[]>("http://localhost:8080/api/blog/user/" + id)
+  getAllBlogOfUser(id: number ): Observable<BlogDTO[]> {
+    return this.httpClient.get<BlogDTO[]>("http://localhost:8080/api/blog/user/" + id)
   }
 
+  getAllBlogRecently():Observable<BlogDTO[]>{
+    return this.httpClient.get<BlogDTO[]>("http://localhost:8080/api/blog/recently")
+  }
+  getThreeNewBlogsPerCategory():Observable<BlogRecentlyPerCategory[]>{
+    return  this.httpClient.get<BlogRecentlyPerCategory[]>
+    ("http://localhost:8080/api/blog/public/three-new-blog-per-category")
+  }
   banBlog(id: number): Observable<BlogStatus> {
     return this.httpClient.get<BlogStatus>("http://localhost:8080/api/blog/ban/" + id)
   }
@@ -48,8 +60,14 @@ export class BlogsService {
     return this.httpClient.get<Blog[]>("http://localhost:8080/api/blog/public/top-ten-most-like")
   }
 
+  getNewBlogPerCategory(): Observable<Blog[]> {
+    return this.httpClient.get<Blog[]>("http://localhost:8080/api/blog/public/most-like-per-category")
+  }
 
   createBlog(blog: BlogDTO): Observable<BlogDTO>{
     return  this.httpClient.post<BlogDTO>("http://localhost:8080/blog",blog)
+  }
+  getPublicBlogByCategory(idCategory:number):Observable<BlogDTO[]>{
+    return this.httpClient.get<BlogDTO[]>("http://localhost:8080/api/blog/public/category/"+idCategory)
   }
 }

@@ -35,7 +35,7 @@ export class UsersService {
     return this.httpClient.get<UserInfoDTO>('http://localhost:8080/api/users/' + this.authService.currentUserValue?.id)
   }
 
-  updateUser( user: UserInfoDTO): Observable<UserInfoDTO> {
+  updateUser( user: any): Observable<UserInfoDTO> {
     return this.httpClient.put<UserInfoDTO>("http://localhost:8080/api/users/" + user.id, user);
   }
   uploadImgUser(img:string, id: any): Observable<UserInfoDTO>{

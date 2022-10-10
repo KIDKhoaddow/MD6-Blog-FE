@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {BlogsService} from "../../service/blogs.service";
 import {BlogDTO} from "../../model/blog/blogDTO";
-import {Category} from "../../model/category";
+import {Category} from "../../model/category/category";
 import {CategoryService} from "../../service/category.service";
 import {finalize, Observable} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
@@ -40,9 +40,7 @@ export class FormCreateComponent implements OnInit {
 
   formCreateBlog = this.formGroup.group({
     username: this.username,
-    category: {
-      id: this.category
-    },
+    category: this.category,
     title: this.title,
     description: this.description,
     content: this.content,
@@ -70,11 +68,7 @@ export class FormCreateComponent implements OnInit {
 
     let blog: BlogDTO = {
       username: this.formCreateBlog.value.username,
-      category: {
-        // @ts-ignore
-        id: this.formCreateBlog.value.category
-
-      },
+      category:Number(this.formCreateBlog.value.category),
       title: this.formCreateBlog.value.title,
       description: this.formCreateBlog.value.description,
       content: this.formCreateBlog.value.content,

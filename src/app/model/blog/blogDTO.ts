@@ -1,9 +1,11 @@
-import {Category} from "../category";
+import {Category} from "../category/category";
+import {TagDTO} from "../tag/tagDTO";
 
 export interface BlogDTO{
   id?: number|null,
   username?: string|null,
-  category?: Category
+  avatar?:string|null,
+  category?: number|null,
   title?: string|null,
   description?: string|null,
   content?: string|null,
@@ -11,6 +13,8 @@ export interface BlogDTO{
   createAt?: string|null,
   status?: string|null,
   countLike?: number|null,
-  updateAt?: string|null
-
+  countComment?:number|null,
+  updateAt?: string|null,
+  categoryName?: string|null,
+  tag?: TagDTO[]|null
 }

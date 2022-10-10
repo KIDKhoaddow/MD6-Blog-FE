@@ -4,6 +4,8 @@ import {AuthService} from "../../authority/service/auth.service";
 import {UsersService} from "../../service/users.service";
 import {UserInfoDTO} from "../../model/user/userInfoDTO";
 import {UserProfileComponent} from "../user-profile/user-profile.component";
+import {CategoryDTO} from "../../model/category/categoryDTO";
+import {CategoryService} from "../../service/category.service";
 
 
 @Component({
@@ -15,9 +17,13 @@ export class LayoutComponent implements OnInit {
 
   hide = false;
   userInfoCurrent?: UserInfoDTO;
-
-  constructor(private router: Router,
+  categories :CategoryDTO[]=[];
+  constructor(private router: Router,private  categoryService :CategoryService,
               private authService: AuthService, private userService: UsersService) {
+
+  }
+
+  ngOnInit(): void {
     if (this.authService.currentUserValue == null) {
       this.hide = false;
     } else {
@@ -28,10 +34,12 @@ export class LayoutComponent implements OnInit {
         document.getElementById("avatar").setAttribute("src", this.userInfoCurrent?.avatar)
       })
     }
-  }
-
-  ngOnInit(): void {
+    this.categoryService.findAll().subscribe(result=>{
+      this.categories=result
+    })
     document.body.style.background = "#f8f9fb"
+
+
   }
 
 
@@ -44,7 +52,7 @@ export class LayoutComponent implements OnInit {
   }
   goToProfile(selected:number){
     if(selected==0){
-      this.router.navigate(["/home/userprofile1",selected])}
+      this.router.navigateByUrl("/home/userprofile")}
     else if(selected==1){
       this.router.navigate(["/home/userprofile2",selected])}
     else if(selected==2){

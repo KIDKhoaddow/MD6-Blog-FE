@@ -5,6 +5,6 @@ export interface UserInfoDTO {
   email?:string|null,
   avatar?:string|null,
   about?:string|null,
-  birthDay?:string|null,
+  birthday?:string|null,
   registerDate?:string|null
 }

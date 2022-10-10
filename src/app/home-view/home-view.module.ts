@@ -22,7 +22,11 @@ import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material
 import {ChangePasswordMatchValidatorRevealedDirective} from "../model/Validate/changePasswordMatchValidator-revealed.directive";
 import {MatButton, MatButtonModule} from "@angular/material/button";
 import {MatMenuModule} from "@angular/material/menu";
-import { LikeComponent } from './container/like/like.component';
+import { IconComponent } from './container/icon/icon.component';
+import { SingleCategoryComponent } from './single-category/single-category.component';
+import { BlogCategoryComponent } from './single-category/blog-category/blog-category.component';
+import { SingleBlogComponent } from './single-blog/single-blog.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   imports: [
@@ -41,7 +45,8 @@ import { LikeComponent } from './container/like/like.component';
     MatTabsModule,
     MatInputModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTooltipModule
   ],
   declarations: [
     LayoutComponent,
@@ -53,7 +58,10 @@ import { LikeComponent } from './container/like/like.component';
     UserProfileComponent,
     FormCreateComponent,
     ChangePasswordMatchValidatorRevealedDirective,
-    LikeComponent
+    IconComponent,
+    SingleCategoryComponent,
+    BlogCategoryComponent,
+    SingleBlogComponent
 
   ],
   providers: [
