@@ -28,6 +28,7 @@ import { BlogCategoryComponent } from './single-category/blog-category/blog-cate
 import { SingleBlogComponent } from './single-blog/single-blog.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 
+
 @NgModule({
   imports: [
     RouterModule,

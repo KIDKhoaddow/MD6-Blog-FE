@@ -1,4 +1,4 @@
-import {Category} from "../category/category";
+
 import {TagDTO} from "../tag/tagDTO";
 
 export interface BlogDTO{

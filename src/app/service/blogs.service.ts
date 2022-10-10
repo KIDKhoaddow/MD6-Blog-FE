@@ -9,6 +9,7 @@ import {BlogMostLike} from "../model/blog/blog-most-like";
 import {BlogDTO} from "../model/blog/blogDTO";
 import {KeyValue} from "@angular/common";
 import {BlogRecentlyPerCategory} from "../model/blog/blog-recently-per-category";
+import {ImageURL} from "../model/ImageURL";
 
 @Injectable({
   providedIn: 'root'
@@ -70,4 +71,9 @@ export class BlogsService {
   getPublicBlogByCategory(idCategory:number):Observable<BlogDTO[]>{
     return this.httpClient.get<BlogDTO[]>("http://localhost:8080/api/blog/public/category/"+idCategory)
   }
+
+  saveImage(image?: ImageURL): Observable<ImageURL>{
+    return this.httpClient.post<ImageURL>("http://localhost:8081/api/blogs/imageURL", image)
+  }
+
 }

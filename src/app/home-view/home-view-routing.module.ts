@@ -7,6 +7,7 @@ import {UserProfileComponent} from "./user-profile/user-profile.component";
 import {CategoriesComponent} from "./categories/categories.component";
 import {BlogsComponent} from "../admin-view/blogs/blogs.component";
 import {FormCreateComponent} from "./form-create/form-create.component";
+import {LoginComponent} from "../authority/login/login.component";
 import {AuthorityHomeGuard} from "./authority-home.guard";
 import {SingleCategoryComponent} from "./single-category/single-category.component";
 import {SingleBlogComponent} from "./single-blog/single-blog.component";
@@ -40,6 +41,7 @@ const homeRoutes: Routes = [
         {path:'blog/:blog',component:SingleBlogComponent}
       ]
       }
+
     ]
   },
   {

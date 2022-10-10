@@ -6,12 +6,14 @@ import Swal from "sweetalert2";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs";
 import {AuthService} from "../../authority/service/auth.service";
-import {MyErrorStateMatcher} from "../../model/Validate/ErrorStateMatcher";
 import {BlogsService} from "../../service/blogs.service";
 import {Blog} from "../../model/blog/blog";
 import {DatePipe} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BlogDTO} from "../../model/blog/blogDTO";
+
+import {user} from "@angular/fire/auth";
+import {MyErrorStateMatcher} from "../../model/Validate/ErrorStateMatcher";
 
 @Component({
   selector: 'app-user-profile',
@@ -20,7 +22,7 @@ import {BlogDTO} from "../../model/blog/blogDTO";
 })
 export class UserProfileComponent implements OnInit {
   idUpdate = 0
-  ava: string = ""
+  ava?: string | null
   uploadedImage: File | undefined;
   imageFile!: any;
   imageSrc: string = "";
@@ -32,7 +34,7 @@ export class UserProfileComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email])
   avatar?: string = ""
   about = new FormControl('')
-  birthday = new FormControl(new Date());
+  birthday = new FormControl('')
   birthday1: string | null | undefined = ""
   registerDate = new FormControl('')
   username: string | null | undefined = ""
@@ -61,7 +63,7 @@ export class UserProfileComponent implements OnInit {
       this.regexValidator(new RegExp("\\w+([0-9])\\w+"), {digital: "false"}),
       this.regexValidator(new RegExp("\\w+([!@#&()–{}:;',?/*~$_^+=<>])\\w+"), {characters: "false"}),
     ])
-  confirmPassword = new FormControl('',
+  confirmNewPassword = new FormControl('',
     [Validators.required, Validators.minLength(this.minNewPassword), Validators.maxLength(this.maxNewPassword)])
 
   matcherOldPassword = new MyErrorStateMatcher()
@@ -70,10 +72,11 @@ export class UserProfileComponent implements OnInit {
   hideNewPassword = true;
   hideConfirmPassword = true;
   hideOldPassword = true;
+
   changePasswordGroup = this.formGroup.group({
     oldPassword: this.oldPassword,
     newPassword: this.newPassword,
-    confirmPassword: this.confirmPassword,
+    confirmNewPassword: this.confirmNewPassword,
   })
   pipe = new DatePipe('en-US');
   blogs: BlogDTO[] = []
@@ -89,7 +92,7 @@ export class UserProfileComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router
   ) {
-
+    this.getUser()
   }
 
 
@@ -118,7 +121,6 @@ export class UserProfileComponent implements OnInit {
 
 
   getUser() {
-
     this.userService.findCurrentUser().subscribe(value => {
       this.formUpdateUser.patchValue(value)
       if (value.avatar != null) {
@@ -130,6 +132,29 @@ export class UserProfileComponent implements OnInit {
       this.birthday1 = value.birthday
       console.log(this.birthday1)
     })
+  }
+
+  changePasswordUpload() {
+    let password = {
+      oldPassword: this.changePasswordGroup.value.oldPassword,
+      newPassword: this.changePasswordGroup.value.newPassword,
+      confirmNewPassword: this.changePasswordGroup.value.confirmNewPassword,
+    }
+    if (this.changePasswordGroup.value.newPassword == this.changePasswordGroup.value.oldPassword) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Change fail',
+        timer: 1500
+      })
+    } else if (this.changePasswordGroup.value.newPassword == this.changePasswordGroup.value.confirmNewPassword) {
+      this.userService.changePassword(password).subscribe(value => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Change Password complete',
+          timer: 1500
+        })
+      })
+    }
   }
 
 
