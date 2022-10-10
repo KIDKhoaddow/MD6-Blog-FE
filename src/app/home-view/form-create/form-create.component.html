@@ -1,82 +1,87 @@
 <main id="tt-pageContent">
   <div class="container">
     <div class="tt-wrapper-inner">
-      <h1 class="tt-title-border">
-        Create New Blog
-      </h1>
-        <div class="form-group" style="width: 50%;float: right" >
-      <div class="form-group">
-        <h5 for="inputTopicTitle">Blog Title</h5>
-        <div class="tt-value-wrapper">
-          <input type="text" name="name" matInput class="form-control" id="inputTopicTitle"
-                 placeholder="Subject of your title" [formControl]="title" [errorStateMatcher]="titleMatcher">
-          <mat-error *ngIf="title.hasError('required')">Title not null</mat-error>
-          <span class="tt-value-input"></span>
-        </div>
-        <div class="tt-note"></div>
-      </div>
-      <div class="form-group" >
-        <h5>Blog Description</h5>
-        <div class="tt-value-wrapper">
-          <input name="name" type="text" matInput class="form-control"
-                     placeholder="Subject of your description" [formControl]="description" [errorStateMatcher]="titleMatcher" style="height: 80px">
-          <mat-error *ngIf="description.hasError('required')">Description not null</mat-error>
-          <span class="tt-value-input"></span>
-        </div>
-      </div>
-
-      </div>
-
-      <div class="form-group"  >
-        <div style="height: 200px">
-        <label>Blog Picture</label>
-        <div class="custom-file" >
-          <input type="file" id="file" #userPhoto multiple
-                 (change)="showPreview($event)" name="image" autocomplete="off" class="custom-file-input"
-                 id = "inputGroupFile01" >
-          <label for="inputGroupFile01" class="custom-file-label">Choose File</label>
-
-        </div>
-        <img  src="{{this.picture}}" width="20%" height="175px" style="margin-left: 20px" alt="Error">
-        </div>
-
-        <!--        </div>-->
-        <div class="pt-editor" style="margin-top: 75px">
-          <h6 class="pt-title">Blog Body</h6>
-
+      <form [formGroup]="formCreateBlog" #createBlogForm="ngForm" appPasswordMatchValidator>
+        <h1 class="tt-title-border">
+          Create New Blog
+        </h1>
+        <div class="form-group" style="width: 50%;float: right">
           <div class="form-group">
-          <quill-editor [styles]="editorStyle" [formControl]="content"  placeholder="Enter Text">
+            <h5 for="inputTopicTitle">Blog Title</h5>
+            <div class="tt-value-wrapper">
+              <input type="text" name="name" matInput class="form-control" id="inputTopicTitle"
+                     placeholder="Subject of your title" [formControl]="title" [errorStateMatcher]="titleMatcher">
+              <mat-error *ngIf="title.hasError('required')">Title required</mat-error>
+              <span class="tt-value-input"></span>
+            </div>
+            <div class="tt-note"></div>
+          </div>
+          <div class="form-group">
+            <h5>Blog Description</h5>
+            <div class="tt-value-wrapper">
+              <input name="name" type="text" matInput class="form-control"
+                     placeholder="Subject of your description" [formControl]="description"
+                     [errorStateMatcher]="descriptionMatcher" style="height: 80px">
+              <mat-error *ngIf="description.hasError('required')">Description required</mat-error>
+              <span class="tt-value-input"></span>
+            </div>
+          </div>
 
-          </quill-editor>
+        </div>
+
+        <div class="form-group">
+          <div style="height: 200px">
+            <label>Blog Picture</label>
+            <div class="custom-file">
+              <input type="file" id="file" #userPhoto multiple
+                     (change)="showPreview($event)" name="image" autocomplete="off" class="custom-file-input"
+                     id="inputGroupFile01">
+              <label for="inputGroupFile01" class="custom-file-label">Choose File</label>
+
+            </div>
+            <img src="{{this.picture}}" width="20%" height="175px" style="margin-left: 20px" alt="Error">
           </div>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="inputTopicTitle">Category</label>
-                <select class="form-control" [formControl]=category (selectionchange)="test()">
-                  <option *ngFor="let c of categories" value="{{c.id}}">{{c.name}}</option>
-<!--                                    <option value="Value 01">Đồ Ăn</option>-->
-<!--                                    <option value="Value 02">Đồ Uống</option>-->
-<!--                                    <option value="Value 03">Đồ Uống</option>-->
-<!--                                    <option value="Value 04">Đồ Uống</option>-->
-                </select>
+
+          <!--        </div>-->
+          <div class="pt-editor" style="margin-top: 75px">
+            <h6 class="pt-title">Blog Body</h6>
+
+            <div class="form-group">
+              <quill-editor [styles]="editorStyle" [formControl]="content" placeholder="Enter Text">
+
+              </quill-editor>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="inputTopicTitle">Category</label>
+                  <select required class="form-control" [formControl]=categoryId>
+                    <option value="" disabled selected> Select Category</option>
+                    <option *ngFor="let c of categories" value="{{c.id}}">{{c.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label for="inputTopicTags">Tags</label>
+                  <input type="text" name="name" class="form-control" id="inputTopicTags"
+                         placeholder="Use comma to separate tags">
+                </div>
               </div>
             </div>
-            <div class="col-md-8">
-              <div class="form-group">
-                <label for="inputTopicTags">Tags</label>
-                <input type="text" name="name" class="form-control" id="inputTopicTags"
-                       placeholder="Use comma to separate tags" >
+            <div class="row">
+              <div class="col-auto ml-md-auto" style="    margin-bottom: 20px;">
+                <button
+                  [disabled]="titleMatcher.isErrorState(title,createBlogForm)||contentMatcher.isErrorState(content,createBlogForm)||descriptionMatcher.isErrorState(description,createBlogForm)
+                  ||categoryMatcher.isErrorState(categoryId,createBlogForm)"
+                  style="margin-top: 16px" class="btn btn-secondary btn-width-lg" (click)="createBlog()">Create
+                  Post
+                </button>
               </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-auto ml-md-auto" style="    margin-bottom: 20px;">
-              <button style="margin-top: 16px"  class="btn btn-secondary btn-width-lg" (click)="createBlog()">Create Post</button>
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </main>

@@ -5,7 +5,7 @@ export interface BlogDTO{
   id?: number|null,
   username?: string|null,
   avatar?:string|null,
-  category?: number|null,
+  categoryId?: number|null,
   title?: string|null,
   description?: string|null,
   content?: string|null,

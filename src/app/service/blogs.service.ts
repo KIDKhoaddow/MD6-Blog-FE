@@ -10,13 +10,14 @@ import {BlogDTO} from "../model/blog/blogDTO";
 import {KeyValue} from "@angular/common";
 import {BlogRecentlyPerCategory} from "../model/blog/blog-recently-per-category";
 import {ImageURL} from "../model/ImageURL";
+import {AuthService} from "../authority/service/auth.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogsService {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private authService: AuthService) {
   }
 
   getBlog(idBlog:number) :Observable<BlogDTO>{
@@ -66,7 +67,7 @@ export class BlogsService {
   }
 
   createBlog(blog: BlogDTO): Observable<BlogDTO>{
-    return  this.httpClient.post<BlogDTO>("http://localhost:8080/blog",blog)
+    return  this.httpClient.post<BlogDTO>("http://localhost:8080/api/blog/"+ this.authService.currentUserValue?.id,blog)
   }
   getPublicBlogByCategory(idCategory:number):Observable<BlogDTO[]>{
     return this.httpClient.get<BlogDTO[]>("http://localhost:8080/api/blog/public/category/"+idCategory)
