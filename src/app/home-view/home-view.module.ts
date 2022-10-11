@@ -29,6 +29,7 @@ import { SingleBlogComponent } from './single-blog/single-blog.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { TrendingComponent } from './trending/trending.component';
 import {MatSelectModule} from "@angular/material/select";
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import {MatSelectModule} from "@angular/material/select";
     SingleCategoryComponent,
     BlogCategoryComponent,
     SingleBlogComponent,
-    TrendingComponent
+    TrendingComponent,
+    ErrorPageComponent
 
   ],
   providers: [

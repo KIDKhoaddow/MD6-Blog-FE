@@ -12,6 +12,7 @@ import {AuthorityHomeGuard} from "./authority-home.guard";
 import {SingleCategoryComponent} from "./single-category/single-category.component";
 import {SingleBlogComponent} from "./single-blog/single-blog.component";
 import {TrendingComponent} from "./trending/trending.component";
+import {ErrorPageComponent} from "./error-page/error-page.component";
 
 
 
@@ -51,6 +52,13 @@ const homeRoutes: Routes = [
     component:LayoutComponent,
     children:[
       {path: "",component:HomepageComponent}
+    ]
+  },
+  {
+    path:"",
+    component:LayoutComponent,
+    children:[
+      {path:'error',component:ErrorPageComponent}
     ]
   }
 ]

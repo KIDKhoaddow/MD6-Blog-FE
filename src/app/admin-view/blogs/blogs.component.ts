@@ -153,10 +153,12 @@ export class BlogsComponent implements OnInit {
   }
 
   openBlogInfo(blog: Blog) {
-    const dialogRef = this.dialog.open(BlogInfoDialogComponent, {data: blog});
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    // const dialogRef = this.dialog.open(BlogInfoDialogComponent, {data: blog});
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
+    window.open("http://localhost:4200/home/blog/"+blog.id)
+
   }
 
   openBlogBanActive(blog: Blog) {
@@ -198,8 +200,8 @@ export class BlogsComponent implements OnInit {
             title: 'Success',
             text: "Action complete",
             timer: 1500
-          }).finally(()=>{
-            this.selected="pendingBlog"
+          }).finally(() => {
+            this.selected = "all"
             this.applySelect()
           })
         })

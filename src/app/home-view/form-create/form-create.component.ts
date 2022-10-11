@@ -24,7 +24,7 @@ export class FormCreateComponent implements OnInit {
   maxDescription = 500;
 
   minTittle = 20;
-  maxTittle = 50;
+  maxTittle = 200;
 
   blogDTOs?: Blog [];
   editorStyle = {
@@ -51,7 +51,7 @@ export class FormCreateComponent implements OnInit {
   contentMatcher = new MyErrorStateMatcher();
   descriptionMatcher = new MyErrorStateMatcher();
   formCreateBlog = this.formGroup.group({
-    id:0,
+    id: 0,
     categoryId: this.categoryId,
     title: this.title,
     describes: this.description,
@@ -60,7 +60,8 @@ export class FormCreateComponent implements OnInit {
     tags: this.tag
   })
   blogId = -1
-  isUpdate=false;
+  isUpdate = false;
+
   constructor(private blogsService: BlogsService,
               private formGroup: FormBuilder,
               private storage: AngularFireStorage,
@@ -85,33 +86,35 @@ export class FormCreateComponent implements OnInit {
         this.formCreateBlog.patchValue(result)
         this.pictureLink = result.picture;
         this.categoryId.setValue(String(result.categoryId))
-        this.isUpdate=true
+        this.isUpdate = true
       })
     }
   }
-updateBlog(){
-  let blog: BlogDTO = {
-    id:this.formCreateBlog.value.id,
-    categoryId: Number(this.categoryId),
-    title: this.formCreateBlog.value.title,
-    describes: this.formCreateBlog.value.describes,
-    content: this.formCreateBlog.value.content,
-    picture: this.pictureLink,
-    tag: [{
-      id: 1,
-      name: this.formCreateBlog.value.tags
-    }]
-  }
-  this.blogsService.updateBlog(blog).subscribe(result=>{
-    Swal.fire({
-      icon: 'success',
-      title: 'Update Blog Success',
-      timer: 2500
-    }).finally(() => {
-      this.router.navigateByUrl("/home/userprofile")
+
+  updateBlog() {
+    let blog: BlogDTO = {
+      id: this.formCreateBlog.value.id,
+      categoryId: Number(this.categoryId),
+      title: this.formCreateBlog.value.title,
+      describes: this.formCreateBlog.value.describes,
+      content: this.formCreateBlog.value.content,
+      picture: this.pictureLink,
+      tag: [{
+        id: 1,
+        name: this.formCreateBlog.value.tags
+      }]
+    }
+    this.blogsService.updateBlog(blog).subscribe(result => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Update Blog Success',
+        timer: 2500
+      }).finally(() => {
+        this.router.navigateByUrl("/home/userprofile")
+      })
     })
-  })
-}
+  }
+
   createBlog() {
 
     // @ts-ignore
