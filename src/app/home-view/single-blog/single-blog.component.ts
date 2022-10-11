@@ -29,7 +29,7 @@ export class SingleBlogComponent implements OnInit {
     this.blogService.getBlog(Number(message)).subscribe(result=>{
       this.blog=result
       const script1 = document.createElement('script');
-      script1.innerHTML='document.getElementById("content").innerHTML='+'"'+result.content+'"'
+      script1.innerHTML='document.getElementById("content").innerHTML='+"'"+result.content+"'"
       document.body.appendChild(script1);
     })
 

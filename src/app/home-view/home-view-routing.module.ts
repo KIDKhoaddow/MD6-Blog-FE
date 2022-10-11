@@ -11,6 +11,7 @@ import {LoginComponent} from "../authority/login/login.component";
 import {AuthorityHomeGuard} from "./authority-home.guard";
 import {SingleCategoryComponent} from "./single-category/single-category.component";
 import {SingleBlogComponent} from "./single-blog/single-blog.component";
+import {TrendingComponent} from "./trending/trending.component";
 
 
 
@@ -38,7 +39,8 @@ const homeRoutes: Routes = [
         {path:'category/Car/:category',component:SingleCategoryComponent},
         {path:'category/Music/:category',component:SingleCategoryComponent},
         {path:'category/Pet/:category',component:SingleCategoryComponent},
-        {path:'blog/:blog',component:SingleBlogComponent}
+        {path:'blog/:blog',component:SingleBlogComponent},
+        {path:'trending',component:TrendingComponent}
       ]
       }
 

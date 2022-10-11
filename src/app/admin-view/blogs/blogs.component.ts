@@ -23,7 +23,7 @@ export class BlogsComponent implements OnInit {
   dataSource: MatTableDataSource<Blog>;
   selection = new SelectionModel<Blog>(true, []);
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select', 'id', 'author', 'title', 'category', 'createAt', 'action'];
+  displayedColumns = ['select', 'id', 'author', 'title', 'category', 'createAt', 'status', 'action'];
   selected: string = "";
   disableButton = false
 
@@ -31,15 +31,12 @@ export class BlogsComponent implements OnInit {
   constructor(private blogService: BlogsService, public dialog: MatDialog, private cd: ChangeDetectorRef) {
     this.dataSource = new MatTableDataSource<Blog>;
 
-
-    this.blogService.findAll().subscribe(value => {
-      this.dataSource.data = value;
-    })
   }
 
   ngOnInit(): void {
     this.blogService.findAll().subscribe(value => {
-      this.dataSource.data = value
+      this.dataSource.data = value.reverse()
+      console.log(value)
     })
 
     this.dataSource.connect()
@@ -73,13 +70,21 @@ export class BlogsComponent implements OnInit {
         value = value.filter(function (blog) {
           return blog.blogStatus.verify
         })
-        this.dataSource.data = value;
+
       })
     } else if (this.selected === "all") {
       this.blogService.findAll().subscribe(value => {
         this.dataSource.data = value;
       })
+    } else if (this.selected === "pendingBlog") {
+      this.blogService.findAll().subscribe(value => {
+        value = value.filter(function (blog) {
+          return !blog.blogStatus.confirm
+        })
+        this.dataSource.data = value;
+      })
     }
+
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -118,7 +123,8 @@ export class BlogsComponent implements OnInit {
     for (const element of blogs) {
       this.blogService.banBlog(element.id).subscribe(result => {
         console.log(result)
-      })}
+      })
+    }
     Swal.fire({
       icon: 'success',
       title: 'Success',
@@ -134,7 +140,8 @@ export class BlogsComponent implements OnInit {
     for (const element of blogs) {
       this.blogService.activeBlog(element.id).subscribe(result => {
         console.log(result)
-      })}
+      })
+    }
     Swal.fire({
       icon: 'success',
       title: 'Success',
@@ -162,13 +169,43 @@ export class BlogsComponent implements OnInit {
           title: 'Success',
           text: "Action complete",
           timer: 1500
-        })}
+        })
+      }
       this.selection.clear()
       this.displayBlog()
-    })}
+    })
+  }
 
 
   checkStatus(verify: boolean): boolean {
     return verify;
   }
+
+  admitBlog(id: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, admit blog'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.blogService.admitBlog(id).subscribe(result => {
+          console.log(result)
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: "Action complete",
+            timer: 1500
+          }).finally(()=>{
+            this.selected="pendingBlog"
+            this.applySelect()
+          })
+        })
+      }
+    })
+  }
+
+
 }

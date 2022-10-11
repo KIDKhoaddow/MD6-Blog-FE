@@ -42,8 +42,8 @@ export class IconComponent implements OnInit {
     this.idBlogIcon = Number(this.idBlog)
     if (!isNaN(this.idBlogIcon)) {
       this.likeService.getList(this.idBlogIcon).subscribe(result => {
-        console.log(result)
         this.listLikeDTO = result
+        this.tooltip=""
         for (let likeDTO of result) {
           this.tooltip += likeDTO.username + " , "
         }
@@ -52,7 +52,7 @@ export class IconComponent implements OnInit {
             this.liked = true;
           }
         }
-        this.value=result.length
+        this.value = result.length
       })
     }
   }
@@ -66,9 +66,7 @@ export class IconComponent implements OnInit {
           idBlog: this.idBlogIcon,
           idUser: this.authService.currentUserValue?.id
         }
-        console.log(likeDTO)
         this.likeService.likeBlog(likeDTO).subscribe(result => {
-            console.log(result)
             this.liked = result.result
             this.displayLike()
           }
@@ -86,11 +84,9 @@ export class IconComponent implements OnInit {
           idBlog: this.idBlogIcon,
           idUser: this.authService.currentUserValue?.id
         }
-        console.log(likeDTO)
         this.likeService.unLikeBlog(likeDTO).subscribe(result => {
-            console.log(result)
             this.liked = result.result
-          this.displayLike()
+            this.displayLike()
           }
         )
       }

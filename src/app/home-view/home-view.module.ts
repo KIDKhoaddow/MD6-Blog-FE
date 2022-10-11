@@ -27,6 +27,8 @@ import { SingleCategoryComponent } from './single-category/single-category.compo
 import { BlogCategoryComponent } from './single-category/blog-category/blog-category.component';
 import { SingleBlogComponent } from './single-blog/single-blog.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { TrendingComponent } from './trending/trending.component';
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -47,7 +49,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     MatInputModule,
     MatButtonModule,
     MatMenuModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSelectModule
   ],
   declarations: [
     LayoutComponent,
@@ -62,7 +65,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     IconComponent,
     SingleCategoryComponent,
     BlogCategoryComponent,
-    SingleBlogComponent
+    SingleBlogComponent,
+    TrendingComponent
 
   ],
   providers: [

@@ -26,12 +26,15 @@ export class BlogAreaComponent implements OnInit {
       }
     })
     this.blogService.getTopTenBlogMostLike().subscribe(result => {
+      console.log(result)
       this.blogs = result
     })
     this.blogService.getAllBlogRecently().subscribe(result => {
+      console.log(result)
       this.blogsRecently = result
     })
     this.blogService.getThreeNewBlogsPerCategory().subscribe(result => {
+      console.log(result)
       this.blogsPerCategory=result
     })
 

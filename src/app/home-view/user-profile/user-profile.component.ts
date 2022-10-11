@@ -102,15 +102,18 @@ export class UserProfileComponent implements OnInit {
       this.selected = Number(message)
     }
     this.getUser()
-    // @ts-ignore
-    this.blogService.getAllBlogOfUser(this.authService.currentUserValue?.id).subscribe(result => {
-      this.blogs = result
-    })
+    this.displayBlogOfUser();
   }
 
+  displayBlogOfUser(){
+      // @ts-ignore
+      this.blogService.getAllBlogOfUser(this.authService.currentUserValue?.id).subscribe(result => {
+        this.blogs = result
+      })
+    }
+
+
   ngAfterContentInit() {
-
-
   }
 
   selectionChange(event: any) {
@@ -119,7 +122,53 @@ export class UserProfileComponent implements OnInit {
     document.getElementById("inputBirthday").value = this.birthday1
   }
 
+  privateBlog(id:any){
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, change to Private'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.blogService.privateBlog(id).subscribe(result=>{
+          console.log(result)
+          Swal.fire({
+            icon: 'success',
+            title: 'Change complete',
+            timer: 1500
+          }).finally(()=>{
+            this.displayBlogOfUser();
+          })
+        })
+      }
+    })
+  }
+  publicBlog(id:any){
+      Swal.fire({
+        title: 'Are you sure?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, change to Public'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.blogService.publicBlog(id).subscribe(result=>{
+            console.log(result)
+            Swal.fire({
+              icon: 'success',
+              title: 'Change complete',
+              timer: 1500
+            }).finally(()=>{
+              this.displayBlogOfUser();
+            })
+          })
+        }
+      })
 
+  }
   getUser() {
     this.userService.findCurrentUser().subscribe(value => {
       this.formUpdateUser.patchValue(value)

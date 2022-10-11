@@ -10,18 +10,20 @@ import {BlogDTO} from "../model/blog/blogDTO";
 import {KeyValue} from "@angular/common";
 import {BlogRecentlyPerCategory} from "../model/blog/blog-recently-per-category";
 import {ImageURL} from "../model/ImageURL";
+import {AuthService} from "../authority/service/auth.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogsService {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private authService: AuthService) {
   }
 
-  getBlog(idBlog:number) :Observable<BlogDTO>{
-    return this.httpClient.get<BlogDTO>("http://localhost:8080/api/blog/"+idBlog)
+  getBlog(idBlog: number): Observable<BlogDTO> {
+    return this.httpClient.get<BlogDTO>("http://localhost:8080/api/blog/" + idBlog)
   }
+
   getTopBlogMostLike(): Observable<BlogDTO> {
     return this.httpClient.get<BlogDTO>("http://localhost:8080/api/blog/public/most-like")
   }
@@ -30,17 +32,19 @@ export class BlogsService {
     return this.httpClient.get<Blog[]>("http://localhost:8080/api/blog")
   }
 
-  getAllBlogOfUser(id: number ): Observable<BlogDTO[]> {
+  getAllBlogOfUser(id: number): Observable<BlogDTO[]> {
     return this.httpClient.get<BlogDTO[]>("http://localhost:8080/api/blog/user/" + id)
   }
 
-  getAllBlogRecently():Observable<BlogDTO[]>{
+  getAllBlogRecently(): Observable<BlogDTO[]> {
     return this.httpClient.get<BlogDTO[]>("http://localhost:8080/api/blog/recently")
   }
-  getThreeNewBlogsPerCategory():Observable<BlogRecentlyPerCategory[]>{
-    return  this.httpClient.get<BlogRecentlyPerCategory[]>
+
+  getThreeNewBlogsPerCategory(): Observable<BlogRecentlyPerCategory[]> {
+    return this.httpClient.get<BlogRecentlyPerCategory[]>
     ("http://localhost:8080/api/blog/public/three-new-blog-per-category")
   }
+
   banBlog(id: number): Observable<BlogStatus> {
     return this.httpClient.get<BlogStatus>("http://localhost:8080/api/blog/ban/" + id)
   }
@@ -65,15 +69,32 @@ export class BlogsService {
     return this.httpClient.get<Blog[]>("http://localhost:8080/api/blog/public/most-like-per-category")
   }
 
-  createBlog(blog: BlogDTO): Observable<BlogDTO>{
-    return  this.httpClient.post<BlogDTO>("http://localhost:8080/blog",blog)
-  }
-  getPublicBlogByCategory(idCategory:number):Observable<BlogDTO[]>{
-    return this.httpClient.get<BlogDTO[]>("http://localhost:8080/api/blog/public/category/"+idCategory)
+  createBlog(blog: BlogDTO): Observable<BlogDTO> {
+    return this.httpClient.post<BlogDTO>("http://localhost:8080/api/blog/" + this.authService.currentUserValue?.id, blog)
   }
 
-  saveImage(image?: ImageURL): Observable<ImageURL>{
-    return this.httpClient.post<ImageURL>("http://localhost:8081/api/blogs/imageURL", image)
+  getPublicBlog(): Observable<BlogDTO[]> {
+    return this.httpClient.get<BlogDTO[]>("http://localhost:8080/api/blog/public/")
+  }
+
+  getPublicBlogByCategory(idCategory: number): Observable<BlogDTO[]> {
+    return this.httpClient.get<BlogDTO[]>("http://localhost:8080/api/blog/public/category/" + idCategory)
+  }
+
+  updateBlog(blogDTO: BlogDTO): Observable<BlogDTO> {
+    return this.httpClient.put<BlogDTO>("http://localhost:8080/api/blog/" + this.authService.currentUserValue?.id, blogDTO)
+  }
+
+  privateBlog(id: number): Observable<BlogStatus> {
+    return this.httpClient.get<BlogStatus>("http://localhost:8080/api/blog/privateBlog/" + id)
+  }
+
+  publicBlog(id: number): Observable<BlogStatus> {
+    return this.httpClient.get<BlogStatus>("http://localhost:8080/api/blog/publicBlog/" + id)
+  }
+
+  admitBlog(id: number): Observable<BlogStatus> {
+    return this.httpClient.get<BlogStatus>("http://localhost:8080/api/blog/admitBlog/" + id + "/" + this.authService.currentUserValue?.id)
   }
 
 }

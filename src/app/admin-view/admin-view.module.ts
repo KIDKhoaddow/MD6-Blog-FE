@@ -32,35 +32,37 @@ import { BlogBanActiveDialogComponent } from './blogs/blog-ban-active-dialog/blo
 import { BlogInfoDialogComponent } from './blogs/blog-info-dialog/blog-info-dialog.component';
 import {MatSortModule} from "@angular/material/sort";
 import { CategoryComponent } from './category/category.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 // @ts-ignore
 @NgModule({
-  imports: [
-    AdminViewRoutingModule,
-    MatMenuModule,
-    MatChipsModule,
-    MatDividerModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatGridListModule,
-    MatCardModule,
-    MatTabsModule,
-    MatDialogModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatTableModule,
-    MatButtonModule,
-    MatInputModule,
-    CommonModule,
-    MatListModule,
-    MatSidenavModule,
-    MatPaginatorModule,
-    FormsModule,
-    MatSortModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        AdminViewRoutingModule,
+        MatMenuModule,
+        MatChipsModule,
+        MatDividerModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatGridListModule,
+        MatCardModule,
+        MatTabsModule,
+        MatDialogModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatTableModule,
+        MatButtonModule,
+        MatInputModule,
+        CommonModule,
+        MatListModule,
+        MatSidenavModule,
+        MatPaginatorModule,
+        FormsModule,
+        MatSortModule,
+        ReactiveFormsModule,
+        MatTooltipModule
+    ],
 
   declarations: [
     DashboardComponent,

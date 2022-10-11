@@ -84,11 +84,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
             }
           })
         }, error => {
+          console.log(error)
           Swal.fire({
             icon: 'error',
             title: 'Login Fail',
-            text: "Check your username or password please",
-            timer: 4500
+            text: error.error.message,
+            timer: 10000
           }).finally(() => {
             window.location.reload()
           })

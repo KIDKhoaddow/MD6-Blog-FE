@@ -25,7 +25,7 @@ export class UsersComponent implements AfterViewInit, OnInit {
   dataSource: MatTableDataSource<UserInfo>;
   selection = new SelectionModel<UserInfo>(true, []);
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select', 'id', 'avatar', 'name', 'email', 'phoneNumber', 'role', 'action'];
+  displayedColumns = ['select', 'id', 'avatar', 'name', 'email', 'phoneNumber', 'status','role', 'action'];
   selected: string = "";
 
   disableButton = false
@@ -78,6 +78,7 @@ export class UsersComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
     this.userService.findAll().subscribe(value => {
+      console.log(value)
       this.dataSource.data =  value
     })
 
@@ -184,6 +185,7 @@ export class UsersComponent implements AfterViewInit, OnInit {
     this.selection.clear()
     this.displayStudent()
   }
+
 }
 
 

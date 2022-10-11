@@ -79,15 +79,24 @@
                   <mat-icon matTooltip="Edit Blog">edit</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                  <button mat-menu-item>
+                  <button mat-menu-item [matMenuTriggerFor]="Status">
                     <mat-icon>lock</mat-icon>
                     <span>Edit audience</span>
                   </button>
-                    <button mat-menu-item (click)="goToUpdateBlog(element.id)">
-                      <mat-icon>edit</mat-icon>
-                      <span>Edit blog</span>
-                    </button>
-
+                  <button mat-menu-item (click)="goToUpdateBlog(element.id)">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit blog</span>
+                  </button>
+                </mat-menu>
+                <mat-menu #Status="matMenu">
+                  <button mat-menu-item (click)="privateBlog(element.id)">
+                    <mat-icon>lock</mat-icon>
+                    <span>Private</span>
+                  </button>
+                  <button mat-menu-item  (click)="publicBlog(element.id)">
+                    <mat-icon>groups</mat-icon>
+                    <span>Public</span>
+                  </button>
                 </mat-menu>
               </div>
             </div>
@@ -300,7 +309,8 @@
                   </div>
                   <mat-form-field class="full-width" appearance="fill">
                     <mat-label>Enter your confirm password</mat-label>
-                    <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" [formControl]="confirmNewPassword"
+                    <input matInput [type]="hideConfirmPassword ? 'password' : 'text'"
+                           [formControl]="confirmNewPassword"
                            [errorStateMatcher]="matcherRePassword">
 
                     <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword"
@@ -320,7 +330,8 @@
                   </div>
                   <button class="button" mat-raised-button color="primary" style="margin-top: 10px"
                           [disabled]="matcherOldPassword.isErrorState(oldPassword,heroForm)||matcherPassword.isErrorState(newPassword,heroForm)
-                  ||matcherRePassword.isErrorState(confirmNewPassword,heroForm)" (click)="changePasswordUpload()">Change Password
+                  ||matcherRePassword.isErrorState(confirmNewPassword,heroForm)" (click)="changePasswordUpload()">Change
+                    Password
                   </button>
                 </form>
               </div>

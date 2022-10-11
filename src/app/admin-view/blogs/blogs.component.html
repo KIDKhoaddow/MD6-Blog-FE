@@ -7,6 +7,7 @@
         <mat-option value="all">All</mat-option>
         <mat-option value="banBlog">Ban Blog</mat-option>
         <mat-option value="activeBlog">Active Blog</mat-option>
+        <mat-option value="pendingBlog">Admit Blog</mat-option>
       </mat-select>
     </mat-form-field>
     <span class="spacer"></span>
@@ -63,29 +64,47 @@
         <td mat-cell *matCellDef="let row">{{row.category.name}}</td>
       </ng-container>
       <ng-container matColumnDef="createAt">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>CreateAt</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Create At</th>
         <td mat-cell *matCellDef="let row">{{row.createAt}}</td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let row" >
+          <mat-icon *ngIf="row.blogStatus.status=='PUBLIC'&& row.blogStatus.confirm" >group</mat-icon>
+          <mat-icon *ngIf="row.blogStatus.status=='PRIVATE'&& row.blogStatus.confirm">lock</mat-icon>
+          <mat-icon *ngIf="!row.blogStatus.confirm" >schedule</mat-icon>
+        </td>
       </ng-container>
       <ng-container matColumnDef="action" stickyEnd>
         <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
         <td mat-cell *matCellDef="let element" style="align-items: center">
-          <div class="action row">
-            <button mat-icon-button (click)="openBlogInfo(element)" aria-label="Example icon button with a home icon">
-              <img class="mat-icon" src="../../../assets/icon/info.png">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon matTooltip="Edit Blog" style="color: #1cbbb4" >edit</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="Status">
+              <mat-icon>flaky</mat-icon>
+              <span>Edit audience</span>
             </button>
-
-            <button *ngIf="checkStatus(element.blogStatus.verify); else statusElse "
-                    mat-icon-button aria-label="Example icon button with a edit icon"
-                    (click)="openBlogBanActive(element)">
-              <img class="mat-icon" src="../../../assets/icon/ban-user-v1.png">
+            <button mat-menu-item (click)="openBlogInfo(element)">
+              <mat-icon>find_in_page</mat-icon>
+              <span>Info blog</span>
             </button>
-            <ng-template #statusElse>
-              <button mat-icon-button aria-label="Example icon button with a edit icon"
-                      (click)="openBlogBanActive(element)">
-                <img class="mat-icon" src="../../../assets/icon/verified-user.png">
-              </button>
-            </ng-template>
-          </div>
+            <button mat-menu-item [disabled]="element.blogStatus.confirm" (click)="admitBlog(element.id)">
+              <mat-icon>verified</mat-icon>
+              <span>Admit</span>
+            </button>
+          </mat-menu>
+          <mat-menu #Status="matMenu">
+            <button mat-menu-item  [disabled]="element.blogStatus.verify"  (click)="openBlogBanActive(element)">
+              <mat-icon>lock</mat-icon>
+              <span>Ban</span>
+            </button>
+            <button mat-menu-item  [disabled]="!element.blogStatus.verify" (click)="openBlogBanActive(element)">
+              <mat-icon>groups</mat-icon>
+              <span>Active</span>
+            </button>
+          </mat-menu>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
