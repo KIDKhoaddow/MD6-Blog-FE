@@ -11,6 +11,7 @@ import {KeyValue} from "@angular/common";
 import {BlogRecentlyPerCategory} from "../model/blog/blog-recently-per-category";
 import {ImageURL} from "../model/ImageURL";
 import {AuthService} from "../authority/service/auth.service";
+import {Message} from "../model/message";
 
 @Injectable({
   providedIn: 'root'
@@ -95,6 +96,10 @@ export class BlogsService {
 
   admitBlog(id: number): Observable<BlogStatus> {
     return this.httpClient.get<BlogStatus>("http://localhost:8080/api/blog/admitBlog/" + id + "/" + this.authService.currentUserValue?.id)
+  }
+
+  deleteBlog(id:number):Observable<Message>{
+    return this.httpClient.delete<Message>("http://localhost:8080/api/blog/"+id+"/"+this.authService.currentUserValue?.id)
   }
 
 }

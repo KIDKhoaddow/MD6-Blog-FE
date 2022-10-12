@@ -105,12 +105,12 @@ export class UserProfileComponent implements OnInit {
     this.displayBlogOfUser();
   }
 
-  displayBlogOfUser(){
-      // @ts-ignore
-      this.blogService.getAllBlogOfUser(this.authService.currentUserValue?.id).subscribe(result => {
-        this.blogs = result
-      })
-    }
+  displayBlogOfUser() {
+    // @ts-ignore
+    this.blogService.getAllBlogOfUser(this.authService.currentUserValue?.id).subscribe(result => {
+      this.blogs = result
+    })
+  }
 
 
   ngAfterContentInit() {
@@ -122,7 +122,7 @@ export class UserProfileComponent implements OnInit {
     document.getElementById("inputBirthday").value = this.birthday1
   }
 
-  privateBlog(id:any){
+  privateBlog(id: any) {
     Swal.fire({
       title: 'Are you sure?',
       icon: 'warning',
@@ -132,43 +132,45 @@ export class UserProfileComponent implements OnInit {
       confirmButtonText: 'Yes, change to Private'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.blogService.privateBlog(id).subscribe(result=>{
+        this.blogService.privateBlog(id).subscribe(result => {
           console.log(result)
           Swal.fire({
             icon: 'success',
             title: 'Change complete',
             timer: 1500
-          }).finally(()=>{
+          }).finally(() => {
             this.displayBlogOfUser();
           })
         })
       }
     })
   }
-  publicBlog(id:any){
-      Swal.fire({
-        title: 'Are you sure?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, change to Public'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.blogService.publicBlog(id).subscribe(result=>{
-            console.log(result)
-            Swal.fire({
-              icon: 'success',
-              title: 'Change complete',
-              timer: 1500
-            }).finally(()=>{
-              this.displayBlogOfUser();
-            })
+
+  publicBlog(id: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, change to Public'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.blogService.publicBlog(id).subscribe(result => {
+          console.log(result)
+          Swal.fire({
+            icon: 'success',
+            title: 'Change complete',
+            timer: 1500
+          }).finally(() => {
+            this.displayBlogOfUser();
           })
-        }
-      })
+        })
+      }
+    })
 
   }
+
   getUser() {
     this.userService.findCurrentUser().subscribe(value => {
       this.formUpdateUser.patchValue(value)
@@ -269,8 +271,40 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  goToUpdateBlog(id:number|null|undefined) {
-    this.router.navigateByUrl("/home/updateBlog/"+id)
+  deleteBlog(id: any) {
+    Swal.fire({
+      title: 'Are you sure to delete this blog?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Ban Blog'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.blogService.deleteBlog(id).subscribe(value => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: value.message,
+            timer: 1500
+          })
+        }, error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Fail',
+            text: error.error.message,
+            timer: 1500
+          })
+        })
+
+        this.displayBlogOfUser()
+      }
+    })
+  }
+
+
+  goToUpdateBlog(id: number | null | undefined) {
+    this.router.navigateByUrl("/home/updateBlog/" + id)
   }
 
 

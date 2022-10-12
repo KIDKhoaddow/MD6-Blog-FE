@@ -1,4 +1,3 @@
-
 <div class="grid-container">
   <mat-toolbar class="toolbar">
     <mat-form-field appearance="legacy">
@@ -11,11 +10,13 @@
       </mat-select>
     </mat-form-field>
     <span class="spacer"></span>
-    <button mat-flat-button color="warn" class="button-banGroup" [disabled]="selection.isEmpty()" (click)="banGroupBlog()">
-      <img src="./assets/icon/cancel.png" >
+    <button mat-flat-button color="warn" class="button-banGroup" [disabled]="selection.isEmpty()"
+            (click)="banGroupBlog()">
+      <img src="./assets/icon/cancel.png">
       <span class="spacer"></span> Ban Group
     </button>
-    <button mat-flat-button color="primary" class="button-banGroup"  [disabled]="selection.isEmpty()" (click)="activeGroupBlog()">
+    <button mat-flat-button color="primary" class="button-banGroup" [disabled]="selection.isEmpty()"
+            (click)="activeGroupBlog()">
       <img src="./assets/icon/add-contact.png">
       <span class="spacer"></span> Active Group
     </button>
@@ -69,17 +70,19 @@
       </ng-container>
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-        <td mat-cell *matCellDef="let row" >
-          <mat-icon *ngIf="row.blogStatus.status=='PUBLIC'&& row.blogStatus.confirm" >group</mat-icon>
-          <mat-icon *ngIf="row.blogStatus.status=='PRIVATE'&& row.blogStatus.confirm">lock</mat-icon>
-          <mat-icon *ngIf="!row.blogStatus.confirm" >schedule</mat-icon>
+        <td mat-cell *matCellDef="let row">
+          <mat-icon *ngIf="row.blogStatus.status=='PUBLIC'&& row.blogStatus.confirm" matTooltip="Public">group
+          </mat-icon>
+          <mat-icon *ngIf="row.blogStatus.status=='PRIVATE'&& row.blogStatus.confirm" matTooltip="Private">lock
+          </mat-icon>
+          <mat-icon *ngIf="!row.blogStatus.confirm">schedule</mat-icon>
         </td>
       </ng-container>
       <ng-container matColumnDef="action" stickyEnd>
         <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
         <td mat-cell *matCellDef="let element" style="align-items: center">
           <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-            <mat-icon matTooltip="Edit Blog" style="color: #1cbbb4" >edit</mat-icon>
+            <mat-icon matTooltip="Edit Blog" style="color: #1cbbb4">edit</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item [matMenuTriggerFor]="Status">
@@ -96,11 +99,11 @@
             </button>
           </mat-menu>
           <mat-menu #Status="matMenu">
-            <button mat-menu-item  [disabled]="element.blogStatus.verify"  (click)="openBlogBanActive(element)">
+            <button mat-menu-item [disabled]="!element.blogStatus.verify" (click)="openBanBlog(element)">
               <mat-icon>lock</mat-icon>
               <span>Ban</span>
             </button>
-            <button mat-menu-item  [disabled]="!element.blogStatus.verify" (click)="openBlogBanActive(element)">
+            <button mat-menu-item [disabled]="element.blogStatus.verify" (click)="openActiveBlog(element)">
               <mat-icon>groups</mat-icon>
               <span>Active</span>
             </button>

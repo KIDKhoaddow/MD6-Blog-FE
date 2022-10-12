@@ -11,6 +11,7 @@ import {Blog} from "../../model/blog/blog";
 import Swal from "sweetalert2";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TagDTO} from "../../model/tag/tagDTO";
+import {AuthService} from "../../authority/service/auth.service";
 
 
 @Component({
@@ -62,7 +63,7 @@ export class FormCreateComponent implements OnInit {
   blogId = -1
   isUpdate = false;
 
-  constructor(private blogsService: BlogsService,
+  constructor(private blogsService: BlogsService,private authService:AuthService,
               private formGroup: FormBuilder,
               private storage: AngularFireStorage,
               private categoryService: CategoryService,

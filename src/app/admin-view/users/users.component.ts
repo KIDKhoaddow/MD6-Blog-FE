@@ -8,7 +8,6 @@ import {SelectionModel} from "@angular/cdk/collections";
 
 import {MatDialog} from "@angular/material/dialog";
 import {UserInfoDialogComponent} from "./user-info-dialog/user-info-dialog.component";
-import {UserBanActiveDialogComponent} from "./user-ban-active-dialog/user-ban-active-dialog.component";
 import {MatSelectChange} from "@angular/material/select";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import Swal from "sweetalert2";
@@ -25,7 +24,7 @@ export class UsersComponent implements AfterViewInit, OnInit {
   dataSource: MatTableDataSource<UserInfo>;
   selection = new SelectionModel<UserInfo>(true, []);
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select', 'id', 'avatar', 'name', 'email', 'phoneNumber', 'status','role', 'action'];
+  displayedColumns = ['select', 'id', 'avatar', 'name', 'email', 'phoneNumber', 'status', 'role', 'action'];
   selected: string = "";
 
   disableButton = false
@@ -79,9 +78,8 @@ export class UsersComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     this.userService.findAll().subscribe(value => {
       console.log(value)
-      this.dataSource.data =  value
+      this.dataSource.data = value
     })
-
     this.dataSource.connect()
 
   }
@@ -111,12 +109,11 @@ export class UsersComponent implements AfterViewInit, OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${this.dataSource.data.indexOf(row)}`;
   }
 
-  displayStudent() {
+  displayUser() {
     this.userService.findAll().subscribe(value => {
       this.dataSource.data = value
 
     })
-    console.log(this.dataSource.data)
   }
 
   checkRole(role: string): boolean {
@@ -132,58 +129,106 @@ export class UsersComponent implements AfterViewInit, OnInit {
     const dialogRef = this.dialog.open(UserInfoDialogComponent, {data: userInfo});
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-      this.displayStudent()
+      this.displayUser()
     });
   }
 
-  openUserBanActive(userInfo: UserInfo) {
-    const dialogRef = this.dialog.open(UserBanActiveDialogComponent, {data: userInfo});
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-      this.selection.clear()
-      this.displayStudent()
-      if(result=='ok'){
-        Swal.fire({
-          icon: 'success',
-          title: 'Success',
-          text:"Action complete",
-          timer:1500
+  openBanUser(userInfo: UserInfo) {
+    Swal.fire({
+      title: 'Are you sure to ban this user?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Ban Blog'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.banUser(userInfo.id).subscribe(value => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: "Action complete",
+            timer: 1500
+          })
+        }, error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Fail',
+            text: error.error.message(),
+            timer: 1500
+          })
         })
+        this.selection.clear()
+        this.displayUser()
       }
-    });
+    })
   }
 
-  banGroupUser(){
-    let userInfo = this.selection.selected
-    for (const element of userInfo) {
-      this.userService.banUser(element.id).subscribe(compileResults=>{
-        console.log(compileResults)
-      })
-    }
+
+  openActiveUser(userInfo: UserInfo) {
     Swal.fire({
-      icon: 'success',
-      title: 'Success',
-      text:"Ban User Group Complete",
-      timer:1500
+      title: 'Are you sure to active this user?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Ban Blog'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.activeUser(userInfo.id).subscribe(value => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: "Action complete",
+            timer: 1500
+          })
+        }, error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Fail',
+            text: error.error.message(),
+            timer: 1500
+          })
+        })
+        this.selection.clear()
+        this.displayUser()
+      }
     })
-    this.selection.clear()
-    this.displayStudent()
   }
-  activeGroupUser(){
+
+
+  banGroupUser() {
     let userInfo = this.selection.selected
     for (const element of userInfo) {
-      this.userService.activeUser(element.id).subscribe(compileResults=>{
+      this.userService.banUser(element.id).subscribe(compileResults => {
         console.log(compileResults)
       })
     }
     Swal.fire({
       icon: 'success',
       title: 'Success',
-      text:"Active User Group Complete",
-      timer:1500
+      text: "Ban User Group Complete",
+      timer: 1500
     })
     this.selection.clear()
-    this.displayStudent()
+    this.displayUser()
+  }
+
+  activeGroupUser() {
+    let userInfo = this.selection.selected
+    for (const element of userInfo) {
+      this.userService.activeUser(element.id).subscribe(compileResults => {
+        console.log(compileResults)
+      })
+    }
+    Swal.fire({
+      icon: 'success',
+      title: 'Success',
+      text: "Active User Group Complete",
+      timer: 1500
+    })
+    this.selection.clear()
+    this.displayUser()
   }
 
 }

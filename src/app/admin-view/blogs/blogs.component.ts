@@ -6,9 +6,6 @@ import {SelectionModel} from "@angular/cdk/collections";
 import {MatDialog} from "@angular/material/dialog";
 import {Blog} from "../../model/blog/blog";
 import {BlogsService} from "../../service/blogs.service";
-import {UserInfoDialogComponent} from "../users/user-info-dialog/user-info-dialog.component";
-import {BlogInfoDialogComponent} from "./blog-info-dialog/blog-info-dialog.component";
-import {BlogBanActiveDialogComponent} from "./blog-ban-active-dialog/blog-ban-active-dialog.component";
 import Swal from "sweetalert2";
 
 @Component({
@@ -70,7 +67,7 @@ export class BlogsComponent implements OnInit {
         value = value.filter(function (blog) {
           return blog.blogStatus.verify
         })
-
+        this.dataSource.data = value;
       })
     } else if (this.selected === "all") {
       this.blogService.findAll().subscribe(value => {
@@ -123,6 +120,15 @@ export class BlogsComponent implements OnInit {
     for (const element of blogs) {
       this.blogService.banBlog(element.id).subscribe(result => {
         console.log(result)
+      }, error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Fail',
+          text: error.error.message(),
+          timer: 1500
+        }).finally(() => {
+          return;
+        })
       })
     }
     Swal.fire({
@@ -140,6 +146,15 @@ export class BlogsComponent implements OnInit {
     for (const element of blogs) {
       this.blogService.activeBlog(element.id).subscribe(result => {
         console.log(result)
+      }, error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Fail',
+          text: error.error.message(),
+          timer: 1500
+        }).finally(() => {
+          return;
+        })
       })
     }
     Swal.fire({
@@ -157,31 +172,73 @@ export class BlogsComponent implements OnInit {
     // dialogRef.afterClosed().subscribe(result => {
     //   console.log(`Dialog result: ${result}`);
     // });
-    window.open("http://localhost:4200/home/blog/"+blog.id)
+    window.open("http://localhost:4200/home/blog/" + blog.id)
 
   }
 
-  openBlogBanActive(blog: Blog) {
-    const dialogRef = this.dialog.open(BlogBanActiveDialogComponent, {data: blog});
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-      if (result == 'ok') {
-        Swal.fire({
-          icon: 'success',
-          title: 'Success',
-          text: "Action complete",
-          timer: 1500
+  openBanBlog(blog: Blog) {
+
+    Swal.fire({
+      title: 'Are you sure to ban this blog?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Ban Blog'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.blogService.banBlog(blog.id).subscribe(value => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: "Action complete",
+            timer: 1500
+          })
+        }, error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Fail',
+            text: error.error.message(),
+            timer: 1500
+          })
         })
+        this.selection.clear()
+        this.displayBlog()
       }
-      this.selection.clear()
-      this.displayBlog()
     })
   }
 
-
-  checkStatus(verify: boolean): boolean {
-    return verify;
+  openActiveBlog(blog: Blog) {
+    Swal.fire({
+      title: 'Are you sure to active this blog?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Ban Blog'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.blogService.activeBlog(blog.id).subscribe(value => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: "Action complete",
+            timer: 1500
+          })
+        }, error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Fail',
+            text: error.error.message(),
+            timer: 1500
+          })
+        })
+        this.selection.clear()
+        this.displayBlog()
+      }
+    })
   }
+
 
   admitBlog(id: any) {
     Swal.fire({

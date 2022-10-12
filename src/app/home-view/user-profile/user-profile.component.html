@@ -87,6 +87,10 @@
                     <mat-icon>edit</mat-icon>
                     <span>Edit blog</span>
                   </button>
+                  <button mat-menu-item (click)="deleteBlog(element.id)">
+                    <mat-icon>delete_forever</mat-icon>
+                    <span>Delete blog</span>
+                  </button>
                 </mat-menu>
                 <mat-menu #Status="matMenu">
                   <button mat-menu-item (click)="privateBlog(element.id)">

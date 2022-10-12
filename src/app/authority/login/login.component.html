@@ -3,7 +3,7 @@
     <mat-card class="card">
         <div class=" row login-logo ">
             <img src="./assets/icon/Team2.png" alt="admin">
-          <mat-card-title class="text-center">LoginPage</mat-card-title>
+          <mat-card-title class="text-center">Login Page</mat-card-title>
         </div>
       <div class="login-form">
         <form class="form row justify-content-center" [formGroup]="signInGroup" #formLogin="ngForm">
@@ -28,7 +28,6 @@
                     [attr.aria-pressed]="hide" >
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-
             <mat-error *ngIf="password.hasError('required')">Password is <strong> required </strong></mat-error>
             <mat-error *ngIf="password.hasError('minlength')">Password must have at least {{minLength}} characters</mat-error>
           </mat-form-field>

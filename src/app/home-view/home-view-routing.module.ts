@@ -60,6 +60,13 @@ const homeRoutes: Routes = [
     children:[
       {path:'error',component:ErrorPageComponent}
     ]
+  },
+  {
+    path:"**",
+    component:LayoutComponent,
+    children:[
+      {path:'**',component:ErrorPageComponent}
+    ]
   }
 ]
 

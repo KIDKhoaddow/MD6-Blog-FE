@@ -7,14 +7,13 @@
           <mat-form-field>
             <mat-label>Make a choice</mat-label>
             <mat-select [(value)]="selected" (valueChange)="applySelect()">
-              <mat-option value="all">All</mat-option>
-              <mat-option value="recently">Recently</mat-option>
-              <mat-option value="activeUser">Active User</mat-option>
+              <mat-label>Category</mat-label>
+              <mat-option value="All">All</mat-option>
+              <mat-option *ngFor="let element of categories " value="{{element.id}}"  >{{element.name}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <div class="tt-search">
-
           <!-- toggle -->
           <button class="tt-search-toggle" data-toggle="modal" data-target="#modalAdvancedSearch">
             <svg class="tt-icon">
@@ -24,7 +23,7 @@
           <!-- /toggle -->
           <form class="search-wrapper">
             <div class="search-form">
-              <input type="text" class="tt-search__input" placeholder="Search">
+              <input type="text" class="tt-search__input" placeholder="Search" >
               <button class="tt-search__btn" type="submit">
                 <svg class="tt-icon">
                   <use xlink:href="#icon-search"></use>
@@ -40,9 +39,7 @@
         </div>
       </div>
     </div>
-
     <!-- tt-search -->
-
     <div class="tt-categories-list" style="margin-top: 30px ">
       <div class="row">
         <div class="col-12 col-md-3" *ngFor="let blogs of blogPublic">
@@ -75,12 +72,18 @@
               <a routerLink="/home/blog/{{blogs.id}}">
                 <h3 class="post-headline">{{blogs.title}}</h3>
               </a>
-              <p>{{blogs.describes}}</p>
             </div>
           </div>
         </div>
-
-
+        <div class="col-12">
+          <div class="tt-row-btn">
+            <button type="button" class="btn-icon js-topiclist-showmore" (click)="loadMoreBlog()">
+              <svg class="tt-icon">
+                <use xlink:href="#icon-load_lore_icon"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

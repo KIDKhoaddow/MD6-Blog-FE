@@ -5,7 +5,6 @@ import {NavbarComponent} from "./container/navbar/navbar.component";
 import {UsersComponent} from "./users/users.component";
 import {HeaderComponent} from "./container/header/header.component";
 import {UserInfoDialogComponent} from "./users/user-info-dialog/user-info-dialog.component";
-import {UserBanActiveDialogComponent} from "./users/user-ban-active-dialog/user-ban-active-dialog.component";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatDividerModule} from "@angular/material/divider";
@@ -28,8 +27,6 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BlogsComponent } from './blogs/blogs.component';
-import { BlogBanActiveDialogComponent } from './blogs/blog-ban-active-dialog/blog-ban-active-dialog.component';
-import { BlogInfoDialogComponent } from './blogs/blog-info-dialog/blog-info-dialog.component';
 import {MatSortModule} from "@angular/material/sort";
 import { CategoryComponent } from './category/category.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
@@ -70,10 +67,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     UsersComponent,
     HeaderComponent,
     UserInfoDialogComponent,
-    UserBanActiveDialogComponent,
     BlogsComponent,
-    BlogBanActiveDialogComponent,
-    BlogInfoDialogComponent,
     CategoryComponent
   ]
 })
