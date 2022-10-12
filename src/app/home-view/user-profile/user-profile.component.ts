@@ -296,7 +296,6 @@ export class UserProfileComponent implements OnInit {
             timer: 1500
           })
         })
-
         this.displayBlogOfUser()
       }
     })

@@ -1,5 +1,5 @@
-<main id="tt-pageContent" >
-  <div class="container" >
+<main id="tt-pageContent">
+  <div class="container">
     <div class="row justify-content-center">
       <div class="col-6 col-lg-8">
         <div class="row no-gutters">
@@ -8,8 +8,8 @@
           <div class="col-10 col-sm-11">
             <div class="single-post">
               <!-- Post Thumb -->
-              <div class="post-thumb justify-content-center" style="display: flex">
-                <img src="{{blog.picture}}" alt="" style="width: 100%;height: 100%">
+              <div class="post-thumb justify-content-center" style="display: flex;justify-content: center">
+                <img src="{{blog.picture}}" alt="" style="width: 80%;height: 80%">
               </div>
               <!-- Post Content -->
               <div class="post-content">
@@ -17,29 +17,83 @@
                   <div class="post-author-date-area d-flex">
                     <!-- Post Author -->
                     <div class="post-author">
-                      <a href="#">By {{blog.username}}</a>
+                      <a routerLink="/home/blog/{{blog.id}}">By {{blog.username}}</a>
                     </div>
                     <!-- Post Date -->
                     <div class="post-date">
-                      <a href="#">{{pipe.transform(blog.createAt, "MMM d, y")}}</a>
+                      <a>{{pipe.transform(blog.createAt, "MMM d, y")}}</a>
                     </div>
                   </div>
                   <!-- Post Comment & Share Area -->
                   <div class="post-comment-share-area d-flex">
-                    <app-icon icon="favorite" iconReplace="favorite_border" value="{{blog.countLike}}" idBlog="{{blogId}}"></app-icon>
+                    <app-icon icon="favorite" iconReplace="favorite_border" value="{{blog.countLike}}"
+                              idBlog="{{blogId}}"></app-icon>
                     <app-icon iconReplace="comment" icon="comment" value="{{blog.countComment}}"></app-icon>
-                    <!-- Post Comments -->
+                    <!-- Post CommentDTO -->
                   </div>
                 </div>
-                <a href="#">
+                <a routerLink="/home/blog/{{blog.id}}">
                   <h2 class="post-headline">{{blog.title}}</h2>
                 </a>
-                <div id="content" >
+                <div id="content">
                 </div>
               </div>
             </div>
             <!-- Tags Area -->
             <div class="tags-area">
+            </div>
+            <div class="tt-item" *ngFor="let element of commentShow"
+                 style="background: white;border-radius: 15px;
+                 margin-top: 15px;box-shadow: 2px 4px 3px rgba(0,0,0,0.3)">
+              <div class="tt-single-topic">
+                <div class="tt-item-header pt-noborder">
+                  <div class="tt-item-info info-top">
+                    <div class="tt-avatar-icon">
+                      <img class="avatarTable" src="{{element.avatar}}">
+                    </div>
+                    <div class="tt-avatar-title">
+                      <a >{{element.username}}</a>
+                    </div>
+                    <a class="tt-info-time">
+                      <i class="tt-icon">
+                        <svg>
+                          <use xlink:href="#icon-time"></use>
+                        </svg>
+                      </i>{{pipe.transform(element.createAt, "MMM d, y")}}
+                    </a>
+                  </div>
+                </div>
+                <div class="tt-item-description">
+                  {{element.content}}
+                </div>
+              </div>
+            </div>
+            <div style="display: flex;justify-content: center;margin-top: 32px" >
+              <button mat-flat-button color="primary" (click)="loadMoreComment()">Load more
+              </button>
+            </div>
+            <div class="tt-wrapper-inner" *ngIf="hide" style="margin-top: 32px">
+              <div class="pt-editor form-default">
+                <h6 class="pt-title">BLog Your Reply</h6>
+                <div class="form-group">
+                  <textarea name="message" [formControl]="comment"  class="form-control" rows="5" placeholder="Lets get started"></textarea>
+                </div>
+                <div class="pt-row">
+                  <div class="col-auto">
+                    <div class="checkbox-group">
+                      <input type="checkbox" id="checkBox21" name="checkbox" checked="">
+                      <label for="checkBox21">
+                        <span class="check"></span>
+                        <span class="box"></span>
+                        <span class="tt-text">Subscribe to this topic.</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <a class="btn btn-secondary btn-width-lg" (click)="createComment()">Reply</a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

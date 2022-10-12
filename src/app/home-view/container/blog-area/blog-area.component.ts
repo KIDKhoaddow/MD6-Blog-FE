@@ -13,16 +13,27 @@ import {BlogRecentlyPerCategory} from "../../../model/blog/blog-recently-per-cat
   styleUrls: ['./blog-area.component.css']
 })
 export class BlogAreaComponent implements OnInit {
-  oneBlog: BlogDTO = {}
+  oneBlog: BlogDTO[] = []
   blogs: Blog[] = []
   blogsRecently: BlogDTO[] = []
-  blogsPerCategory:BlogRecentlyPerCategory[]=[]
+  oneBlogId = -1;
+  blogsPerCategory: BlogRecentlyPerCategory[] = []
   pipe = new DatePipe('en-US');
 
   constructor(private blogService: BlogsService) {
+
+
+  }
+
+  ngOnInit(): void {
     this.blogService.getTopBlogMostLike().subscribe(result => {
       if (result != null) {
+        console.log(result)
         this.oneBlog = result
+        if (result[0].id != null) {
+          this.oneBlogId = result[0].id
+          console.log(this.oneBlogId)
+        }
       }
     })
     this.blogService.getTopTenBlogMostLike().subscribe(result => {
@@ -35,15 +46,11 @@ export class BlogAreaComponent implements OnInit {
     })
     this.blogService.getThreeNewBlogsPerCategory().subscribe(result => {
       console.log(result)
-      this.blogsPerCategory=result
+      this.blogsPerCategory = result
     })
-
-
   }
 
-  ngOnInit(): void {
-
+  ngAfterViewInit() {
 
   }
-
 }

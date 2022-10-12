@@ -274,3 +274,7 @@ a, a:hover, a:focus, a:active {
   z-index: 9;
   cursor: pointer;
 }
+.avatarTable{
+  height: 30px;
+  width: 30px;
+}

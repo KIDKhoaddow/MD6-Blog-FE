@@ -22,8 +22,8 @@
             <!-- Post Comment & Share Area -->
             <div class="post-comment-share-area d-flex">
               <!-- Post Favourite -->
-              <app-icon icon="favorite" iconReplace="favorite_border" value="{{blogs.countLike}}"></app-icon>
-              <app-icon iconReplace="comment" icon="comment" value="{{blogs.countComment}}"></app-icon>
+              <app-icon icon="favorite" iconReplace="favorite_border" value="{{blogs.countLike}}" idBlog="{{blogs.id}}"></app-icon>
+              <app-icon iconReplace="comment" icon="comment" value="{{blogs.countComment}}" idBlog="{{blogs.id}}"></app-icon>
             </div>
           </div>
           <a routerLink="/home/blog/{{blogs.id}}">
