@@ -1,3 +1,7 @@
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1"
+/>
 <main id="tt-pageContent">
   <div class="container">
     <div class="tt-wrapper-inner">
@@ -21,6 +25,7 @@
           </div>
           <div class="form-group">
             <h5>Blog Description</h5>
+
             <div class="tt-value-wrapper">
               <textarea name="name" type="text" matInput class="form-control"
                      placeholder="Subject of your description" [formControl]="description"
@@ -30,6 +35,7 @@
               <mat-error *ngIf="description.hasError('minlength')">Description min length is{{minDescription}}</mat-error>
               <span class="tt-value-input"></span>
             </div>
+
           </div>
         </div>
 
