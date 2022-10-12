@@ -278,7 +278,7 @@ export class UserProfileComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, Ban Blog'
+      confirmButtonText: 'Yes, Delete Blog'
     }).then((result) => {
       if (result.isConfirmed) {
         this.blogService.deleteBlog(id).subscribe(value => {
@@ -287,6 +287,8 @@ export class UserProfileComponent implements OnInit {
             title: 'Success',
             text: value.message,
             timer: 1500
+          }).finally(()=>{
+            this.displayBlogOfUser()
           })
         }, error => {
           Swal.fire({
@@ -294,9 +296,10 @@ export class UserProfileComponent implements OnInit {
             title: 'Fail',
             text: error.error.message,
             timer: 1500
+          }).finally(()=>{
+            this.displayBlogOfUser()
           })
         })
-        this.displayBlogOfUser()
       }
     })
   }
