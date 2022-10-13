@@ -25,8 +25,8 @@ export class BlogsService {
     return this.httpClient.get<BlogDTO>("http://localhost:8080/api/blog/" + idBlog)
   }
 
-  getTopBlogMostLike(): Observable<BlogDTO> {
-    return this.httpClient.get<BlogDTO>("http://localhost:8080/api/blog/public/most-like")
+  getTopBlogMostLike(): Observable<BlogDTO[]> {
+    return this.httpClient.get<BlogDTO[]>("http://localhost:8080/api/blog/public/most-like")
   }
 
   findAll(): Observable<Blog[]> {

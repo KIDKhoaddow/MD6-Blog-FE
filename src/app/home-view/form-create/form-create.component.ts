@@ -63,7 +63,7 @@ export class FormCreateComponent implements OnInit {
   blogId = -1
   isUpdate = false;
 
-  constructor(private blogsService: BlogsService,private authService:AuthService,
+  constructor(private blogsService: BlogsService, private authService: AuthService,
               private formGroup: FormBuilder,
               private storage: AngularFireStorage,
               private categoryService: CategoryService,
@@ -93,12 +93,13 @@ export class FormCreateComponent implements OnInit {
   }
 
   updateBlog() {
+    let newString = this.formCreateBlog.value.content?.replace(/'/gi, "`")
     let blog: BlogDTO = {
       id: this.formCreateBlog.value.id,
       categoryId: Number(this.formCreateBlog.value.categoryId),
       title: this.formCreateBlog.value.title,
       describes: this.formCreateBlog.value.describes,
-      content: this.formCreateBlog.value.content,
+      content: newString,
       picture: this.pictureLink,
       tag: [{
         id: 1,

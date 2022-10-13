@@ -6,7 +6,7 @@
           <div class="single-post wow fadeInUp" data-wow-delay=".2s">
             <!-- Post Thumb -->
             <div class="post-thumb">
-              <img src="{{oneBlog.picture}}" alt="">
+              <img src="{{oneBlog[0].picture}}" alt="">
             </div>
             <!-- Post Content -->
             <div class="post-content">
@@ -14,23 +14,23 @@
                 <div class="post-author-date-area d-flex">
                   <!-- Post Author -->
                   <div class="post-author">
-                    <a href="#">{{oneBlog.username}}</a>
+                    <a href="#">{{oneBlog[0].username}}</a>
                   </div>
                   <!-- Post Date -->
                   <div class="post-date">
-                    <a href="#">{{this.pipe.transform(oneBlog.createAt, "MMM d, y")}}</a>
+                    <a href="#">{{this.pipe.transform(oneBlog[0].createAt, "MMM d, y")}}</a>
                   </div>
                 </div>
                 <!-- Post Comment & Share Area -->
                 <div class="post-comment-share-area d-flex">
-                  <app-icon icon="favorite" iconReplace="favorite_border" value="{{oneBlog.countLike}}"></app-icon>
-                  <app-icon iconReplace="comment" icon="comment" value="{{oneBlog.countComment}}"></app-icon>
+                  <app-icon icon="favorite" iconReplace="favorite_border" value="{{oneBlog[0].countLike}}" idBlog="{{oneBlogId}}"></app-icon>
+                  <app-icon iconReplace="comment" icon="comment" value="{{oneBlog[0].countComment}}" idBlog="{{oneBlogId}}"></app-icon>
                 </div>
               </div>
-              <a routerLink="/home/blog/{{oneBlog.id}}">
-                <h2 class="post-headline">{{oneBlog.title}}</h2>
+              <a routerLink="/home/blog/{{oneBlog[0].id}}">
+                <h2 class="post-headline">{{oneBlog[0].title}}</h2>
               </a>
-              <p>{{oneBlog.describes}}</p>
+              <p>{{oneBlog[0].describes}}</p>
               <a href="#" class="read-more">Continue Reading..</a>
             </div>
           </div>
@@ -59,7 +59,7 @@
                 <!-- Post Comment & Share Area -->
                 <div class="post-comment-share-area d-flex">
                   <app-icon icon="favorite" iconReplace="favorite_border" value="{{blogRecently.countLike}}" idBlog="{{blogRecently.id}}"></app-icon>
-                  <app-icon iconReplace="comment" icon="comment" value="{{blogRecently.countComment}}"></app-icon>
+                  <app-icon iconReplace="comment" icon="comment" value="{{blogRecently.countComment}}" idBlog="{{blogRecently.id}}}"></app-icon>
                 </div>
               </div>
               <a routerLink="/home/blog/{{blogRecently.id}}">
@@ -95,7 +95,7 @@
                   <!-- Post Comment & Share Area -->
                   <div class="post-comment-share-area d-flex">
                     <app-icon icon="favorite" iconReplace="favorite_border" value="{{blogs.countLike}}" idBlog="{{blogs.id}}"></app-icon>
-                    <app-icon iconReplace="comment" icon="comment" value="{{blogs.countComment}}" ></app-icon>
+                    <app-icon iconReplace="comment" icon="comment" value="{{blogs.countComment}}" idBlog="{{blogs.id}}"></app-icon>
                   </div>
                 </div>
                 <a routerLink="/home/blog/{{blogs.id}}">

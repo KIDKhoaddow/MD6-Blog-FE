@@ -35,3 +35,8 @@ a{
   color: #fff;
   text-shadow: 1px 1px 3px rgb(0 0 0 / 20%);
 }
+.content{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
