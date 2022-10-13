@@ -51,7 +51,10 @@ import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
+
+const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
 @NgModule({
   declarations: [
@@ -107,6 +110,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     providePerformance(() => getPerformance()),
     provideRemoteConfig(() => getRemoteConfig()),
     provideStorage(() => getStorage()),
+    BrowserModule, SocketIoModule.forRoot(config)
   ],
   providers: [httpInterceptorProviders, ScreenTrackingService,UserTrackingService, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
   ],

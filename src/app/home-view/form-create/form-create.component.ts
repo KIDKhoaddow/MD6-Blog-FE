@@ -96,7 +96,7 @@ export class FormCreateComponent implements OnInit {
     let newString = this.formCreateBlog.value.content?.replace(/'/gi, "`")
     let blog: BlogDTO = {
       id: this.formCreateBlog.value.id,
-      categoryId: Number(this.categoryId),
+      categoryId: Number(this.formCreateBlog.value.categoryId),
       title: this.formCreateBlog.value.title,
       describes: this.formCreateBlog.value.describes,
       content: newString,
@@ -106,6 +106,7 @@ export class FormCreateComponent implements OnInit {
         name: this.formCreateBlog.value.tags
       }]
     }
+    console.log(blog)
     this.blogsService.updateBlog(blog).subscribe(result => {
       Swal.fire({
         icon: 'success',
@@ -113,6 +114,12 @@ export class FormCreateComponent implements OnInit {
         timer: 2500
       }).finally(() => {
         this.router.navigateByUrl("/home/userprofile")
+      })
+    }, error => {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Update Blog fail',
+        timer: 2500
       })
     })
   }
@@ -145,7 +152,12 @@ export class FormCreateComponent implements OnInit {
       } else {
         console.log("out")
       }
-
+    }, error => {
+      Swal.fire({
+        icon: 'warning',
+        title: 'create Blog fail',
+        timer: 2500
+      })
     })
   }
 
