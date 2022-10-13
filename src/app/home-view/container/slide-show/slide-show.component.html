@@ -8,8 +8,8 @@
               <img src="{{slide.picture}}" alt="" style="width: 400px;height: 400px">
             </div>
             <div class="catagory-title">
-              <a routerLink="/home/blog/{{slide.id}}" style="text-shadow: 2px 4px 3px rgba(0,0,0,0.3);">
-                <h3 class="content" style="width: 200px">{{slide.title}}</h3>
+              <a routerLink="/home/blog/{{slide.id}}" style="text-shadow: 2px 4px 3px rgba(0,0,0,0.3);" matTooltip="{{slide.title}}">
+                <h3 class="content" style="width: 200px" >{{slide.title}}</h3>
               </a>
               <h6>{{this.pipe.transform(slide.createAt,"MMM d, y")}}</h6>
             </div>
@@ -24,7 +24,7 @@
                    style="width: 250px;height: 400px;object-fit: cover;object-position: 50% 50%">
             </div>
             <div class="catagory-title">
-              <a routerLink="/home/blog/{{slide.id}}" style="text-shadow: 2px 4px 3px rgba(0,0,0,0.3);">
+              <a routerLink="/home/blog/{{slide.id}}" style="text-shadow: 2px 4px 3px rgba(0,0,0,0.3);" matTooltip="{{slide.title}}">
                 <h3 class="content" style="width: 200px">{{slide.title}}</h3>
               </a>
               <h6>{{this.pipe.transform(slide.createAt,"MMM d, y")}}</h6>
