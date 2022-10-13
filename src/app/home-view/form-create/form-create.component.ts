@@ -95,7 +95,7 @@ export class FormCreateComponent implements OnInit {
   updateBlog() {
     let blog: BlogDTO = {
       id: this.formCreateBlog.value.id,
-      categoryId: Number(this.categoryId),
+      categoryId: Number(this.formCreateBlog.value.categoryId),
       title: this.formCreateBlog.value.title,
       describes: this.formCreateBlog.value.describes,
       content: this.formCreateBlog.value.content,
@@ -117,13 +117,13 @@ export class FormCreateComponent implements OnInit {
   }
 
   createBlog() {
-
+    let newString = this.formCreateBlog.value.content?.replace(/'/gi, "`")
     // @ts-ignore
     let blog: BlogDTO = {
       categoryId: Number(this.formCreateBlog.value.categoryId),
       title: this.formCreateBlog.value.title,
       describes: this.formCreateBlog.value.describes,
-      content: this.formCreateBlog.value.content,
+      content: newString,
       picture: this.pictureLink,
       tag: [{
         id: 1,

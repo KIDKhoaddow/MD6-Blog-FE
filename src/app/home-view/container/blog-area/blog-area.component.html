@@ -46,9 +46,9 @@
             <!-- Post Content -->
             <div class="post-content">
               <div class="post-meta d-flex">
-                <div class="post-author-date-area d-flex">
+                <div class="post-author-date-area d-flex" style="flex-direction: column">
                   <!-- Post Author -->
-                  <div class="post-author">
+                  <div class="post-author" >
                     <a href="#">{{blogRecently.username}}</a>
                   </div>
                   <!-- Post Date -->
@@ -65,7 +65,6 @@
               <a routerLink="/home/blog/{{blogRecently.id}}">
                 <h2 class="post-headline">{{blogRecently.title}}</h2>
               </a>
-              <p>{{blogRecently.describes}}</p>
             </div>
           </div>
         </div>
@@ -75,7 +74,7 @@
             <h3>{{element.category}}</h3>
           </div>
           <div class="col-12 col-md-4" *ngFor="let blogs of element.blogs">
-            <div class="single-post wow fadeInUp" data-wow-delay=".2s">
+            <div class="single-post wow fadeInUp" data-wow-delay=".2s" >
               <!-- Post Thumb -->
               <div class="post-thumb">
                 <img src="{{blogs.picture}}" alt="" style="height: 240px ;border-radius: 10px;width: 240px">
@@ -83,7 +82,7 @@
               <!-- Post Content -->
               <div class="post-content">
                 <div class="post-meta d-flex">
-                  <div class="post-author-date-area d-flex">
+                  <div class="post-author-date-area d-flex" style="flex-direction: column">
                     <!-- Post Author -->
                     <div class="post-author">
                       <a href="#">{{blogs.username}}</a>
@@ -102,7 +101,6 @@
                 <a routerLink="/home/blog/{{blogs.id}}">
                   <h3 class="post-headline">{{blogs.title}}</h3>
                 </a>
-                <p>{{blogs.describes}}</p>
               </div>
             </div>
           </div>
