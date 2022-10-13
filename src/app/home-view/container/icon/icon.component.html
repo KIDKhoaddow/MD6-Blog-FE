@@ -2,11 +2,10 @@
   <a *ngIf="icon=='favorite';else comment">
     <mat-icon aria-hidden="true" *ngIf="liked" matTooltip="{{tooltip}}" (click)="unLikeBlog()">{{icon}}</mat-icon>
     <mat-icon aria-hidden="true" *ngIf="!liked" matTooltip="{{tooltip}}" (click)="likeBlog()">{{iconReplace}}</mat-icon>
-    {{value}}
-  </a>
+    {{value}}</a>
   <ng-template #comment>
     <a routerLink="/home/blog/{{idBlog}}">
-      <mat-icon aria-hidden="true" matTooltip="{{tooltip}}">{{icon}}</mat-icon>
+      <mat-icon aria-hidden="true" >{{icon}}</mat-icon>
     {{value}}</a>
   </ng-template>
 </div>

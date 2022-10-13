@@ -20,7 +20,7 @@ export class BlogsComponent implements OnInit {
   dataSource: MatTableDataSource<Blog>;
   selection = new SelectionModel<Blog>(true, []);
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select', 'id', 'author', 'title', 'category', 'createAt', 'status', 'action'];
+  displayedColumns = ['select', 'id', 'author', 'title', 'category', 'like', 'comment', 'createAt', 'status', 'action'];
   selected: string = "";
   disableButton = false
 
