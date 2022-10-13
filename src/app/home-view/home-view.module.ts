@@ -30,6 +30,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import { TrendingComponent } from './trending/trending.component';
 import {MatSelectModule} from "@angular/material/select";
 import { ErrorPageComponent } from './error-page/error-page.component';
+import {MatChipsModule} from "@angular/material/chips";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     MatButtonModule,
     MatMenuModule,
     MatTooltipModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule,
+    MatAutocompleteModule
   ],
   declarations: [
     LayoutComponent,
