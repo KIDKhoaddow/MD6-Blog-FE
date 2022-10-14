@@ -290,3 +290,8 @@ a, a:hover, a:focus, a:active {
   z-index: 9;
   cursor: pointer;
 }
+.content{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

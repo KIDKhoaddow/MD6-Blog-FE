@@ -24,14 +24,14 @@
                 <!-- Post Comment & Share Area -->
                 <div class="post-comment-share-area d-flex">
                   <app-icon icon="favorite" iconReplace="favorite_border" value="{{oneBlog[0].countLike}}" idBlog="{{oneBlogId}}"></app-icon>
-                  <app-icon iconReplace="comment" icon="comment" value="{{oneBlog[0].countComment}}" idBlog="{{oneBlogId}}"></app-icon>
+                  <app-icon iconReplace="comment" icon="comment" valueComment="{{oneBlog[0].countComment}}" idBlog="{{oneBlogId}}"></app-icon>
                 </div>
               </div>
               <a routerLink="/home/blog/{{oneBlog[0].id}}">
                 <h2 class="post-headline">{{oneBlog[0].title}}</h2>
               </a>
               <p>{{oneBlog[0].describes}}</p>
-              <a href="#" class="read-more">Continue Reading..</a>
+              <a routerLink="/home/blog/{{oneBlog[0].id}}" class="read-more">Continue Reading..</a>
             </div>
           </div>
         </div>
@@ -59,11 +59,11 @@
                 <!-- Post Comment & Share Area -->
                 <div class="post-comment-share-area d-flex">
                   <app-icon icon="favorite" iconReplace="favorite_border" value="{{blogRecently.countLike}}" idBlog="{{blogRecently.id}}"></app-icon>
-                  <app-icon iconReplace="comment" icon="comment" value="{{blogRecently.countComment}}" idBlog="{{blogRecently.id}}}"></app-icon>
+                  <app-icon iconReplace="comment" icon="comment" valueComment="{{blogRecently.countComment}}" idBlog="{{blogRecently.id}}"></app-icon>
                 </div>
               </div>
-              <a routerLink="/home/blog/{{blogRecently.id}}">
-                <h2 class="post-headline">{{blogRecently.title}}</h2>
+              <a routerLink="/home/blog/{{blogRecently.id}}" matTooltip="{{blogRecently.title}}">
+                <h4 class="post-headline content" style="width: 240px">{{blogRecently.title}}</h4>
               </a>
             </div>
           </div>
@@ -95,11 +95,11 @@
                   <!-- Post Comment & Share Area -->
                   <div class="post-comment-share-area d-flex">
                     <app-icon icon="favorite" iconReplace="favorite_border" value="{{blogs.countLike}}" idBlog="{{blogs.id}}"></app-icon>
-                    <app-icon iconReplace="comment" icon="comment" value="{{blogs.countComment}}" idBlog="{{blogs.id}}"></app-icon>
+                    <app-icon iconReplace="comment" icon="comment" valueComment="{{blogs.countComment}}" idBlog="{{blogs.id}}"></app-icon>
                   </div>
                 </div>
-                <a routerLink="/home/blog/{{blogs.id}}">
-                  <h3 class="post-headline">{{blogs.title}}</h3>
+                <a routerLink="/home/blog/{{blogs.id}}" matTooltip="{{blogs.title}}">
+                  <h4 class="post-headline content" style="width: 200px">{{blogs.title}}</h4>
                 </a>
               </div>
             </div>
