@@ -12,6 +12,7 @@ import {Router} from "@angular/router";
 })
 export class IconComponent implements OnInit {
   @Input() value: any = 0
+  @Input() valueComment: any = 0
   @Input() liked: any = false
   @Input() icon: any = ""
   @Input() iconReplace: any = ""
@@ -43,7 +44,7 @@ export class IconComponent implements OnInit {
     if (!isNaN(this.idBlogIcon)) {
       this.likeService.getList(this.idBlogIcon).subscribe(result => {
         this.listLikeDTO = result
-        this.tooltip=""
+        this.tooltip = ""
         for (let likeDTO of result) {
           this.tooltip += likeDTO.username + " , "
         }
