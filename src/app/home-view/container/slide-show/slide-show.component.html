@@ -1,8 +1,8 @@
 <div class="section" id="carousel" style="margin: 100px 0px 100px 0px">
   <owl-carousel-o [options]="customOptions" (initialized)="getData($event)">
     <ng-container *ngFor="let slide of blogs ;index as i">
-      <ng-template carouselSlide id="{{slide.id}}" *ngIf="i==0 ; else anotherSlide " [width]="350" >
-        <div class="slide item" style="width: 350px">
+      <ng-template carouselSlide id="{{slide.id}}" [width]="350" >
+        <div class="slide item" style="width: 350px"  *ngIf="i===0 ; else anotherSlide " >
           <div class="single_catagory">
             <div >
               <img src="{{slide.picture}}" alt="" style="width: 400px;height: 400px">
@@ -16,7 +16,7 @@
           </div>
         </div>
       </ng-template>
-      <ng-template carouselSlide id="{{slide.id}}" #anotherSlide [width]="200">
+      <ng-template carouselSlide id="{{slide.id}}"   #anotherSlide [width]="200">
         <div class="slide item" style="width: 220px; ">
           <div class="single_catagory">
             <div>
