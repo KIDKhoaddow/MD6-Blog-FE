@@ -1,13 +1,14 @@
-<div class="container-fluid">
+<div class="container-fluid" style="height: 100vh">
   <div class="row justify-content-center">
     <mat-card class="card" *ngIf="!isSuccessful; else  successful ">
       <div class="row register-Logo">
         <img src="./assets/icon/registerLogo.png">
       </div>
       <div class="register-form">
-        <form class="form row justify-content-center" [formGroup]="registerGroup" #heroForm="ngForm" appPasswordMatchValidator>
+        <form class="form row justify-content-center" [formGroup]="registerGroup" #heroForm="ngForm"
+              appPasswordMatchValidator>
           <div class="alert alert-warning" *ngIf="heroForm.submitted && isSignUpFailed">
-            Signup failed!<br />{{ errorMessage }}
+            Signup failed!<br/>{{ errorMessage }}
           </div>
           <mat-form-field class="full-width" appearance="fill">
             <mat-label>Email</mat-label>
@@ -49,19 +50,27 @@
               <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
             <mat-error *ngIf="password.hasError('required')">Password is required</mat-error>
-            <mat-error *ngIf="password.hasError('maxlength')">Password must have {{maxPassword}} maximum characters </mat-error>
-            <mat-error *ngIf="password.hasError('minlength')">Password must have at least {{minPassword}} characters</mat-error>
-            <mat-error *ngIf="password.hasError('lowercase')&&!password.hasError('minlength')">Password must contain one lowercase letter.</mat-error>
-            <mat-error *ngIf="password.hasError('uppercase')&&!password.hasError('minlength')">Password must contain one uppercase letter.</mat-error>
-            <mat-error *ngIf="password.hasError('characters')&&!password.hasError('minlength')">Password must contain one characters letter.</mat-error>
-            <mat-error *ngIf="password.hasError('digital')&&!password.hasError('minlength')">Password must contain one digital letter.</mat-error>
+            <mat-error *ngIf="password.hasError('maxlength')">Password must have {{maxPassword}} maximum characters
+            </mat-error>
+            <mat-error *ngIf="password.hasError('minlength')">Password must have at least {{minPassword}}characters
+            </mat-error>
+            <mat-error *ngIf="password.hasError('lowercase')&&!password.hasError('minlength')">Password must contain one
+              lowercase letter.
+            </mat-error>
+            <mat-error *ngIf="password.hasError('uppercase')&&!password.hasError('minlength')">Password must contain one
+              uppercase letter.
+            </mat-error>
+            <mat-error *ngIf="password.hasError('characters')&&!password.hasError('minlength')">Password must contain
+              one characters letter.
+            </mat-error>
+            <mat-error *ngIf="password.hasError('digital')&&!password.hasError('minlength')">Password must contain one
+              digital letter.
+            </mat-error>
           </mat-form-field>
-          <div *ngIf="registerGroup.errors?.['passwordMismatch']" class="cross-validation-error-message alert"> Confirm-password does not match password
-          </div>
           <mat-form-field class="full-width" appearance="fill">
             <mat-label>Enter your confirm password</mat-label>
             <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" [formControl]="confirmPassword"
-                   [errorStateMatcher]="matcherRePassword" >
+                   [errorStateMatcher]="matcherRePassword">
 
             <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword"
                     [attr.aria-label]="'Hide password'"
@@ -69,14 +78,19 @@
               <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
             <mat-error *ngIf="confirmPassword.hasError('required')">Password is required</mat-error>
-            <mat-error *ngIf="confirmPassword.hasError('minlength')">Password must have at least {{minPassword}} characters</mat-error>
+            <mat-error *ngIf="confirmPassword.hasError('minlength')">Password must have at least {{minPassword}}
+              characters
+            </mat-error>
 
           </mat-form-field>
-          <div *ngIf="registerGroup.errors?.['passwordMismatch']" class="cross-validation-error-message alert">Confirm-password does not match password
+          <div  style="height: 25px;">
+            <span class="cross-validation-error-message alert" *ngIf="registerGroup.errors?.['passwordMismatch']">Confirm-password does not match password</span>
           </div>
           <button class="button" mat-raised-button color="primary" (click)="register()" style="margin-top: 10px"
                   [disabled]="matcherUsername.isErrorState(username,heroForm)||matcherPassword.isErrorState(password,heroForm)
-                  ||matcherRePassword.isErrorState(confirmPassword,heroForm)||matcherEmail.isErrorState(email,heroForm)">Register</button>
+                  ||matcherRePassword.isErrorState(confirmPassword,heroForm)||matcherEmail.isErrorState(email,heroForm)">
+            Register
+          </button>
         </form>
         <div class="login-link">
           <p>
@@ -87,10 +101,10 @@
       </div>
 
     </mat-card>
-    <ng-template #successful >
-        <div class="alert alert-success row justify-content-center"  style="margin: 10px">
-          Your registration is successful! We've sent you a verification mail to your email account.
-        </div>
+    <ng-template #successful>
+      <div class="alert alert-success row justify-content-center" style="margin: 10px">
+        Your registration is successful! We've sent you a verification mail to your email account.
+      </div>
     </ng-template>
 
   </div>

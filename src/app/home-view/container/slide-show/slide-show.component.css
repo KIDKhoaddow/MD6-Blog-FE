@@ -40,3 +40,6 @@ a{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.img-hover:hover{
+  object-position: 0 100%
+}

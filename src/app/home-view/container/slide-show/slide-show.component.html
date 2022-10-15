@@ -19,9 +19,9 @@
       <ng-template carouselSlide id="{{slide.id}}"   #anotherSlide [width]="200">
         <div class="slide item" style="width: 220px; ">
           <div class="single_catagory">
-            <div>
+            <div  class="img-hover">
               <img src="{{slide.picture}}" alt=""
-                   style="width: 250px;height: 400px;object-fit: cover;object-position: 50% 50%">
+                   style="width: 250px;height: 400px;object-fit: cover;object-position: 50% 50% ;">
             </div>
             <div class="catagory-title">
               <a routerLink="/home/blog/{{slide.id}}" style="text-shadow: 2px 4px 3px rgba(0,0,0,0.3);" matTooltip="{{slide.title}}">
