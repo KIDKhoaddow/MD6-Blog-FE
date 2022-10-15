@@ -97,7 +97,10 @@ a, a:hover, a:focus, a:active {
   z-index: 2;
   background-color: #b5aec4;
 }
-
+.post-author{
+  display: flex;
+  align-items: center;
+}
 .single-post {
   margin-bottom: 30px;
 }
