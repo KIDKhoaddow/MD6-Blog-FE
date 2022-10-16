@@ -12,6 +12,8 @@ import {
 } from "@angular/forms";
 import {MyErrorStateMatcher} from "../../model/Validate/ErrorStateMatcher";
 import {AuthService} from "../service/auth.service";
+import Swal from "sweetalert2";
+import {finalize} from "rxjs";
 
 
 @Component({
@@ -66,22 +68,31 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   register() {
     const val = this.registerGroup.value;
-    if (val.username && val.password && val.confirmPassword && val.email) {
-      this.authService.register(val.username, val.password, val.confirmPassword, val.email).subscribe(result => {
-          console.log(result)
-          this.isSuccessful = true;
-          this.isSignUpFailed = false;
-        }, error => {
-          this.errorMessage = error.error.message;
-          this.isSignUpFailed = true;
+    Swal.fire({
+      title: 'Loading...',
+      html: 'Please wait...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+        if (val.username && val.password && val.confirmPassword && val.email) {
+          this.authService.register(val.username, val.password, val.confirmPassword, val.email).subscribe(result => {
+              console.log(result)
+              this.isSuccessful = true;
+              this.isSignUpFailed = false;
+              Swal.close();
+            }, error => {
+              this.errorMessage = error.error.message;
+              this.isSignUpFailed = true;
+              Swal.close();
+            }
+          )
         }
-      )
+      }
+    }).then();
 
-
-    }
   }
 
   //Group Pattern Validator
