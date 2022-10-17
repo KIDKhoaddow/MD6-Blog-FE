@@ -4,7 +4,7 @@
       <div class="tt-innerwrapper tt-row">
         <div class="tt-col-left">
           <ul class="tt-list-badge">
-            <li><a href="#" style="text-decoration: none">
+            <li><a (click)="displayPublicBlog()" style="text-decoration: none">
               <span class="tt-color05 tt-badge" *ngIf="category.name=='Music'">music</span>
               <span class="tt-color06 tt-badge" *ngIf="category.name=='Movie'">movie</span>
               <span class="tt-color04 tt-badge" *ngIf="category.name=='Pet'">pet</span>
@@ -54,18 +54,23 @@
         </div>
       </div>
       <div class="tt-innerwrapper">
-       {{category.description}}
+        {{category.description}}
       </div>
       <div class="tt-innerwrapper">
         <h6 class="tt-title">Similar TAGS</h6>
         <ul class="tt-list-badge">
-          <li *ngFor="let element of category.tagDTO"><a class="tt-btn-icon"><span class="tt-badge">{{element.name}}</span></a>
+          <li><a  class="tt-btn-icon" (click)="displayPublicBlog()">
+            <span class="tt-badge">#All</span></a>
+          </li>
+          <li *ngFor="let element of category.tagDTO">
+            <a (click)="displayBlogByTag(element.id)" class="tt-btn-icon">
+              <span class="tt-badge">{{element.name}}</span></a>
           </li>
         </ul>
       </div>
     </div>
     <div class="tt-topic-list">
-     <app-blog-category [blogOfCategory]="blogOfCategory" ></app-blog-category>
+      <app-blog-category [blogOfCategory]="blogOfCategory"></app-blog-category>
     </div>
   </div>
 </main>

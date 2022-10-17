@@ -33,7 +33,7 @@
               <div class="innerwrapper">
                 <h6 class="tt-title" style="color: white;text-shadow: 2px 4px 3px rgba(0,0,0,0.3);">Similar TAGS</h6>
                 <ul class="tt-list-badge content" style="width: 320px" >
-                  <li *ngFor="let tag of element.tagDTO"><a >
+                  <li *ngFor="let tag of element.tagDTO"><a routerLink="/home/category/{{element.name}}/{{element.id}}/{{tag.id}}"  style="text-decoration: none">
                     <span class="tt-badge " style="color: black" >{{tag.name}}</span></a>
                   </li>
                 </ul>

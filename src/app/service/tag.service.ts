@@ -20,4 +20,8 @@ export class TagService {
   getListTagByCategoryId(idCategory: number): Observable<TagDTO[]> {
     return this.httpClient.get<TagDTO[]>("http://localhost:8080/api/tag/category/" + idCategory)
   }
+
+  getListTag(): Observable<TagDTO[]> {
+    return this.httpClient.get<TagDTO[]>("http://localhost:8080/api/tag")
+  }
 }
