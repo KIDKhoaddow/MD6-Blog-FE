@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {UsersService} from "../../service/users.service";
 import {AbstractControl, FormBuilder, FormControl, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {UserInfoDTO} from "../../model/user/userInfoDTO";
@@ -203,11 +203,19 @@ export class UserProfileComponent implements OnInit {
           icon: 'success',
           title: 'Change Password complete',
           timer: 1500
+        }).finally(() => {
+          this.authService.logout();
+          window.location.reload()
+        })
+      },error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Change fail',
+          timer: 1500
         })
       })
     }
   }
-
 
   updateUsers() {
     let users = {
@@ -267,6 +275,10 @@ export class UserProfileComponent implements OnInit {
         icon: 'success',
         title: 'Update complete',
         timer: 1500
+      }).finally(()=>{
+        this.router.navigateByUrl("/home/userprofile3/2")
+        window.location.reload()
+        // this.cdr.detectChanges();
       })
     );
   }

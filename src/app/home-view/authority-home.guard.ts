@@ -41,7 +41,7 @@ export class AuthorityHomeGuard implements CanActivate, CanActivateChild, CanLoa
       return true;
     }
 
-    this.router.navigateByUrl("/error")
+    this.router.navigateByUrl("/login")
     return false;
   }
 

@@ -34,15 +34,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService,
               private router: Router, private route: ActivatedRoute) {
-    // @ts-ignore
-    let role = this.authService.currentUserValue?.roles[0].authority
-    if(this.authService.currentUserValue!=undefined){
-      if (role == "ROLE_ADMIN") {
-        this.router.navigateByUrl("/admin/dashboard")
-      }else {
-        this.router.navigateByUrl("")
-      }
-    }
+
+
   }
 
   ngAfterViewInit() {
@@ -60,8 +53,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
-
+    // @ts-ignore
+    let role = this.authService.currentUserValue?.roles[0].authority
+    if(this.authService.currentUserValue!=undefined){
+      if (role == "ROLE_ADMIN") {
+        this.router.navigateByUrl("/admin/dashboard")
+      }else {
+        this.router.navigateByUrl("")
+      }
+    }
   }
 
   login() {
