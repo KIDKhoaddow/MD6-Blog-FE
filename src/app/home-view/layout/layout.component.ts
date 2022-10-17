@@ -38,8 +38,6 @@ export class LayoutComponent implements OnInit {
       this.categories=result
     })
     document.body.style.background = "#f8f9fb"
-
-
   }
 
 

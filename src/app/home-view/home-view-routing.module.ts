@@ -40,6 +40,12 @@ const homeRoutes: Routes = [
         {path:'category/Car/:category',component:SingleCategoryComponent},
         {path:'category/Music/:category',component:SingleCategoryComponent},
         {path:'category/Pet/:category',component:SingleCategoryComponent},
+        {path:'category/Food/:category/:tag',component:SingleCategoryComponent},
+        {path:'category/Game/:category/:tag',component:SingleCategoryComponent},
+        {path:'category/Movie/:category/:tag',component:SingleCategoryComponent},
+        {path:'category/Car/:category/:tag',component:SingleCategoryComponent},
+        {path:'category/Music/:category/:tag',component:SingleCategoryComponent},
+        {path:'category/Pet/:category/:tag',component:SingleCategoryComponent},
         {path:'blog/:blog',component:SingleBlogComponent},
         {path:'trending',component:TrendingComponent}
       ]

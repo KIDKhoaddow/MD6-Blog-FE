@@ -77,7 +77,9 @@ export class BlogsService {
   getPublicBlog(): Observable<BlogDTO[]> {
     return this.httpClient.get<BlogDTO[]>("http://localhost:8080/api/blog/public/")
   }
-
+  getPublicBlogByTag(idTag:number): Observable<BlogDTO[]> {
+    return this.httpClient.get<BlogDTO[]>("http://localhost:8080/api/blog/tag/"+idTag)
+  }
   getPublicBlogByCategory(idCategory: number): Observable<BlogDTO[]> {
     return this.httpClient.get<BlogDTO[]>("http://localhost:8080/api/blog/public/category/" + idCategory)
   }

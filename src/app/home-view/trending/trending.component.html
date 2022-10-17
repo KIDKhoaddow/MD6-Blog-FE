@@ -9,7 +9,7 @@
             <mat-select [(value)]="selected" (valueChange)="applySelect()">
               <mat-label>Category</mat-label>
               <mat-option value="All">All</mat-option>
-              <mat-option *ngFor="let element of categories " value="{{element.id}}"  >{{element.name}}</mat-option>
+              <mat-option *ngFor="let element of categories " value="{{element.id}}">{{element.name}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -23,7 +23,7 @@
           <!-- /toggle -->
           <form class="search-wrapper">
             <div class="search-form">
-              <input type="text" class="tt-search__input" placeholder="Search" >
+              <input type="text" class="tt-search__input" placeholder="Search">
               <button class="tt-search__btn" type="submit">
                 <svg class="tt-icon">
                   <use xlink:href="#icon-search"></use>
@@ -37,6 +37,18 @@
             </div>
           </form>
         </div>
+      </div>
+      <div class="tt-innerwrapper" style="width: 100%">
+        <h6 class="tt-title">Similar TAGS</h6>
+        <ul class="tt-list-badge">
+          <li><a (click)="displayAllBlog()" ><span class="tt-badge">All</span></a></li>
+          <li  *ngFor="let tag of tagList" >
+            <a (click)="displayBlogByTag(tag.id)">
+              <span class="tt-badge">{{tag.name}}</span>
+            </a>
+          </li>
+
+        </ul>
       </div>
     </div>
     <!-- tt-search -->

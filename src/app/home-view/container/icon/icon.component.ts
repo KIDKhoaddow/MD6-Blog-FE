@@ -48,6 +48,7 @@ export class IconComponent implements OnInit {
         for (let likeDTO of result) {
           this.tooltip += likeDTO.username + " , "
         }
+        this.tooltip = this.tooltip.substring(0, this.tooltip.length - 2)
         for (let likeDTO of result) {
           if (this.authService.currentUserValue?.id === likeDTO.idUser) {
             this.liked = true;

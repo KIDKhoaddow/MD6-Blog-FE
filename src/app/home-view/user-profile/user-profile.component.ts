@@ -213,6 +213,15 @@ export class UserProfileComponent implements OnInit {
           title: 'Change fail',
           timer: 1500
         })
+      },error => {
+        Swal.fire({
+          icon: 'error',
+          title: error.error.message,
+          timer: 1500
+        }).finally(()=>{
+          this.authService.logout()
+          window.location.reload()
+        })
       })
     }
   }
