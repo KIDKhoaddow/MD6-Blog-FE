@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
   minPassword = 8
   maxPassword = 25
   maxUsername = 25
-  maxEmail = 25
+  maxEmail = 50
   minEmail = 10
   username = new FormControl('',
     [Validators.required, Validators.minLength(this.minUsername), Validators.maxLength(this.maxUsername)])
